@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>index Page</title>
+</head>
+<body>
+	Welcome
+	<br />
+	<input id="text" type="text" />
+	<button onclick="send()">发送消息</button>
+	<hr />
+	<button onclick="closeWebSocket()">关闭WebSocket连接</button>
+	<hr />
+	<div id="message"></div>
+	<table id="tb" class="altrowstable">
+		<th align="center" colspan="9">实时信息监控</th>
+	</table>
+</body>
+
+<script type="text/javascript">
+    var websocket = null;
+    //判断当前浏览器是否支持WebSocket
+    if ('WebSocket' in window) {
+        websocket = new WebSocket("ws://localhost:8080/EDP/websocket");
+    }
+    else {
+        alert('当前浏览器 Not support websocket')
+    }
+    //连接发生错误的回调方法
+    websocket.onerror = function () {
+        setMessageInnerHTML("WebSocket连接发生错误");
+    };
+    //连接成功建立的回调方法
+    websocket.onopen = function () {
+        setMessageInnerHTML("WebSocket连接成功");
+    }
+    //接收到消息的回调方法
+    websocket.onmessage = function (event) {
+        setMessageInnerHTML(event.data);
+    }
+    //连接关闭的回调方法
+    websocket.onclose = function () {
+        setMessageInnerHTML("WebSocket连接关闭");
+    }
+    //监听窗口关闭事件，当窗口关闭时，主动去关闭websocket连接，防止连接还没断开就关闭窗口，server端会抛异常。
+    window.onbeforeunload = function () {
+        closeWebSocket();
+    }
+    //将消息显示在网页上
+    function setMessageInnerHTML(innerHTML) {
+    	var msg=innerHTML.split(" - ")
+		
+		var table=document.getElementById("tb");
+		 var row;
+		 row=table.insertRow(1);
+		for(var i=0;i<msg.length;i++){
+			 var cell = row.insertCell(i);
+		 	 cell.appendChild(document.createTextNode(msg[i]));
+		}
+		if(table.rows.length>50){
+			table.deleteRow(table.rows.length-1);
+		}
+      //  document.getElementById('message').innerHTML += innerHTML + '<br/>';
+    }
+    //关闭WebSocket连接
+    function closeWebSocket() {
+        websocket.close();
+    }
+    //发送消息
+    //type：1，第一种发布的确定消息；publishId：单号
+    //type：2，第一种发布的反馈消息；messageId:消息记录id；choose：选择哪个
+    //type: 3,第一种发布的反馈消息时的快递信息；messageId:消息记录id
+    //type：4，第二种发布的确定消息;publishId:要请人拿快递的发布的单号；publisherId:拿快递人发布的单号；
+    //type:	5, 双击头像;fromId:发送人id；toId:接受人id
+    function send() {
+      	//websocket.send("{\"type\": \"1\",\"publishId\": \"PH12345\"}");
+
+        //websocket.send("{\"type\": \"2\",\"messageId\": \"46\",\"choose\": \"true\"}");//确定
+        
+        //websocket.send("{\"type\": \"2\",\"messageId\": \"44\",\"choose\": \"false\"}");//拒绝
+
+        //websocket.send("{\"type\": \"3\",\"messageId\": \"46\"}");
+
+        //websocket.send("{\"type\": \"4\",\"publishId\": \"PH12345\",\"publisherId\":\"ES1234\"}");
+
+        websocket.send("{\"type\": \"5\",\"fromId\": \"3\",\"toId\":\"4\"}");
+
+        //var message = document.getElementById('text').value;
+        //发送消息
+        //var json="{\"id\": \""+???+"\",\"body\": \""+???+"\"}";
+        //websocket.send(message);
+    }
+</script>
+</html>

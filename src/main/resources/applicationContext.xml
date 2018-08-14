@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:mvc="http://www.springframework.org/schema/mvc"
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xmlns:websocket="http://www.springframework.org/schema/websocket"
+	xsi:schemaLocation="http://www.springframework.org/schema/websocket http://www.springframework.org/schema/websocket/spring-websocket-4.1.xsd
+		http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-4.2.xsd
+		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.3.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd
+		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.1.xsd">
+
+	<context:component-scan base-package="com.zust.EDP">
+		<context:exclude-filter type="annotation"
+			expression="org.springframework.stereotype.Controller" />
+	</context:component-scan>
+
+	<bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource"
+		destroy-method="close">
+		<property name="driverClass" value="com.mysql.jdbc.Driver" />  <!--数据库连接驱动 -->
+		<property name="jdbcUrl"
+			value="jdbc:mysql://localhost:3306/expressdeliveryplatform?useUnicode=true&amp;characterEncoding=utf-8&amp;useSSL=false" />     <!--数据库地址 -->
+		<property name="user" value="root" />   <!--用户名 -->
+		<property name="password" value="milk8898" />   <!--密码 -->
+		<property name="maxPoolSize" value="40" />      <!--最大连接数 -->
+		<property name="minPoolSize" value="1" />       <!--最小连接数 -->
+		<property name="initialPoolSize" value="10" />      <!--初始化连接池内的数据库连接 -->
+		<property name="maxIdleTime" value="20" />  <!--最大空闲时间 -->
+	</bean>
+
+	<!--配置session工厂 -->
+	<bean id="sessionFactory"
+		class="org.springframework.orm.hibernate4.LocalSessionFactoryBean">
+		<property name="dataSource" ref="dataSource" />
+		<property name="packagesToScan" value="com.zust.EDP.entity" />
+		<property name="hibernateProperties">
+			<props>
+				<prop key="hibernate.hbm2ddl.auto">update</prop> <!--hibernate根据实体自动生成数据库表 -->
+				<prop key="hibernate.dialect">org.hibernate.dialect.MySQLDialect</prop>   <!--指定数据库方言 -->
+				<prop key="hibernate.show_sql">true</prop>     <!--在控制台显示执行的数据库操作语句 -->
+				<prop key="hibernate.format_sql">true</prop>     <!--在控制台显示执行的数据哭操作语句（格式） -->
+			</props>
+		</property>
+	</bean>
+	
+	<bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver"/>
+	<!-- 事物管理器配置 -->
+	<bean id="transactionManager"
+		class="org.springframework.orm.hibernate4.HibernateTransactionManager">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+	
+	<!--<bean name="monitor" class="com.zust.EDP.webServer.Monitor" lazy-init="false"    init-method="sendMsg"></bean>  -->
+	
+</beans>

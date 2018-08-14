@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device,initial-scale=1">
+	<title>Document</title>
+	<link rel="stylesheet" href="../css/style.min.css">
+	<link rel="stylesheet" href="../resourse/ui/semantic.min.css">
+</head>
+<style>
+  body,html{
+    background-color: #fff !important;
+  }
+</style>
+<body>
+
+  <div class="ui modal" id="modal1">
+      <!-- <i class="close icon"></i> -->
+      <div class="header">
+        选择快递位置
+      </div>
+      <div class="content">
+        <div id="map" style="height:400px;"></div>
+      </div>
+      <div class="actions">
+        <div class="ui positive right labeled icon button">
+          确定<i class="checkmark icon"></i>
+        </div>
+      </div>
+
+  </div>
+
+    <div class="ui modal mini" id="modal2">
+      <!-- <i class="close icon"></i> -->
+      <div class="header">
+        请输入奖励积分
+      </div>
+      <div class="content">
+        <div class="ui input" style="width: 100% !important;">
+        <input type="text" class="integral">
+    </div>
+      </div>
+      <div class="actions">
+        <div class="ui positive right labeled icon button">
+          确定<i class="checkmark icon"></i>
+        </div>
+      </div>
+
+  </div>
+
+  <div class="ui modal mini" id="modal3">
+      <div class="header">
+        消息
+      </div>
+      <div class="content">
+      </div>
+      <div class="actions">
+        <div class="ui red right labeled icon button">
+          确定<i class="checkmark icon"></i>
+        </div>
+      </div>
+
+  </div>
+
+  <div id="write_container">
+    <nav>
+      <div class="logox"><a href="../user/home" title="">传递</a></div>
+      <div class="kinds" style="font-size: 18px;font-weight: 600;"  data-content="点击切换">
+        写委托
+      </div>
+      <div class="func">
+        <button class="ui button" type="">发布</button>
+        <button class="ui button" type="">暂存</button>
+      </div>
+    </nav>
+
+    <div id="write_content">
+      <form class="ui form form1 segment" id="form1" method="post">
+          <div class="two fields">
+            <div class="field">
+                <label>类型</label>
+                <input type="text" name="type" placeholder="快件类型" class="type">
+            </div>
+            <div class="field">
+                <label>大小</label>
+                <div class="ui fluid selection dropdown">
+                  <input type="hidden" name="size" class="size">
+                  <div class="default text">中</div>
+                  <i class="dropdown icon"></i>
+                  <div class="menu">
+                      <div class="item" data-value="3">大</div>
+                      <div class="item" data-value="2">中</div>
+                      <div class="item" data-value="1">小</div>
+                  </div>
+                </div>
+            </div>
+          </div>
+            <div class="field">
+                <label>快递公司</label>
+                <div class="ui fluid selection dropdown">
+                  <input type="hidden" name="company" class="company">
+                  <div class="default text">菜鸟</div>
+                  <i class="dropdown icon"></i>
+                  <div class="menu">
+                      <div class="item" data-value="菜鸟">菜鸟</div>
+                      <div class="item" data-value="顺丰">顺丰</div>
+                      <div class="item" data-value="申通">申通</div>
+                      <div class="item" data-value="圆通">中通</div>
+                      <div class="item" data-value="天天">天天</div>
+                      <div class="item" data-value="其他">其他</div>
+                  </div>
+                </div>
+            </div>
+
+          <div class="three fields address">
+            
+            <div class="field">
+              <label>省</label>
+              <input name="province" type="text" placeholder="快件地址" class="express_add">
+            </div>
+            <div class="field">
+              <label>市</label>
+              <input name="city" type="text" placeholder="快件地址" class="express_add"> 
+            </div>
+            <div class="field">
+              <label>区/县</label>
+              <input name="district" type="text" placeholder="快件地址" class="express_add">
+            </div>
+          </div>
+          
+         <div class="position">
+            <i class="icon location arrow"  data-content="点击选择地址"></i>
+          </div>
+
+          <div class="field">
+            <label>具体地址</label>
+            <input name="detailAdd" type="text" placeholder="快件地址" id='detail_add' class="express_add">
+          </div>
+          
+          <div class=" two fields ">
+          
+          <div class="field">
+            <label>取货码</label>
+            <input name="fetchcode" type="text" placeholder="取货码" class="code">
+          </div>
+
+          <div class="field">
+                <label>信誉限制</label>
+                <div class="ui fluid selection dropdown">
+                  <input type="hidden" name="requipment" class="requirement">
+                  <div class="default text">5</div>
+                  <i class="dropdown icon"></i>
+                  <div class="menu">
+                      <div class="item" data-value="5">5</div>
+                      <div class="item" data-value="4">4</div>
+                      <div class="item" data-value="3">3</div>
+                      <div class="item" data-value="2">2</div>
+                      <div class="item" data-value="1">1</div>
+                  </div>
+                </div>
+            </div>
+          </div>
+
+          
+          <div class="field">
+            <label>取件截止时间</label>
+          <!--  <input name="empty" type="text" placeholder="截止时间"> -->
+            <input type="datetime-local" name="dateline" value="" placeholder="" class="takeDate">
+          </div>
+          <div class="field">
+            <label>备注</label>
+            <textarea rows="3" class="tip"></textarea>
+          </div>
+
+          <div class="ui error message"></div>
+      </form>
+
+      <form class="ui form form2 segment" id="form2" method="post" style="display: none;">
+          <div class="field">
+            <label>空闲时间(截止)</label>
+            <input type="datetime-local" name="freedate" value="" class="freeDate">
+          </div>
+
+          <div class="three fields address">
+            
+            <div class="field">
+              <label>省</label>
+              <input name="province" type="text" placeholder="快递公司地址" class="express_add">
+            </div>
+            <div class="field">
+              <label>市</label>
+              <input name="city" type="text" placeholder="快递公司地址" class="express_add"> 
+            </div>
+            <div class="field">
+              <label>区/县</label>
+              <input name="district" type="text" placeholder="快递公司地址" class="express_add">
+            </div>
+          </div>
+          
+         <div class="position">
+            <i class="icon location arrow"  data-content="点击选择地址"></i>
+          </div>
+
+          <div class="field">
+            <label>具体地址</label>
+            <input name="detailAdd" type="text" placeholder="快递公司地址" id='detail_add1' class="express_add">
+          </div>
+
+          <div class="field">
+            <label>备注</label>
+            <textarea rows="3" class="introduce"></textarea>
+          </div>
+
+      </form>
+      
+    </div>
+
+
+  </div>
+</body>
+<script src="http://webapi.amap.com/maps?v=1.4.2&key=e92318f288333abcc2892dfdff52d410"></script>
+<script src="http://webapi.amap.com/ui/1.0/main.js"></script>
+<script src="../js/common.js"></script>
+<script src="../js/entrust.js"></script>
+</html>

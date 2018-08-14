@@ -1,0 +1,420 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device,initial-scale=1">
+	<title>Document</title>
+	<link rel="stylesheet" href="../css/style.min.css">
+	<link rel="stylesheet" href="../resourse/ui/semantic.min.css">
+</head>
+<style>
+  body,html{
+    min-width: 1000px !important;
+  }
+  .main_container nav ul{
+    min-width: 1000px !important;
+  }
+  </style>
+<body>
+  <div class="ui modal main_modal1" id="modal1">
+      <!-- <i class="close icon"></i> -->
+      <div class="header">
+        拖动标记或点击地图热点以选择位置
+      </div>
+      <div class="content">
+        <div id="map" style="height:400px;"></div>
+      <div class="description" style="margin-top: 15px;">
+        <h4 class="ui horizontal divider header"><i class="location arrow icon"></i> 当前位置</h4>
+          <div style="font-size: 17px;text-align: center;">
+            <span id="now_position" style="margin-right: 15px;"></span>
+            <span id="nearest"></span>    
+          </div>
+        </div>
+      </div>
+
+      <div class="actions">
+        <div class="ui black deny button">
+            退出
+        </div>
+        <div class="ui positive right labeled icon button">
+          确定<i class="checkmark icon"></i>
+        </div>
+      </div>
+
+  </div>
+
+  <div class="ui modal mini main_modal2" id="modal2">
+      <i class="close icon"></i>
+      <div class="header">
+        确认  
+      </div>
+      <div class="content">
+      确定接受委托吗？
+      </div>
+      <div class="actions">
+        <div class="ui negative button">
+            否
+        </div>
+        <div class="ui positive right labeled icon button">
+          是<i class="checkmark icon"></i>
+        </div>
+      </div>
+  </div>
+
+  <div class="ui modal small main_modal3" id="modal3">
+    <div class="header">
+      Message
+      </div>
+      <div class="content">
+      </div>
+      <div class="actions">
+        <div class="ui positive right labeled icon button">
+          OK<i class="checkmark icon"></i>
+        </div>
+      </div>
+  </div>
+
+  <div class="ui modal small main_modal4" id="modal4">
+      <!-- <i class="close icon"></i> -->
+      <div class="header">
+        选择您的暂存
+      </div>
+      <div class="content_model_content_4 content_4">
+      
+      </div>
+      <div class="actions">
+        <div class="ui black deny button">
+            退出
+        </div>
+        <div class="ui positive right labeled icon button">
+          确定<i class="checkmark icon"></i>
+        </div>
+      </div>
+
+  </div>
+
+  <div class="ui modal mini main_modal5" id="modal5">
+      <!-- <i class="close icon"></i> -->
+      <div class="header">
+        请输入奖励积分
+      </div>
+      <div class="content">
+        <div class="ui input" style="width: 100% !important;">
+        <input type="text" class="integral">
+    </div>
+      </div>
+      <div class="actions">
+        <div class="ui positive right labeled icon button">
+          确定<i class="checkmark icon"></i>
+        </div>
+      </div>
+  </div>
+
+
+  <div id="chat_box" >
+    <div class="header" >
+      <div>
+        <div style="width: 100%;text-align: center;font-size: 25px;" class="name">yomi</div>
+        <!-- <div style="width: 100%;text-align: center;color:green;">outline</div> -->
+      </div>
+      <div style="float: right;cursor: pointer;">
+        <!-- <i class="icon compress red large"></i> -->
+        <i class="icon close red large"></i>
+      </div>
+    </div>
+
+      <div id="chatrecorde">
+        <!--<div class="time">
+          2017/12/12
+        </div>
+
+            <div class="others">
+              <img class="avator" src="../images/defaultavatar.jpg"></img>
+              <br><span>aa</span>
+            </div>
+
+            <div class="me">
+              <img class="avator" src="../images/defaultavatar.jpg"></img>
+              <br><span>aa</span>
+            </div>
+
+            <div class="others">
+              <img class="avator" src="../images/defaultavatar.jpg"></img>
+              <br><span>aa</span>
+            </div>  -->
+        
+    </div>
+
+    <div class="ui action input edit_box">
+        <input type="text" placeholder="">
+        <button class="ui button">发送</button>
+    </div>
+  </div>
+
+
+
+  <div class="main_container" id="main_container">
+    <nav>
+      <ul>
+        <li >
+          <a>传递</a>
+        </li>
+        <li>
+          <a href="" title=""></a>
+        </li>
+        <li>
+          <button type="" class="ui button"><i class="icon write" id="mian_write"></i>写委托</button>
+        </li>
+        <li>
+          
+
+          <div class="ui labeled icon dropdown button myinfdropdown" style="background: none;height:56px; ">
+            <span>
+              <div id="avatar">
+                <span></span>
+                <img class="ui avatar image mini" src="">  
+              </div>
+            </span>
+            <div class="menu" id="main_menu">
+              <div class="header">
+                <i class="trophy  icon"></i>
+                <b>10</b>
+              </div>
+              <div class="divider"></div>
+              <div class="item"><a href="./personpage">个人中心</a></div>
+              <div class="item">未读聊天消息</div>
+              <div class="item unreadChatMsg">
+              </div>
+
+            </div>
+          </div>
+        </li>
+        <li style="position: relative;">
+          
+          <div class="ui icon two input" >
+              <i class="search icon" id="main_search" style="cursor: pointer;"></i>
+              <div class="ui fluid selection dropdown" style="width: 80px;position: absolute;border-radius: 50px;border: none;z-index: 10;transform: scale(.95);">
+                <input type="hidden" class="main_search">
+                <div class="default text">信誉</div>
+                <i class="dropdown icon"></i>
+                <div class="menu">
+                  <div class="item" data-value="5">5</div>
+                  <div class="item" data-value="4">4</div>
+                  <div class="item" data-value="3">3</div>
+                  <div class="item" data-value="2">2</div>
+                  <div class="item" data-value="1">1</div>
+                </div>
+              </div>
+              <input class="prompt main_search" type="text" placeholder="地址" class="main_search" style="padding-left:80px;" >
+              
+          </div>
+        </li>
+
+      </ul>
+    </nav>
+
+    <div id="wait_loading"  >
+      <div class="main_page_loading">
+        <div id="page_loading">
+          <span></span>
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
+        <div id="page_loading_text">
+          页面加载中
+        </div>
+      </div>
+    </div>
+
+
+    <div id="main_content" >
+      <div class="img_con">
+        <img src="../images/qqq.jpg" alt="" style="display:block;">
+      </div>
+
+      <div class="all_content" id="all_content">
+        <!-- left -->
+        <div class="ui card entrust" id="func_nav">
+          <div class="content">
+            <button type="" class="ui button"><i class="icon browser"></i>委托</button>
+            <button type="" class="ui button"><i class="icon hand rock"></i>帮拿</button>
+            <button type="" class="ui button red right floated "><i class="icon hand rock"></i>写帮拿</button>
+            <button type="" class="ui button red right floated"><i class="icon write"></i>写委托</button>
+          </div>
+        </div>
+
+        <div class="entrust_content">
+    
+          <!--<div class="ui card entrust">
+
+              <div class="content">
+                <div class="right floated meta">
+                  <i class="icon write"></i>2017/9/20 11:20:57
+                </div>
+                <img class="ui avatar image" src="../images/defaultavatar.jpg"><span>yomi</span>
+              </div>
+              <div class="content">
+                <div class="header ">
+                  <p hidden="hidden" class="odd">单号</p>
+                  <span style="margin-right:20px;" class="type">类型:xxx</span>
+                  <span style="margin-right:20px;" class="size">大小:xxx</span>
+                  <span>信誉限制:10</span>
+                  <span class="right floated"><i class="trophy icon red"></i>5</span>
+                </div>
+                <div class="meta">
+                    <span class="date">东河公寓申通快递！</span>
+                </div>
+                <div class="description">
+                   备注：xxxxx
+                </div>
+              </div>
+              <div class="extra content">
+                <a href="" title="" class="express_type">顺丰</a>
+                <span>截止时间:2017/9/20 11:20:57</span>
+                <span class="right floated"><i class="location arrow icon"></i>300米</span>
+              </div>
+          </div>-->
+
+        </div>
+
+        <div class="fetch_content">
+          <!--<div class="ui card entrust">
+              <div class="content">
+                <div class="right floated meta">
+                  <i class="icon write"></i>2017/9/20 11:20:57
+                </div>
+                <img class="ui avatar image" src="../images/defaultavatar.jpg">yomi
+              </div>
+              <div class="content">
+                <div class="header ">
+
+                  <span>信誉：5</span>
+                  <span class="right floated">需要：<i class="trophy icon red"></i>5</span>
+                </div>
+                <div class="meta">
+                    <span class="date">东和公寓菜鸟快递</span>
+                </div>
+                <div class="description">
+                   备注：xxxxx
+                </div>
+              </div>
+              <div class="extra content">
+                <a href="" title="" class="express_type">顺丰</a>
+                <span>截止时间:2017/9/20 11:20:57</span>
+                <span class="right floated"><i class="location arrow icon"></i>300米</span>
+              </div>
+          </div>-->
+        </div>
+
+        <!-- right -->
+        <div class="inf_content" id="inf_content">
+
+          <div class="top_list">
+            <ul style="border-radius: 1px;box-shadow:0 1px 3px rgba(0,0,0,.1);padding: 14px; background-color: #fff">
+              <li><b>榜单</b></li>
+              <!-- <li style="padding-right: -200px;position: relative;height: 40px; margin-top: 10px;">
+                <p hidden="hidden" class="chat_id">id</p>
+                <img class="ui avatar image" src="../images/defaultavatar.jpg" style="position: absolute;top:0;left: 0;width: 40px;height: 40px;">
+                <div style="margin-left: 50px;height: 40px;width: 150px;">
+                  <div style="height: 20px;">yomi</div>
+                  <div style="height: 20px;">本周传递了 10个快件</div>
+                </div>
+              </li>
+              <li style="padding-right: -200px;position: relative;height: 40px; margin-top: 10px;">
+                <img class="ui avatar image" src="../images/defaultavatar.jpg" style="position: absolute;top:0;left: 0;width: 40px;height: 40px;">
+                <div style="margin-left: 50px;height: 50px;">
+                  <div style="height: 20px;">yomi</div>
+                  <div style="height: 20px;">本周传递了 10个快件</div>
+                </div>
+              </li>
+              
+              <li style="padding-right: -200px;position: relative;height: 40px; margin-top: 10px;">
+                <img class="ui avatar image" src="../images/defaultavatar.jpg" style="position: absolute;top:0;left: 0;width: 40px;height: 40px;">
+                <div style="margin-left: 50px;height: 50px;">
+                  <div style="height: 20px;">yomi</div>
+                  <div style="height: 20px;">本周传递了 10个快件</div>
+                </div>
+              </li>-->
+            </ul>
+          </div>
+          <div class="msg_content">
+            Mseeage：  
+            <!-- <div class="msg1 msg">
+              <div class="header">
+                From:
+                <img class="ui avatar image" src="../images/defaultavatar.jpg">yomi
+                <i class="close icon" style="float: right;"></i>
+              </div>
+              <div class="content">
+                Msg:你<b>申通快递</b>的委托已经被接受,是否确认
+              </div>
+              <div class="extra">
+                <button class="mini ui button basic red" >否</button>
+                <button class="mini ui button basic red" >是</button>
+              </div>
+            </div>
+            <div class="msg2 msg">
+              <div class="header">
+                From:
+                <img class="ui avatar image" src="../images/defaultavatar.jpg">yomi
+                <i class="close icon" style="float: right;"></i>
+              </div>
+              <div class="content">
+                你<b>申通快递</b>的请求已经被接受
+              </div>
+              <div class="extra">
+                <button class="mini ui button basic red" >查看信息</button>
+              </div>
+            </div>
+            <div class="msg3 msg">
+              <div class="header">
+                From:
+                <img class="ui avatar image" src="../images/defaultavatar.jpg">yomi
+                <i class="close icon" style="float: right;"></i>
+              </div>
+              <div class="content">
+                Msg:你<b>申通快递</b>的委托已经被拒绝
+              </div>
+              <div class="extra">
+                <button class="mini ui button basic red" >确定</button>
+              </div>
+            </div>
+
+            <div class="msg4 msg">
+              <div class="header">
+                From:
+                <img class="ui avatar image" src="../images/defaultavatar.jpg">yomi
+                <i class="close icon" style="float: right;"></i>
+              </div>
+              <div class="content">
+                Msg:类型：大苏打<br>
+                大小：大<br>
+                取件地址：xxxxxxxxxxxxxxxxxxx
+              </div>
+              <div class="extra">               
+                <button class="mini ui button basic red" >接受</button>
+                <button class="mini ui button basic red" >拒绝</button>
+              </div>
+            </div>-->
+
+          </div>
+        </div>
+
+      
+    </div>
+
+    <div id="backtop">
+      <i class="angle up icon"></i>
+    </div>
+    <footer>
+      <!-- inf   -->
+    </footer>
+  </div>
+</body>
+<script src="http://webapi.amap.com/maps?v=1.4.2&key=e92318f288333abcc2892dfdff52d410"></script>
+<script src="http://webapi.amap.com/ui/1.0/main.js"></script>
+<script src="../js/common.js"></script>
+<script src="../js/main.js"></script>
+</html>
