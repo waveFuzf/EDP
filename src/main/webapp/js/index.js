@@ -33,35 +33,30 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_semantic__ = __webpack_require__(4);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_semantic___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4_semantic__);
 
-
-
-
-
-
-if (localStorage.getItem("tel")) {
-  if (new Date() - new Date(sessionStorage.getItem("time")) > 24 * 60 * 60 * 1000) {
-    $.post('./login', {
-      "tel": localStorage.getItem("tel"),
-      "password": localStorage.getItem("password")
-    }, function (data, textStatus, xhr) {
-      if (textStatus == "success") {
-        if (data.isLogin == "falseOne") {
-          alert("自动登陆失败！");
-        } else if (data.isLogin == "falseTwo") {
-          alert("自动登陆失败！");
-        } else if (data.isLogin) {
-          console.log(JSON.stringify(data));
-          //使用sessionStorage
-          sessionStorage.setItem("myInf", JSON.stringify(data));
-          //跳转
-          location.href = './home.html';
-        }
-      } else {
-        alert("自动登陆失败！");
-      }
-    });
-  }
-}
+            if (localStorage.getItem("tel")) {
+                if (new Date() - new Date(localStorage.getItem("time")) <  60* 60 * 1000) {
+                    $.post('./login', {
+                        "tel": localStorage.getItem("tel"),
+                        "password": localStorage.getItem("password")
+                    }, function (data, textStatus, xhr) {
+                        if (textStatus == "success") {
+                            if (data.isLogin == "falseOne") {
+                                alert("自动登陆失败！");
+                            } else if (data.isLogin == "falseTwo") {
+                                alert("自动登陆失败！");
+                            } else if (data.isLogin) {
+                                console.log(JSON.stringify(data));
+                                //使用sessionStorage
+                                sessionStorage.setItem("myInf", JSON.stringify(data));
+                                //跳转
+                                location.href = './home.html';
+                            }
+                        } else {
+                            alert("自动登陆失败！");
+                        }
+                    });
+                }
+            }
 
 $(document).ready(function () {
   //动画效果
@@ -182,6 +177,7 @@ $(document).ready(function () {
   function doNotForget(tel, password) {
     localStorage.setItem("tel", tel);
     localStorage.setItem("password", password);
+    alert(new Date().toString());
     localStorage.setItem("time", new Date().toString());
   }
 

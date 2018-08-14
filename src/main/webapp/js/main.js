@@ -789,6 +789,9 @@ $(document).ready(function () {
 		return -1;
 	}
 
+	function exit() {
+		alert("我退出了！");
+    }
 	//更新未读消息
 	function initChatBox(data, time) {
 		console.log("Get Unread Record.");
@@ -947,7 +950,7 @@ $(document).ready(function () {
 
 	$("#mian_write").click(function (event) {
 		/* Act on the event */
-		location.href = "../task1/writing";
+        location.href = "../task1/writing";
 	});
 
 	function addMsg(msg) {
