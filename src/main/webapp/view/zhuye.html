@@ -1,83 +1,85 @@
 <!DOCTYPE html>
 <html>
+
 <head>
-<title>index Page</title>
+    <title>index Page</title>
 </head>
+
 <body>
-	Welcome
-	<br />
-	<input id="text" type="text" />
-	<button onclick="send()">·¢ËÍÏûÏ¢</button>
-	<hr />
-	<button onclick="closeWebSocket()">¹Ø±ÕWebSocketÁ¬½Ó</button>
-	<hr />
-	<div id="message"></div>
-	<table id="tb" class="altrowstable">
-		<th align="center" colspan="9">ÊµÊ±ÐÅÏ¢¼à¿Ø</th>
-	</table>
+    Welcome
+    <br />
+    <input id="text" type="text" />
+    <button onclick="send()">ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ï¢</button>
+    <hr />
+    <button onclick="closeWebSocket()">ï¿½Ø±ï¿½WebSocketï¿½ï¿½ï¿½ï¿½</button>
+    <hr />
+    <div id="message"></div>
+    <table id="tb" class="altrowstable">
+        <th align="center" colspan="9">ÊµÊ±ï¿½ï¿½Ï¢ï¿½ï¿½ï¿½</th>
+    </table>
 </body>
 
 <script type="text/javascript">
     var websocket = null;
-    //ÅÐ¶Ïµ±Ç°ä¯ÀÀÆ÷ÊÇ·ñÖ§³ÖWebSocket
+    //ï¿½Ð¶Ïµï¿½Ç°ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ç·ï¿½Ö§ï¿½ï¿½WebSocket
     if ('WebSocket' in window) {
         websocket = new WebSocket("ws://localhost:8080/EDP/websocket");
     }
     else {
-        alert('µ±Ç°ä¯ÀÀÆ÷ Not support websocket')
+        alert('ï¿½ï¿½Ç°ï¿½ï¿½ï¿½ï¿½ï¿½ Not support websocket')
     }
-    //Á¬½Ó·¢Éú´íÎóµÄ»Øµ÷·½·¨
+    //ï¿½ï¿½ï¿½Ó·ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ä»Øµï¿½ï¿½ï¿½ï¿½ï¿½
     websocket.onerror = function () {
-        setMessageInnerHTML("WebSocketÁ¬½Ó·¢Éú´íÎó");
+        setMessageInnerHTML("WebSocketï¿½ï¿½ï¿½Ó·ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½");
     };
-    //Á¬½Ó³É¹¦½¨Á¢µÄ»Øµ÷·½·¨
+    //ï¿½ï¿½ï¿½Ó³É¹ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ä»Øµï¿½ï¿½ï¿½ï¿½ï¿½
     websocket.onopen = function () {
-        setMessageInnerHTML("WebSocketÁ¬½Ó³É¹¦");
+        setMessageInnerHTML("WebSocketï¿½ï¿½ï¿½Ó³É¹ï¿½");
     }
-    //½ÓÊÕµ½ÏûÏ¢µÄ»Øµ÷·½·¨
+    //ï¿½ï¿½ï¿½Õµï¿½ï¿½ï¿½Ï¢ï¿½Ä»Øµï¿½ï¿½ï¿½ï¿½ï¿½
     websocket.onmessage = function (event) {
         setMessageInnerHTML(event.data);
     }
-    //Á¬½Ó¹Ø±ÕµÄ»Øµ÷·½·¨
+    //ï¿½ï¿½ï¿½Ó¹Ø±ÕµÄ»Øµï¿½ï¿½ï¿½ï¿½ï¿½
     websocket.onclose = function () {
-        setMessageInnerHTML("WebSocketÁ¬½Ó¹Ø±Õ");
+        setMessageInnerHTML("WebSocketï¿½ï¿½ï¿½Ó¹Ø±ï¿½");
     }
-    //¼àÌý´°¿Ú¹Ø±ÕÊÂ¼þ£¬µ±´°¿Ú¹Ø±ÕÊ±£¬Ö÷¶¯È¥¹Ø±ÕwebsocketÁ¬½Ó£¬·ÀÖ¹Á¬½Ó»¹Ã»¶Ï¿ª¾Í¹Ø±Õ´°¿Ú£¬server¶Ë»áÅ×Òì³£¡£
+    //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ú¹Ø±ï¿½ï¿½Â¼ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ú¹Ø±ï¿½Ê±ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½È¥ï¿½Ø±ï¿½websocketï¿½ï¿½ï¿½Ó£ï¿½ï¿½ï¿½Ö¹ï¿½ï¿½ï¿½Ó»ï¿½Ã»ï¿½Ï¿ï¿½ï¿½Í¹Ø±Õ´ï¿½ï¿½Ú£ï¿½serverï¿½Ë»ï¿½ï¿½ï¿½ï¿½ì³£ï¿½ï¿½
     window.onbeforeunload = function () {
         closeWebSocket();
     }
-    //½«ÏûÏ¢ÏÔÊ¾ÔÚÍøÒ³ÉÏ
+    //ï¿½ï¿½ï¿½ï¿½Ï¢ï¿½ï¿½Ê¾ï¿½ï¿½ï¿½ï¿½Ò³ï¿½ï¿½
     function setMessageInnerHTML(innerHTML) {
-    	var msg=innerHTML.split(" - ")
-		
-		var table=document.getElementById("tb");
-		 var row;
-		 row=table.insertRow(1);
-		for(var i=0;i<msg.length;i++){
-			 var cell = row.insertCell(i);
-		 	 cell.appendChild(document.createTextNode(msg[i]));
-		}
-		if(table.rows.length>50){
-			table.deleteRow(table.rows.length-1);
-		}
-      //  document.getElementById('message').innerHTML += innerHTML + '<br/>';
+        var msg = innerHTML.split(" - ")
+
+        var table = document.getElementById("tb");
+        var row;
+        row = table.insertRow(1);
+        for (var i = 0; i < msg.length; i++) {
+            var cell = row.insertCell(i);
+            cell.appendChild(document.createTextNode(msg[i]));
+        }
+        if (table.rows.length > 50) {
+            table.deleteRow(table.rows.length - 1);
+        }
+        //  document.getElementById('message').innerHTML += innerHTML + '<br/>';
     }
-    //¹Ø±ÕWebSocketÁ¬½Ó
+    //ï¿½Ø±ï¿½WebSocketï¿½ï¿½ï¿½ï¿½
     function closeWebSocket() {
         websocket.close();
     }
-    //·¢ËÍÏûÏ¢
-    //type£º1£¬µÚÒ»ÖÖ·¢²¼µÄÈ·¶¨ÏûÏ¢£»publishId£ºµ¥ºÅ
-    //type£º2£¬µÚÒ»ÖÖ·¢²¼µÄ·´À¡ÏûÏ¢£»messageId:ÏûÏ¢¼ÇÂ¼id£»choose£ºÑ¡ÔñÄÄ¸ö
-    //type: 3,µÚÒ»ÖÖ·¢²¼µÄ·´À¡ÏûÏ¢Ê±µÄ¿ìµÝÐÅÏ¢£»messageId:ÏûÏ¢¼ÇÂ¼id
-    //type£º4£¬µÚ¶þÖÖ·¢²¼µÄÈ·¶¨ÏûÏ¢;publishId:ÒªÇëÈËÄÃ¿ìµÝµÄ·¢²¼µÄµ¥ºÅ£»publisherId:ÄÃ¿ìµÝÈË·¢²¼µÄµ¥ºÅ£»
-    //type:	5, Ë«»÷Í·Ïñ;fromId:·¢ËÍÈËid£»toId:½ÓÊÜÈËid
+    //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ï¢
+    //typeï¿½ï¿½1ï¿½ï¿½ï¿½ï¿½Ò»ï¿½Ö·ï¿½ï¿½ï¿½ï¿½ï¿½È·ï¿½ï¿½ï¿½ï¿½Ï¢ï¿½ï¿½publishIdï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+    //typeï¿½ï¿½2ï¿½ï¿½ï¿½ï¿½Ò»ï¿½Ö·ï¿½ï¿½ï¿½ï¿½Ä·ï¿½ï¿½ï¿½ï¿½ï¿½Ï¢ï¿½ï¿½messageId:ï¿½ï¿½Ï¢ï¿½ï¿½Â¼idï¿½ï¿½chooseï¿½ï¿½Ñ¡ï¿½ï¿½ï¿½Ä¸ï¿½
+    //type: 3,ï¿½ï¿½Ò»ï¿½Ö·ï¿½ï¿½ï¿½ï¿½Ä·ï¿½ï¿½ï¿½ï¿½ï¿½Ï¢Ê±ï¿½Ä¿ï¿½ï¿½ï¿½ï¿½Ï¢ï¿½ï¿½messageId:ï¿½ï¿½Ï¢ï¿½ï¿½Â¼id
+    //typeï¿½ï¿½4ï¿½ï¿½ï¿½Ú¶ï¿½ï¿½Ö·ï¿½ï¿½ï¿½ï¿½ï¿½È·ï¿½ï¿½ï¿½ï¿½Ï¢;publishId:Òªï¿½ï¿½ï¿½ï¿½ï¿½Ã¿ï¿½ÝµÄ·ï¿½ï¿½ï¿½ï¿½Äµï¿½ï¿½Å£ï¿½publisherId:ï¿½Ã¿ï¿½ï¿½ï¿½Ë·ï¿½ï¿½ï¿½ï¿½Äµï¿½ï¿½Å£ï¿½
+    //type:	5, Ë«ï¿½ï¿½Í·ï¿½ï¿½;fromId:ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½idï¿½ï¿½toId:ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½id
     function send() {
-      	//websocket.send("{\"type\": \"1\",\"publishId\": \"PH12345\"}");
+        //websocket.send("{\"type\": \"1\",\"publishId\": \"PH12345\"}");
 
-        //websocket.send("{\"type\": \"2\",\"messageId\": \"46\",\"choose\": \"true\"}");//È·¶¨
-        
-        //websocket.send("{\"type\": \"2\",\"messageId\": \"44\",\"choose\": \"false\"}");//¾Ü¾ø
+        //websocket.send("{\"type\": \"2\",\"messageId\": \"46\",\"choose\": \"true\"}");//È·ï¿½ï¿½
+
+        //websocket.send("{\"type\": \"2\",\"messageId\": \"44\",\"choose\": \"false\"}");//ï¿½Ü¾ï¿½
 
         //websocket.send("{\"type\": \"3\",\"messageId\": \"46\"}");
 
@@ -86,9 +88,10 @@
         websocket.send("{\"type\": \"5\",\"fromId\": \"3\",\"toId\":\"4\"}");
 
         //var message = document.getElementById('text').value;
-        //·¢ËÍÏûÏ¢
+        //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ï¢
         //var json="{\"id\": \""+???+"\",\"body\": \""+???+"\"}";
         //websocket.send(message);
     }
 </script>
+
 </html>

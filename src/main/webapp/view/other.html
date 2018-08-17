@@ -1,44 +1,49 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-	<meta charset="UTF-8">
-	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<meta name="viewport" content="width=device,initial-scale=1">
-	<title>Document</title>
-	<link rel="stylesheet" href="../css/style.min.css">
-	<link rel="stylesheet" href="../resourse/ui/semantic.min.css">
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device,initial-scale=1">
+  <title>Document</title>
+  <link rel="stylesheet" href="../css/style.min.css">
+  <link rel="stylesheet" href="../resourse/ui/semantic.min.css">
 </head>
 <style>
-  *{
-    padding:0;
-    margin:0;
+  * {
+    padding: 0;
+    margin: 0;
     box-sizing: border-box;
   }
-  body,html{
-   background-color: #f7f7f7 !important;
-  }
 
-  </style>
+  body,
+  html {
+    background-color: #f7f7f7 !important;
+  }
+</style>
+
 <body>
-<div id="mypage_container">
+  <div id="mypage_container">
     <nav>
       <ul>
-        <li >
+        <li>
           <a href="./home">传递</a>
         </li>
         <li>
           <a href="" title=""></a>
         </li>
         <li>
-          <button type="" class="ui button writeent"><i class="icon write"></i>写委托</button>
-          <button type="" class="ui button writeent"><i class="icon write"></i>返回主页</button>
+          <button type="" class="ui button writeent">
+            <i class="icon write"></i>写委托</button>
+          <button type="" class="ui button writeent">
+            <i class="icon write"></i>返回主页</button>
         </li>
         <li>
           <div class="ui labeled icon dropdown button myinfdropdown" style="background: none;height:56px; ">
             <span>
               <div id="avatar">
                 <span class="myname"></span>
-                <img class="ui avatar image mini myavatar" src="">  
+                <img class="ui avatar image mini myavatar" src="">
               </div>
             </span>
             <div class="menu" id="mypage_menu">
@@ -47,8 +52,12 @@
                 <b></b>
               </div>
               <div class="divider"></div>
-              <div class="item"><a href="./home">个人中心</a></div>
-              <div class="item"><a href="./home">返回主页</a></div>
+              <div class="item">
+                <a href="./home">个人中心</a>
+              </div>
+              <div class="item">
+                <a href="./home">返回主页</a>
+              </div>
               <div class="item">退出</div>
             </div>
           </div>
@@ -63,36 +72,44 @@
         </div>
         <div class="other_inf">
           <h1>username</h1>
-          <h3>累计传递了<span>120</span>个快件</h3><br>
-          <i class="icon sex"></i><br>
+          <h3>累计传递了
+            <span>120</span>个快件</h3>
+          <br>
+          <i class="icon sex"></i>
+          <br>
           <a class="xinyu">信誉3.5</a>
         </div>
       </div>
-      <h4 class="ui horizontal divider header" style="margin-bottom: 30px"><i class="tag icon"></i>History Evaluate</h4>
+      <h4 class="ui horizontal divider header" style="margin-bottom: 30px">
+        <i class="tag icon"></i>History Evaluate</h4>
       <div id="other_evl">
-        
-          <div class="ui card evl">
-              <div class="content">
-                <div class="right floated meta">
-                  <i class="icon write"></i>2017/12/12 12:12
-                </div>
-                <img class="ui avatar image" src="${data.publisheruserimage}"><span>username</span>
-              </div>
-              <div class="content">
-                <div class="header" style="font-weight: 100 !important;color:rgb(122, 133, 153);">
-                  我爱你
-                </div>
 
-              </div>
-              <div class="extra content">
-                <span class="date"><div class="ui heart huge rating" data-rating="4" data-max-rating="5"></div></span>
-              </div>
+        <div class="ui card evl">
+          <div class="content">
+            <div class="right floated meta">
+              <i class="icon write"></i>2017/12/12 12:12
+            </div>
+            <img class="ui avatar image" src="${data.publisheruserimage}">
+            <span>username</span>
           </div>
+          <div class="content">
+            <div class="header" style="font-weight: 100 !important;color:rgb(122, 133, 153);">
+              我爱你
+            </div>
+
+          </div>
+          <div class="extra content">
+            <span class="date">
+              <div class="ui heart huge rating" data-rating="4" data-max-rating="5"></div>
+            </span>
+          </div>
+        </div>
       </div>
-  
+
     </div>
   </div>
 </body>
 <script src="../js/common.js"></script>
 <script src="../js/otherpage.js"></script>
+
 </html>

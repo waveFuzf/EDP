@@ -26,15 +26,15 @@ public class Tuser {
 	@Column
 	private String address;
 	@Column
-	private String image;
+	private String image ="../avatar/defaultavatar.jpg";
 	@Column(name = "credit_level")
-	private Double creditLevel;
+	private Double creditLevel=2.0;
 	@Column
 	private Integer state;
 	@Column
-	private Integer sex;
+	private Integer sex=2;
 	@Column
-	private Integer integral;
+	private Integer integral=5;
 	@Column
 	private Integer times;
 	// 与Trequest关联

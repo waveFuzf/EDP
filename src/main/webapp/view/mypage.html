@@ -1,150 +1,157 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-<meta charset="UTF-8">
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="viewport" content="width=device,initial-scale=1">
-<title>Document</title>
-<link rel="stylesheet" href="../css/style.min.css">
-<link rel="stylesheet" href="../resourse/ui/semantic.min.css">
-<link rel="stylesheet" href="../resourse/ui/cropper.css">
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device,initial-scale=1">
+  <title>Document</title>
+  <link rel="stylesheet" href="../css/style.min.css">
+  <link rel="stylesheet" href="../resourse/ui/semantic.min.css">
+  <link rel="stylesheet" href="../resourse/ui/cropper.css">
 </head>
+
 <body>
-	<!-- 个人信息
+  <!-- 个人信息
   我的发布
   我的接单
   被接
   已完成 -->
-	<div id="mypage_tip"
-		style="position: absolute; bottom: 30px; left: 50%; height: 30px; background: #555; font-size: 20px; padding: 5px; border-radius: 3px; color: white; text-align: center; transform: translateX(-50%); display: none;"></div>
-	<div class="ui modal mypage_modal1 small" id="modal1">
-		<!-- <i class="close icon"></i> -->
-		<div class="header">路线图</div>
-		<div class="content" style="position: relative; padding-right: 200px;">
-			<div id="map" style="height: 400px; width: 430px;"></div>
-			<div class="description" id="mypag_des"
-				style="position: absolute; top: 20px; right: 20px; max-height: 400px;"></div>
-		</div>
-	</div>
-
-
-	<div class="ui modal small mypage_modal2" id="mypage_modal2">
-		<div class="header">修改头像</div>
-		<div class="content" style="">
-			<div class="body">
-				<button class="ui button">
-					<i class="cloud icon"></i>选择要上传的文件
-				</button>
-				<input type="file" class="up-img-file" id="inputimg">
-			</div>
-			<div class="img_content">
-				<div class="img_show">
-					<img alt="" id="up-img-show">
-				</div>
-				<div class="small_img"></div>
-			</div>
-
-			<div class="ui icon buttons control">
-				<button class="ui button">
-					<i class="chevron left icon up-btn-left"></i>
-				</button>
-				<button class="ui button up-btn-right">
-					<i class="chevron right icon"></i>
-				</button>
-				<button class="ui button" id="up-btn-sure">
-					<i class="checkmark icon"></i>
-				</button>
-			</div>
-		</div>
-	</div>
-	<div class="ui modal medium mini mypage_modal3" id="modal3">
-		<div class="header">message</div>
-		<div class="content"></div>
-	</div>
-
-	<div class="ui modal mypage_modal4 small" id="modal4">
-      <div class="header">
-        <i class="file text outline icon"></i>评价
-      </div>
-      <div class="content" style="position: relative;padding-right: 200px;height:270px">
-        <div class="ev_userinf" style="position: relative;padding-right: 200px;">
-          <img src="../images/defaultavatar.jpg" class="avatar"  alt="" style="height: 200px;width: 200px;border-radius: 100px;">
-          <div class="ui heart massive rating" data-rating="1" data-max-rating="5"></div>
-        </div>
-        <div class="ev" style="position: relative;position: absolute;top:21px;right: 21px;">       
-          <div style="width: 430px;">
-              <span style="font-size: 20px" class="pass_time"><i class="heartbeat icon"></i>距离接单时间:<b>35</b>分钟</span>
-              <textarea  style="resize:none;width:100%;height: 180px;margin-top: 10px;outline: none;font-size: 18px;padding: 14px;border-radius: 3px;box-shadow: 1px 1px 1px rgba(0,0,0,.2);  " ></textarea>
-          </div>
-        </div>
-      </div>
-
-      <div class="actions">
-        <div class="ui positive right labeled icon button">
-          确定<i class="checkmark icon"></i>
-        </div>
-      </div>
+  <div id="mypage_tip" style="position: absolute; bottom: 30px; left: 50%; height: 30px; background: #555; font-size: 20px; padding: 5px; border-radius: 3px; color: white; text-align: center; transform: translateX(-50%); display: none;"></div>
+  <div class="ui modal mypage_modal1 small" id="modal1">
+    <!-- <i class="close icon"></i> -->
+    <div class="header">路线图</div>
+    <div class="content" style="position: relative; padding-right: 200px;">
+      <div id="map" style="height: 400px; width: 430px;"></div>
+      <div class="description" id="mypag_des" style="position: absolute; top: 20px; right: 20px; max-height: 400px;"></div>
+    </div>
   </div>
 
 
-		<div id="mypage_container">
-			<nav>
-				<ul>
-					<li><a href="./home">传递</a></li>
-					<li><a href="" title=""></a></li>
-					<li>
-						<button type="" class="ui button writeent">
-							<i class="icon write"></i>写委托
-						</button>
-					</li>
-					<li>
-						<div class="ui labeled icon dropdown button myinfdropdown"
-							style="background: none; height: 56px;">
-							<span>
-								<div id="avatar">
-									<span class="myname"></span> <img
-										class="ui avatar image mini myavatar" src="">
-								</div>
-							</span>
-							<div class="menu" id="mypage_menu">
-								<div class="header">
-									<i class="trophy  icon"></i> <b></b>
-								</div>
-								<div class="divider"></div>
-								<div class="item">
-									<a href="./home">返回主页</a>
-								</div>
-								<div class="item">退出</div>
-							</div>
-						</div>
-					</li>
-				</ul>
-			</nav>
+  <div class="ui modal small mypage_modal2" id="mypage_modal2">
+    <div class="header">修改头像</div>
+    <div class="content" style="">
+      <div class="body">
+        <button class="ui button">
+          <i class="cloud icon"></i>选择要上传的文件
+        </button>
+        <input type="file" class="up-img-file" id="inputimg">
+      </div>
+      <div class="img_content">
+        <div class="img_show">
+          <img alt="" id="up-img-show">
+        </div>
+        <div class="small_img"></div>
+      </div>
 
-			<div id="mypage_content">
-				<div id="left_menu">
-					<ul>
-						<li class="lifont"><img src="../images/my.png"
-							class="titleimg">个人信息</li>
-						<li class="lifont"><img src="../images/myentrust.png"
-							class="titleimg">我的发布</li>
-						<li class="lifont"><img src="../images/myfetch.png"
-							class="titleimg">我的接单</li>
-						<li class="lifont"><img src="../images/waitevaluate.png"
-							class="titleimg">待评价</li>
-					</ul>
-				</div>
-				<div id="right_content">
-					<!--      <div style="height: 30px;width: 150px;background-color:#f2f2f2;color:#fff;text-align: center;line-height: 30px;
+      <div class="ui icon buttons control">
+        <button class="ui button">
+          <i class="chevron left icon up-btn-left"></i>
+        </button>
+        <button class="ui button up-btn-right">
+          <i class="chevron right icon"></i>
+        </button>
+        <button class="ui button" id="up-btn-sure">
+          <i class="checkmark icon"></i>
+        </button>
+      </div>
+    </div>
+  </div>
+  <div class="ui modal medium mini mypage_modal3" id="modal3">
+    <div class="header">message</div>
+    <div class="content"></div>
+  </div>
+
+  <div class="ui modal mypage_modal4 small" id="modal4">
+    <div class="header">
+      <i class="file text outline icon"></i>评价
+    </div>
+    <div class="content" style="position: relative;padding-right: 200px;height:270px">
+      <div class="ev_userinf" style="position: relative;padding-right: 200px;">
+        <img src="../images/defaultavatar.jpg" class="avatar" alt="" style="height: 200px;width: 200px;border-radius: 100px;">
+        <div class="ui heart massive rating" data-rating="1" data-max-rating="5"></div>
+      </div>
+      <div class="ev" style="position: relative;position: absolute;top:21px;right: 21px;">
+        <div style="width: 430px;">
+          <span style="font-size: 20px" class="pass_time">
+            <i class="heartbeat icon"></i>距离接单时间:
+            <b>35</b>分钟</span>
+          <textarea style="resize:none;width:100%;height: 180px;margin-top: 10px;outline: none;font-size: 18px;padding: 14px;border-radius: 3px;box-shadow: 1px 1px 1px rgba(0,0,0,.2);  "></textarea>
+        </div>
+      </div>
+    </div>
+
+    <div class="actions">
+      <div class="ui positive right labeled icon button">
+        确定
+        <i class="checkmark icon"></i>
+      </div>
+    </div>
+  </div>
+
+
+  <div id="mypage_container">
+    <nav>
+      <ul>
+        <li>
+          <a href="./home">传递</a>
+        </li>
+        <li>
+          <a href="" title=""></a>
+        </li>
+        <li>
+          <button type="" class="ui button writeent">
+            <i class="icon write"></i>写委托
+          </button>
+        </li>
+        <li>
+          <div class="ui labeled icon dropdown button myinfdropdown" style="background: none; height: 56px;">
+            <span>
+              <div id="avatar">
+                <span class="myname"></span>
+                <img class="ui avatar image mini myavatar" src="">
+              </div>
+            </span>
+            <div class="menu" id="mypage_menu">
+              <div class="header">
+                <i class="trophy  icon"></i>
+                <b></b>
+              </div>
+              <div class="divider"></div>
+              <div class="item">
+                <a href="./home">返回主页</a>
+              </div>
+              <div class="item">退出</div>
+            </div>
+          </div>
+        </li>
+      </ul>
+    </nav>
+
+    <div id="mypage_content">
+      <div id="left_menu">
+        <ul>
+          <li class="lifont">
+            <img src="../images/my.png" class="titleimg">个人信息</li>
+          <li class="lifont">
+            <img src="../images/myentrust.png" class="titleimg">我的发布</li>
+          <li class="lifont">
+            <img src="../images/myfetch.png" class="titleimg">我的接单</li>
+          <li class="lifont">
+            <img src="../images/waitevaluate.png" class="titleimg">待评价</li>
+        </ul>
+      </div>
+      <div id="right_content">
+        <!--      <div style="height: 30px;width: 150px;background-color:#f2f2f2;color:#fff;text-align: center;line-height: 30px;
       font-size: 20px;border-radius: 5px;">
         呵呵
       </div> -->
-					<h4 class="ui horizontal divider header">
-						<i class="tag icon"></i>
-					</h4>
-					<div class="rc" style="">
-						<!-- 个人信息 -->
-						<!-- <table>
+        <h4 class="ui horizontal divider header">
+          <i class="tag icon"></i>
+        </h4>
+        <div class="rc" style="">
+          <!-- 个人信息 -->
+          <!-- <table>
           <tbody>
             <tr>
               <td class="header_before"><img src="../images/defaultavatar.jpg" class="myavatar" alt=""></td>
@@ -190,8 +197,8 @@
             </tr>
           </tbody>
         </table> -->
-					</div>
-					<!--       <div class="rc">
+        </div>
+        <!--       <div class="rc">
       <div class="ui card entrust">
               <div class="content">
                 <div class="right floated meta">
@@ -278,14 +285,14 @@
       <div class="rc">
         
       </div> -->
-				</div>
-			</div>
+      </div>
+    </div>
 
-		</div>
+  </div>
 </body>
-<script
-	src="http://webapi.amap.com/maps?v=1.4.2&key=e92318f288333abcc2892dfdff52d410"></script>
+<script src="http://webapi.amap.com/maps?v=1.4.2&key=e92318f288333abcc2892dfdff52d410"></script>
 <script src="http://webapi.amap.com/ui/1.0/main.js"></script>
 <script src="../js/common.js"></script>
 <script src="../js/mypage.js"></script>
+
 </html>

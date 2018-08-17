@@ -1,10 +1,7 @@
 package com.zust.EDP.service.serviceImpl;
 
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -72,6 +69,8 @@ public class UserServiceImpl implements UserService {
 	public String doRegister(Tuser user, HttpSession session, String imageIcon) {
 		// TODO Auto-generated method stub
 		List<Tuser> u = userDao.findUserTel(user);
+		user.setName("user"+user.getTel());
+		user.setTimes(0);
 		String icon = (String) session.getAttribute("imageIcon");
 		if (icon.equals(imageIcon)) {
 			if (u.isEmpty()) {

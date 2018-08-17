@@ -1,13 +1,17 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
 	<meta charset="UTF-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device,initial-scale=1">
 	<title>Document</title>
+	<script src="https://cdn.bootcss.com/jquery/1.12.4/jquery.min.js"></script>
+	<script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 	<link rel="stylesheet" href="../css/style.min.css">
 	<link rel="stylesheet" href="../resourse/ui/semantic.min.css">
 </head>
+
 <body>
 	<div class="index_container">
 		<div class="logo">传递</div>
@@ -22,11 +26,11 @@
 			<div class="login">
 				<form class="ui form">
 					<div class="ui left icon input field">
-  						<input type="text" placeholder="手机号" name="tel">
+						<input id="login" type="text" placeholder="手机号" name="tel" onblur="check(this,'#loginerr')">
 						<i class="user icon"></i>
 					</div>
 					<div class="ui left icon input field">
-						<input type="password" placeholder="密码" name="password">
+						<input id="login" type="password" placeholder="密码" name="password" onblur="check(this,'#loginerr')">
 						<i class="lock icon"></i>
 					</div>
 					<div class="do-not-forget">
@@ -34,40 +38,67 @@
 					</div>
 					<button type="" class="ui teal submit button">登陆</button>
 					<span class="parting-line"></span>
-					<div class="ui error message"></div>
+					<div class="ui error message" id="loginerr"></div>
 				</form>
 			</div>
 			<div class="regist" style="display: none;">
 				<form class="ui form">
 					<div class="ui left icon input field inputdiv">
-  						<input type="text" placeholder="手机号" name="tel">
+						<input id="regist" type="text" placeholder="手机号" name="tel" onblur="check(this,'#registerr')">
 						<i class="user icon"></i>
 					</div>
 					<div class="ui left icon input field inputdiv">
-						<input type="password" placeholder="密码" name="password">
+						<input id="regist" type="password" placeholder="密码" name="password" onblur="check(this,'#registerr')">
 						<i class="lock icon"></i>
 					</div>
-<!-- 					<div class="ui left icon input field inputdiv">
-						<input type="password" placeholder="重复密码" name="repassword">
-						<i class="lock icon"></i>
-					</div> -->
 					<div class="ui left icon input field code inputdiv" id="login_code">
-						<input type=text" placeholder="验证码" name="code" >
+						<input type="text " placeholder="验证码 " name="code">
 						<i class="vine icon"></i>
-						<img src="" alt="">
+						<img src=" " alt=" ">
 					</div>
-					<button type="" class="ui teal submit button">注册</button>
-					<span class="parting-line"></span>
-					<div class="ui error message"></div>
+					<button type=" " class="ui teal submit button ">注册</button>
+					<span class="parting-line "></span>
+					<div class="ui error message " id="registerr">
+					</div>
 				</form>
-				
 			</div>
 		</div>
 	</div>
 </body>
-<script src="../js/common.js"></script>
-<script src="../js/index.js"></script>
+<script src="../js/common.js "></script>
+<script src="../js/index.js "></script>
 <script>
 
+	var tel = true;
+	var pas = true;
+	function check(obj, type) {
+		if ($(obj).attr("name") == 'tel') {
+			var reg = /^1[3|4|5|7|8][0-9]{9}$/;
+			var logintel = $(obj).val();
+			tel = reg.test(logintel);
+		}
+		else {
+			var reg = /^[a-zA-Z0-9_-]{4,16}$/;
+			var loginpas = $(obj).val();
+			pas = reg.test(loginpas);
+		}
+		change(type);
+	}
+	function change(type) {
+		if (tel && pas) {
+			$(type)[0].style.display = "none";
+		}
+		else {
+			var message = "";
+			if (!tel)
+				message = message + "请输入11位手机号!</br>";
+			if (!pas)
+				message = message + "请输入4到16位中英文密码!</br>";
+			$(type).html(message);
+			$(type)[0].style.display = "block";
+		}
+	}
+
 </script>
+
 </html>
