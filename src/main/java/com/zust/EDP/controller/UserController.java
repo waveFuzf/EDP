@@ -125,7 +125,8 @@ public class UserController {
 		Tuser my = (Tuser) session.getAttribute("userMessage");
 		my.setAddress(address);
 		my.setName(name);
-		my.setSex(sex);
+		if(sex!=null){
+		my.setSex(sex);}
 		map = userService.updateUserMessage(my, session);
 		map.put("name", name);
 		map.put("sex", sex);
