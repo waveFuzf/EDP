@@ -58,7 +58,7 @@
               <div class="item">
                 <a href="./home">返回主页</a>
               </div>
-              <div class="item">退出</div>
+              <div class="item" onclick='exit()'>退出</div>
             </div>
           </div>
         </li>
@@ -111,5 +111,11 @@
 </body>
 <script src="../js/common.js"></script>
 <script src="../js/otherpage.js"></script>
+<script>
+    function exit(){
+        localStorage.clear();
+        location.href="../user/login";
+    }
+</script>
 
 </html>

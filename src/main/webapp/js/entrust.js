@@ -487,6 +487,7 @@ webpackJsonp([2], [
 											lngAndlat = {};
 											if (data.message === "true") {
 												showMessage("发布成功！");
+												window.location.href="/user/home"
 												$("#modal2 .integral").val("");
 												$("#form1 input").val('');
 												$("#form1 textarea").val('');

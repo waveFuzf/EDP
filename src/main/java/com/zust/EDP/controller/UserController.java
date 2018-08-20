@@ -96,7 +96,7 @@ public class UserController {
 	@RequestMapping(value = "/uploadAvatar", method = RequestMethod.POST)
 	public @ResponseBody Map<String, String> uploadAvatar(HttpSession session, String datax) {
 		Tuser my = (Tuser) session.getAttribute("userMessage");
-		String path = "F:\\maven_stu\\EDP\\src\\main\\webapp";
+		String path = "C:\\Users\\YFZX-FZF-1777\\Desktop\\project-desgin-master\\EDP\\src\\main\\webapp\\avatar";
 		String msg = "";
 		Map<String, String> map = new HashMap<String, String>();
 		ImgUp imgUp = new ImgUp();

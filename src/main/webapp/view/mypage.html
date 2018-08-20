@@ -121,7 +121,7 @@
               <div class="item">
                 <a href="./home">返回主页</a>
               </div>
-              <div class="item">退出</div>
+              <div class="item" onclick="exit()">退出</div>
             </div>
           </div>
         </li>
@@ -292,7 +292,19 @@
 </body>
 <script src="http://webapi.amap.com/maps?v=1.4.2&key=e92318f288333abcc2892dfdff52d410"></script>
 <script src="http://webapi.amap.com/ui/1.0/main.js"></script>
+<script src="https://cdn.bootcss.com/jquery/1.12.4/jquery.min.js"></script>
+<script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 <script src="../js/common.js"></script>
 <script src="../js/mypage.js"></script>
+<script>
+    function exit(){
+        $.post("/exit",function () {
+            localStorage.clear();
+            location.href="../user/login";
+        })
+
+
+    }
+</script>
 
 </html>

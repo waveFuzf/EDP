@@ -474,9 +474,9 @@ webpackJsonp([1], [
                     }, function (data, textStatus, xhr) {
                         /*optional stuff to do after success */
                         data.isUpdate == "true" ? addMsg("修改成功!") : addMsg("修改失败!");
-
-                        myInf.name = data.name;
-                        sessionStorage.setItem(JSON.stringify(myInf));
+                        myInf.userMessage.name = data.name;
+                        sessionStorage.setItem("myInf",JSON.stringify(myInf));
+                        $(".myname").text(data.name);
                     });
                 });
 

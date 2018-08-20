@@ -178,7 +178,6 @@ webpackJsonp([1], [
         function doNotForget(tel, password) {
           localStorage.setItem("tel", tel);
           localStorage.setItem("password", password);
-          alert(new Date().toString());
           localStorage.setItem("time", new Date().toString());
         }
 
