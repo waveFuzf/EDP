@@ -374,8 +374,7 @@ webpackJsonp([0], [
 							$('#modal1').modal({
 								closable: false,
 								onDeny: function () {
-									//退出
-									// return false;
+									$('#wait_loading')[0].style.display="none";
 								},
 								onApprove: function () {
 									//获取页面更新数据,并更新数据
