@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.util.HashMap;
@@ -18,8 +19,7 @@ public class ExitController {
     @RequestMapping(value = "",method = RequestMethod.POST)
     @ResponseBody
     public String exit(HttpServletRequest httpServletRequest) {
-        httpServletRequest.getSession();
-        System.out.println(httpServletRequest.getSession().toString());
+        httpServletRequest.getSession().invalidate();
         return "/user/login";
     }
 

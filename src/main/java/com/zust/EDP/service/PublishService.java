@@ -1,5 +1,6 @@
 package com.zust.EDP.service;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 import javax.servlet.http.HttpSession;
@@ -24,7 +25,7 @@ public interface PublishService {
 
 	public void savelalo(double a, double b);
 
-	public double distance(Texpress express, Double longitude, Double latitude);
+	public BigDecimal distance(Texpress express, Double longitude, Double latitude);
 
 	public List<Publish> findpublishunsave(HttpSession session);
 

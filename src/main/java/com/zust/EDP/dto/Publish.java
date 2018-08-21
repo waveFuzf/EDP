@@ -1,5 +1,7 @@
 package com.zust.EDP.dto;
 
+import java.math.BigDecimal;
+
 public class Publish {
 	private Integer publishId;
 	private String publishDate;
@@ -8,7 +10,7 @@ public class Publish {
 	private String takeDate;// 截止日期
 	private Integer integral;// 积分
 	private String fromNum;
-	private Double distance;
+	private BigDecimal distance;
 	private String orderdate;
 
 	// 与Tuser关联
@@ -164,12 +166,12 @@ public class Publish {
 		this.publisheruserId = publisheruserId;
 	}
 
-	public Double getDistance() {
+	public BigDecimal getDistance() {
 		return distance;
 	}
 
-	public void setDistance(Double d) {
-		this.distance = d;
+	public void setDistance(BigDecimal distance) {
+		this.distance = distance;
 	}
 
 	public String getPublisheruserimage() {

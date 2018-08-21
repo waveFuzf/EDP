@@ -1,5 +1,6 @@
 package com.zust.EDP.service.serviceImpl;
 
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
@@ -53,7 +54,7 @@ public class PublishServiceImpl implements PublishService {
 			Texpress express = list.get(i);
 			Publish publish2 = Tpublish_Publish(express);
 			publish2.setDistance(distance(express,longitude,latitude));
-			if(publish2.getDistance()>300000) {
+			if(publish2.getDistance().compareTo(new BigDecimal("300000"))==1) {
 				System.out.println("失效的publishId"+publish2.getPublishId()+" "+publish2.getDistance());
 				continue;
 			}
@@ -169,7 +170,7 @@ public class PublishServiceImpl implements PublishService {
 
 	// 已知两点经纬度算距离
 	@Override
-	public double distance(Texpress express, Double longitude, Double latitude) {
+	public BigDecimal distance(Texpress express, Double longitude, Double latitude) {
 		// TODO Auto-generated method stub
 		double EARTH_RADIUS = 6378.137;
 		double radLat1 = rad(express.getLatitude());
@@ -181,14 +182,14 @@ public class PublishServiceImpl implements PublishService {
 		s = s * EARTH_RADIUS;
 		s = Math.round(s * 10000d) / 10000d;
 		s = s * 1000;
-		return s;
+
+		return new BigDecimal(s).setScale(2,BigDecimal.ROUND_HALF_UP);
 	}
 
 	@Override
-	public void savelalo(double a, double b) {
-		// TODO Auto-generated method stub
-		longitude = a;
-		latitude = b;
+	public void savelalo(double longitudes, double latitudes) {
+		longitude = longitudes;
+		latitude = latitudes;
 	}
 
 	@Override

@@ -92,6 +92,7 @@ public class UserServiceImpl implements UserService {
 			return map;
 		} else if (u.get(0).getPassword().equals(user.getPassword())) {
 			session.setAttribute("userMessage", u.get(0));
+			System.out.println("*****************"+u.get(0));
 			map.put("isLogin", "true");
 			Map<String, String> mapp = new HashMap<String, String>();
 			mapp.put("tel", u.get(0).getTel());

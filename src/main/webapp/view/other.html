@@ -113,8 +113,10 @@
 <script src="../js/otherpage.js"></script>
 <script>
     function exit(){
-        localStorage.clear();
-        location.href="../user/login";
+        $.post("/exit",function () {
+            localStorage.clear();
+            location.href="../user/login";
+        })
     }
 </script>
 

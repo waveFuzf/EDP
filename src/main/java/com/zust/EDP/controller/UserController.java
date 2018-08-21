@@ -58,20 +58,20 @@ public class UserController {
 	}
 
 	@RequestMapping("/home")
-	public String webSocket() {
-		return "main";
+	public String webSocket(HttpServletRequest httpServletRequest) {
+		Tuser tuser = (Tuser) httpServletRequest.getSession().getAttribute("userMessage");
+		if (tuser != null) {
+			return "main";
+		} else {
+			return "login";
+		}
 	}
 
 	// 提交登录信息
 	@RequestMapping(value = "/login", method = RequestMethod.POST)
 	public @ResponseBody Map<String, Object> doLogin(Tuser user, HttpSession session) throws IOException {
 		Map<String, Object> map = new HashMap<String, Object>();
-		// String isLogin = userService.doLogin(user, session);
-		// map.put("isLogin", isLogin);
-		// map.put("userMessage", value);
 		map = userService.doLogin(user, session);
-		System.out.println(session.getId());
-		// System.out.println(user.getUserId());
 		return map;
 	}
 
@@ -79,15 +79,11 @@ public class UserController {
 	@RequestMapping(value = "/loading", method = RequestMethod.POST)
 	public @ResponseBody Home loading(HttpServletResponse response, String longitude, String latitude,
 			HttpSession session) {
-		System.out.println("经度：" + longitude);
-		System.out.println("纬度：" + latitude);
-		double a = Double.parseDouble(longitude);
-		double b = Double.parseDouble(latitude);
-		session.getAttribute("userMessage");
-		int c = ((Tuser) session.getAttribute("userMessage")).getUserId();
-		System.out.println(c);
-		publishService.savelalo(a, b);
-		return userService.loading(c);
+		double longitudes = Double.parseDouble(longitude);
+		double latitudes = Double.parseDouble(latitude);
+		int userid = ((Tuser) session.getAttribute("userMessage")).getUserId();
+		publishService.savelalo(longitudes, latitudes);
+		return userService.loading(userid);
 	}
 
 	// 更换头像
