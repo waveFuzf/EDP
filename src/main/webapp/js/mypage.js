@@ -299,19 +299,17 @@ webpackJsonp([1], [
 
 
             $(document).ready(function () {
-                // $("#modal3").modal("show");
-
-
                 var myInf = JSON.parse(sessionStorage.getItem("myInf")); //用户信息
-
-
+                if(myInf!=null){
                 ((image, name, inlt) => {
                     $(".myavatar").attr('src', image);
                     $(".myname").text(name);
                     $("#mypage_menu b").text(inlt);
 
                 })(myInf.userMessage.image, myInf.userMessage.name, myInf.userMessage.integral);
-
+            } else {
+                    window.location.href="/user/login"
+                }
                 var position = new __WEBPACK_IMPORTED_MODULE_2__ui_position__["a" /* default */]({
                     height: 500,
                     width: 500,
@@ -337,12 +335,12 @@ webpackJsonp([1], [
                                     } else {
                                         $(".rc table .default").text(data.sex == "0" ? "女" : "男");
                                     }
-
                                     $(".rc table .myavatar").attr("src", data.image);
                                     $(".rc table input:first").val(data.name);
                                     $(".rc table input:last").val(data.address);
                                     $(".ui.dropdown").dropdown();
-                                });
+                                }
+                                );
                                 break;
                             case 1:
                                 //渲染我的发布
@@ -644,7 +642,7 @@ webpackJsonp([1], [
                 var rc = `<div class="ui card entrust">
         <div class="content">
           <div class="right floated meta">
-            <i class="icon write"></i>2017/9/20 11:20:57
+            <i class="icon write"></i>${data.publishDate}
           </div>
           <span>单号：${data.fromNum}</span>
         </div>
@@ -730,30 +728,30 @@ webpackJsonp([1], [
           </div>`;
                 box.append(rc);
             }
-            static waitComplete(data, box) {
-                var rc = `<div class="ui card entrust">
-              <div class="content">
-                <div class="right floated meta">
-                  接单时间：2017/9/20 11:20:57
-                </div>
-                接单人: <img class="ui avatar image" src="../images/defaultavatar.jpg"><span>yomi</span>
-              </div>
-              <div class="content">
-                <div class="header ">
-                  <span style="margin-right:20px;" class="type">单号:ph1133</span>
-                  <span style="margin-right:20px;" class="size">类型:电子</span>
-                  <span style="margin-right:20px;">信誉限制:10</span>
-                  <span style="margin-right:20px;"class="right">奖励积分:5</span>
-                </div>
-              </div>
-              <div class="extra content">
-                <a href="" title="" class="express_type">顺丰</a>
-                <span>完成时间:2017/9/20 11:20:57</span>
-                <a type="" class="del funa">评价</a>
-              </div>
-          </div>`;
-                box.append(rc);
-            }
+          //   static waitComplete(data, box) {
+          //       var rc = `<div class="ui card entrust">
+          //     <div class="content">
+          //       <div class="right floated meta">
+          //         接单时间：2017/9/20 11:20:57
+          //       </div>
+          //       接单人: <img class="ui avatar image" src="../images/defaultavatar.jpg"><span>yomi</span>
+          //     </div>
+          //     <div class="content">
+          //       <div class="header ">
+          //         <span style="margin-right:20px;" class="type">单号:ph1133</span>
+          //         <span style="margin-right:20px;" class="size">类型:电子</span>
+          //         <span style="margin-right:20px;">信誉限制:10</span>
+          //         <span style="margin-right:20px;"class="right">奖励积分:5</span>
+          //       </div>
+          //     </div>
+          //     <div class="extra content">
+          //       <a href="" title="" class="express_type">顺丰</a>
+          //       <span>完成时间:2017/9/20 11:20:57</span>
+          //       <a type="" class="del funa">评价</a>
+          //     </div>
+          // </div>`;
+          //       box.append(rc);
+          //   }
         }
 /* harmony export (immutable) */ __webpack_exports__["a"] = myPageUpdate;
 

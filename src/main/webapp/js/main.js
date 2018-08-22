@@ -791,9 +791,6 @@ webpackJsonp([0], [
 					return -1;
 				}
 
-				function emmm() {
-					alert("emmmm");
-				}
 				//更新未读消息
 				function initChatBox(data, time) {
 					console.log("Get Unread Record.");

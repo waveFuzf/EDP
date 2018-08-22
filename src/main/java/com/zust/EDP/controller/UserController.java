@@ -134,7 +134,6 @@ public class UserController {
 	@RequestMapping(value = "/myput", method = RequestMethod.POST)
 	public @ResponseBody Mytake myput(HttpSession session) {
 		Tuser u = (Tuser) session.getAttribute("userMessage");
-		System.out.println("session的用户id"+u.getUserId());
 		return userService.myput(u.getUserId());
 	}
 
@@ -151,21 +150,22 @@ public class UserController {
 		Tuser u = (Tuser) session.getAttribute("userMessage");
 		return userService.mytaken(u.getUserId());
 	}
-	@RequestMapping("/personpage")
+	@RequestMapping(value = "/personpage",method = RequestMethod.GET)
 	public String personpage() {
 		return "mypage";
 	}
 	
 	// 进入个人信息页
 	@RequestMapping("/mypage")
-	public @ResponseBody Map<String, Object> mypage(HttpSession session) {
+	public @ResponseBody Map<String, Object> mypage(HttpServletRequest httpServletRequest) {
+		Tuser tuser = (Tuser) httpServletRequest.getSession().getAttribute("userMessage");
 		Map<String, Object> map = new HashMap<String, Object>();
-		Tuser tuser = (Tuser) session.getAttribute("userMessage");
-		map.put("image", tuser.getImage());
-		map.put("name", tuser.getName());
-		map.put("sex", tuser.getSex());
-		map.put("address", tuser.getAddress());
-		return map;
+			map.put("image", tuser.getImage());
+			map.put("name", tuser.getName());
+			map.put("sex", tuser.getSex());
+			map.put("address", tuser.getAddress());
+			map.put("msg","Success!");
+			return map;
 	}
 	
 	//删除我的发布
