@@ -923,6 +923,18 @@ webpackJsonp([0], [
 
 				});
 
+				$(".msg_content").on('click', '.msg button', function (event) {
+					event.preventDefault();
+					$.post('../MM/message', {
+						"messageId": $(this).parent().parent().find(".message_id").text()
+					}, function (data, textStatus, xhr) {
+
+						$(this).parent().parent().remove();
+					});
+					$(this).parent().parent().remove();
+
+				});
+
 				//聊天更新
 				chatHeight = $("#chatrecorde").height();
 

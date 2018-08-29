@@ -45,15 +45,25 @@ public class UserDaoImpl implements UserDao {
 		// TODO Auto-generated method stub
 		int count;
 		if (type.equals("p")) {
-			String sql = "select count(m.messageId)from Tmessage m left join m.passivePer u where u.userId='"
+			String sql = "select count(m.messageId)from Tmessage m left join m.passivePer u where m.state='2' and u.userId='"
 					+ user.getUserId() + "' group by u.userId ";
 			Query query = getCurrentSession().createQuery(sql);
-			count = ((Number) query.uniqueResult()).intValue();
+			if(query.uniqueResult()==null){
+			    count=0;
+			}
+			else {
+                count = ((Number) query.uniqueResult()).intValue();
+            }
 		} else {
 			String sql = "select count(r.requestId) from Trequest r left join r.user_requester_id u where u.userId='"
 					+ user.getUserId() + "'group by u.userId ";
 			Query query = getCurrentSession().createQuery(sql);
-			count = ((Number) query.uniqueResult()).intValue();
+            if(query.uniqueResult()==null){
+                count=0;
+            }
+            else {
+                count = ((Number) query.uniqueResult()).intValue();
+            }
 		}
 		return count;
 	}
@@ -62,7 +72,7 @@ public class UserDaoImpl implements UserDao {
 	@Override
 	public List<Tuser> findtop3_p() {
 		// TODO Auto-generated method stub
-		String sql = "select u from Tmessage m left join m.passivePer u where m.fromNum like 'PH%' group by u.userId order by count(m.messageId) desc";
+		String sql = "select u from Tmessage m left join m.passivePer u where m.fromNum like 'PH%' and m.state='2' group by u.userId order by count(m.messageId) desc";
 		Query query = getCurrentSession().createQuery(sql);
 		query.setMaxResults(3);
 		return query.list();
