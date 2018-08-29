@@ -45,10 +45,10 @@ public class PublishServiceImpl implements PublishService {
 	}
 
 	@Override
-	public List<Publish> selectAddress(String select, int limit) {
+	public List<Publish> selectAddress(String select, int limit, Integer userId) {
 		// TODO Auto-generated method stub
 		List<Publish> list2 = new ArrayList<Publish>();
-		List<Texpress> list = publishDao.findPublish(1, select, limit);
+		List<Texpress> list = publishDao.findPublish(1, select, limit,userId);
 		System.out.println("sss"+list.size());
 		for(int i=0;i<list.size();i++) {
 			Texpress express = list.get(i);
@@ -158,7 +158,7 @@ public class PublishServiceImpl implements PublishService {
 	public List<Publish> putdown(int page, String address, int limit) {
 		// TODO Auto-generated method stub
 		List<Publish> list2 = new ArrayList<Publish>();
-		List<Texpress> list = publishDao.findPublish(page, address, limit);
+		List<Texpress> list = publishDao.findPublish(page, address, limit, null);
 		for (int i = 0; i < list.size(); i++) {
 			Texpress express = list.get(i);
 			Publish publish2 = Tpublish_Publish(express);

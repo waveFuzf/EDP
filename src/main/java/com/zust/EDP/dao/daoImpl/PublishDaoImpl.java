@@ -30,13 +30,17 @@ public class PublishDaoImpl implements PublishDao {
 
 	@SuppressWarnings("unchecked")
 	@Override
-	public List<Texpress> findPublish(int page, String address, int limit) {
+	public List<Texpress> findPublish(int page, String address, int limit, Integer userId) {
 		// TODO Auto-generated method stub
+		String sql = "select e from Texpress e left join e.publishId p where p.state=2 and e.address like '%" + address
+				+ "%' and p.requirement<=" + limit;;
 		if(address.equals(" "))
 			address="";
 		System.out.println("pubishaddress="+address);
-		String sql = "select e from Texpress e left join e.publishId p where p.state=2 and e.address like '%" + address
-				+ "%' and p.requirement<=" + limit;
+		if(userId!=null) {
+			sql = "select e from Texpress e left join e.publishId p where p.state=2 and e.address like '%" + address
+					+ "%' and p.requirement<=" + limit+" and p.user_publisher_id!='"+userId+"'";
+		}
 		Query query = getCurrentSession().createQuery(sql);
 		query.setFirstResult((page - 1) * 4);
 		query.setMaxResults(4);

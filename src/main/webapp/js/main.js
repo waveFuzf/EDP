@@ -342,7 +342,7 @@ webpackJsonp([0], [
 				//我的信息
 				var myInf = JSON.parse(sessionStorage.getItem("myInf")); //用户信息
 				//websocket使用类
-				var mysocket = new __WEBPACK_IMPORTED_MODULE_3__ui_socket__["a" /* default */]("ws://localhost:8080/EDP/websocket");
+				var mysocket = new __WEBPACK_IMPORTED_MODULE_3__ui_socket__["a" /* default */]("ws://localhost:8080/websocket");
 				//地图操作类
 				var position = new __WEBPACK_IMPORTED_MODULE_2__ui_position__["a" /* default */]({
 					height: 500,
@@ -573,7 +573,6 @@ webpackJsonp([0], [
 						var nowBox = clickFlag === 0 ? $(".entrust_content") : $(".fetch_content");
 						var nowNum = nowBox.find(".entrust").length;
 						var nowOffsetTop = nowBox.find(".entrust").eq(nowNum - 1).offset().top;
-						console.log("entrustNum=" + nowNum, nowOffsetTop);
 						//控制返回顶部
 						if (nowHeight > 250) {
 							$("#backtop").fadeIn();
@@ -968,7 +967,7 @@ webpackJsonp([0], [
 		"use strict";
 		class mySocket {
 
-			constructor(address = "ws://localhost:8080/EDP/websocket") {
+			constructor(address = "ws://localhost:8080/websocket") {
 				this.address = address;
 				if ('WebSocket' in window) {
 					this.websocket = new WebSocket(address);

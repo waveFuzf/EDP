@@ -202,7 +202,7 @@ public class UserServiceImpl implements UserService {
 		System.out.println("findtip3OK");
 		List<Message> list4 = messageService.findmessage(userId);
 		System.out.println("messageServiceOk");
-		List<Publish> list1 = publishService.selectAddress("", 10);
+		List<Publish> list1 = publishService.selectAddress("", 10,userId);
 		System.out.println("publishService");
 		List<Request> list2 = requestService.selectAddress("", 10);
 		System.out.println("publishService2");

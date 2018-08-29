@@ -15,7 +15,7 @@ public interface PublishService {
 
 	public String temporary(Dpublish publish, HttpSession session);
 
-	public List<Publish> selectAddress(String select, int limit);
+	public List<Publish> selectAddress(String select, int limit, Integer userId);
 
 	public Publish Tpublish_Publish(Texpress express);
 

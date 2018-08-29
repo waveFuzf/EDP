@@ -9,7 +9,7 @@ import com.zust.EDP.entity.Tpublish;
 public interface PublishDao {
 	public void savePublish(Tpublish publish);
 
-	public List<Texpress> findPublish(int page, String address, int limit);
+	public List<Texpress> findPublish(int page, String address, int limit, Integer userId);
 
 	public Tpublish findPublish_by_Id(Integer publishId);
 

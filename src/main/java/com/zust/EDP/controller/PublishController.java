@@ -41,7 +41,7 @@ public class PublishController {
 	// 搜索
 	@RequestMapping(value = "/selectAddress", method = RequestMethod.POST)
 	public @ResponseBody List<Publish> selectAddress(HttpServletResponse response, String select, int limit) {
-		return publishService.selectAddress(select, limit);
+		return publishService.selectAddress(select, limit, null);
 	}
 
 	// 向下拉刷新

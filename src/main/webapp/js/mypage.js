@@ -661,7 +661,7 @@ webpackJsonp([1], [
           </div>
         </div>
         <div class="extra content">
-          <a href="" title="" class="express_type">${data.company}</a>
+          <a  title="" class="express_type">${data.company}</a>
           <span>截止时间:${data.takeDate}</span>
           <a type="" class="del funa">删除</a>
           <p hidden="hide" class="publish_id">${data.publishId}</p>
