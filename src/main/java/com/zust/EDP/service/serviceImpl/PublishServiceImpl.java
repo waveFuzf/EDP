@@ -155,10 +155,10 @@ public class PublishServiceImpl implements PublishService {
 	}
 
 	@Override
-	public List<Publish> putdown(int page, String address, int limit) {
+	public List<Publish> putdown(int page, String address, int limit, Integer userId) {
 		// TODO Auto-generated method stub
 		List<Publish> list2 = new ArrayList<Publish>();
-		List<Texpress> list = publishDao.findPublish(page, address, limit, null);
+		List<Texpress> list = publishDao.findPublish(page, address, limit, userId);
 		for (int i = 0; i < list.size(); i++) {
 			Texpress express = list.get(i);
 			Publish publish2 = Tpublish_Publish(express);

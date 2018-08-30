@@ -21,7 +21,7 @@ public interface PublishService {
 
 	public Tpublish Publish_Tpublish(Publish publish, HttpSession session);
 
-	public List<Publish> putdown(int page, String address, int limit);
+	public List<Publish> putdown(int page, String address, int limit, Integer userId);
 
 	public void savelalo(double a, double b);
 

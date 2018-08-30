@@ -33,7 +33,7 @@ public class PublishDaoImpl implements PublishDao {
 	public List<Texpress> findPublish(int page, String address, int limit, Integer userId) {
 		// TODO Auto-generated method stub
 		String sql = "select e from Texpress e left join e.publishId p where p.state=2 and e.address like '%" + address
-				+ "%' and p.requirement<=" + limit;;
+				+ "%' and p.requirement<=" + limit;
 		if(address.equals(" "))
 			address="";
 		System.out.println("pubishaddress="+address);

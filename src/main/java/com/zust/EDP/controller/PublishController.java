@@ -4,9 +4,11 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import com.zust.EDP.entity.Tuser;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -46,10 +48,12 @@ public class PublishController {
 
 	// 向下拉刷新
 	@RequestMapping(value = "/putdown", method = RequestMethod.POST)
-	public @ResponseBody List<Publish> putdown(HttpServletResponse response, String page, String select, String limit) {
+	public @ResponseBody List<Publish> putdown(HttpServletRequest httpServletRequest, HttpServletResponse response, String page, String select, String limit) {
+		Tuser u=(Tuser)httpServletRequest.getSession().getAttribute("userMessage");
+
 		int page2 = Integer.parseInt(page);
 		int limit1 = Integer.parseInt(limit);
-		List<Publish> list = publishService.putdown(page2, select, limit1);
+		List<Publish> list = publishService.putdown(page2, select, limit1,u.getUserId());
 		System.out.println("页数：" + page2);
 		return list;
 	}
