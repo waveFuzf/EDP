@@ -22,4 +22,11 @@ public class MessageController {
         messageService.readmessage(a);
         return "{\"state\":\"success\"}";
 	}
+
+	@RequestMapping(value = "/changeState", method = RequestMethod.POST)
+	public @ResponseBody String changeState(HttpServletResponse response,String messageId,int State){
+		Integer a =Integer.parseInt(messageId);
+		messageService.changeState(a,State);
+		return "{\"state\":\"success\"}";
+	}
 }

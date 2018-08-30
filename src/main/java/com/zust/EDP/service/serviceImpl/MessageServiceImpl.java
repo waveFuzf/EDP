@@ -157,6 +157,10 @@ public class MessageServiceImpl implements MessageService {
 		messageDao.updatestate(messageId);
 	}
 
+	@Override
+	public void changeState(Integer messageId, int state) {
+		messageDao.changeState(messageId,state);
+	}
 
 
 }

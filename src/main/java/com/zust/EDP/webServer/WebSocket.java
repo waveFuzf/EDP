@@ -4,6 +4,8 @@ import javax.servlet.http.HttpSession;
 import javax.websocket.*;
 import javax.websocket.server.ServerEndpoint;
 
+import com.zust.EDP.dto.Message;
+import com.zust.EDP.service.MessageService;
 import org.json.JSONException;
 import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,6 +27,9 @@ public class WebSocket {
 	private static Map<String, Tuser> users = new HashMap<String, Tuser>();
 	@Autowired
 	private Tools tool;
+
+	@Autowired
+	private MessageService messageService;
 
 	@OnOpen
 	public void onOpen(Session session, EndpointConfig config) {
@@ -79,10 +84,12 @@ public class WebSocket {
 				System.out.println("type==2");
 				if (jsonObject.get("choose").toString().equals("true")) {
 					string = webSocketService.sendToPassivePerByTrue(jsonObject.getInt("messageId"),jsonObject.getInt("supportId"));
+//					messageService.changeState(jsonObject.getInt("messageId"),2);
 					sendToUser(string, session);
 					System.out.println("接单人确认接单");
 				} else {
 					string = webSocketService.sendToPassivePerByFalse(jsonObject.getInt("messageId"),jsonObject.getInt("supportId"));
+//					messageService.changeState(jsonObject.getInt("messageId"),1);
 					sendToUser(string, session);
 					System.out.println("接单人拒绝接单");
 				}

@@ -152,7 +152,7 @@ public class MessageDaoImpl implements MessageDao {
 		String sql = "select m from Tmessage m where m.messageId = "+messageId;
 		List<Tmessage> list = getCurrentSession().createQuery(sql).list();
 		Tmessage message = list.get(0);
-		message.setState(1);
+		message.setState(0);
 	}
 	
 	@SuppressWarnings("unchecked")
@@ -188,6 +188,13 @@ public class MessageDaoImpl implements MessageDao {
 		return list;
 	}
 
+	@Override
+	public void changeState(Integer messageId, int state) {
+		String sql = "select m from Tmessage m where m.messageId = "+messageId;
+		List<Tmessage> list = getCurrentSession().createQuery(sql).list();
+		Tmessage message = list.get(0);
+		message.setState(state);
+	}
 
 
 }

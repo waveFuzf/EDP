@@ -923,17 +923,34 @@ webpackJsonp([0], [
 
 				});
 
-				$(".msg_content").on('click', '.msg button', function (event) {
-					event.preventDefault();
-					$.post('../MM/message', {
-						"messageId": $(this).parent().parent().find(".message_id").text()
-					}, function (data, textStatus, xhr) {
-
-						$(this).parent().parent().remove();
-					});
+				$(".msg_content").on('click', '.msg .sure', function (event) {
 					$(this).parent().parent().remove();
-
+                    history.go(0);
 				});
+
+                $(".msg_content").on('click', '.msg .yes', function (event) {
+                    event.preventDefault();
+                    $.post('../MM/changeState', {
+                        "messageId": $(this).parent().parent().find(".message_id").text(),
+						"State":2,
+                    }, function (data, textStatus, xhr) {
+                        $(this).parent().parent().remove();
+                    });
+                    $(this).parent().parent().remove();
+
+                });
+                $(".msg_content").on('click', '.msg .nop', function (event) {
+                    event.preventDefault();
+                    $.post('../MM/changeState', {
+                        "messageId": $(this).parent().parent().find(".message_id").text(),
+                        "State":1,
+                    }, function (data, textStatus, xhr) {
+
+                        $(this).parent().parent().remove();
+                    });
+                    $(this).parent().parent().remove();
+
+                });
 
 				//聊天更新
 				chatHeight = $("#chatrecorde").height();

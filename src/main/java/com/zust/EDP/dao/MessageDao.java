@@ -36,4 +36,6 @@ public interface MessageDao {
 	public List<Tmessage> countPh(int personId);
 	
 	public List<Tmessage> findByFromNum(String fromNum);
+
+    public void changeState(Integer messageId, int state);
 }
