@@ -89,7 +89,7 @@ public class PublishDaoImpl implements PublishDao {
 	@Override
 	public List<Texpress> findmytakepublih(Integer userId) {
 		// TODO Auto-generated method stub
-		String sql = "select e from Texpress e left join e.publishId p,Tmessage m left join m.passivePer u where m.msgType=2 and p.fromNum = m.fromNum and u.userId="
+		String sql = "select e from Texpress e left join e.publishId p,Tmessage m left join m.passivePer u where m.msgType=1 and p.fromNum = m.fromNum and u.userId="
 				+ userId;
 		return getCurrentSession().createQuery(sql).list();
 	}

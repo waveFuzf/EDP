@@ -673,7 +673,7 @@ webpackJsonp([1], [
                 var rc = `<div class="ui card entrust">
               <div class="content">
                 <div class="right floated meta">
-                  接单时间：${data.takeDate}
+                  接单时间：${data.orderdate}
                 </div>
                 <img class="ui avatar image" src="${data.publisheruserimage}"><span>${data.publisherusername}</span>
               </div>

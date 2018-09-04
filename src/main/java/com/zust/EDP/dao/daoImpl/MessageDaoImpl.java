@@ -183,7 +183,7 @@ public class MessageDaoImpl implements MessageDao {
 	@Override
 	public List<Tmessage> findByFromNum(String fromNum) {
 		// TODO Auto-generated method stub
-		String hql="from Tmessage m where m.msgType=2 and m.fromNum='"+fromNum+"'";
+		String hql="from Tmessage m where m.msgType=1 and m.fromNum='"+fromNum+"'";
 		List<Tmessage> list=getCurrentSession().createQuery(hql).list();
 		return list;
 	}

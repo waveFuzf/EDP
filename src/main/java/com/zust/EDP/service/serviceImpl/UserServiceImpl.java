@@ -264,6 +264,7 @@ public class UserServiceImpl implements UserService {
 			publish.setCode(list.get(i).getCode());
 			publish.setLatitude(list.get(i).getLatitude());
 			publish.setLongitude(list.get(i).getLongitude());
+			publish.setOrderdate(String.valueOf(messageDao.findByFromNum(publish.getFromNum()).get(0).getOrderDate()));
 			list2.add(publish);
 		}
 		List<Texpress> r = requestDao.findmytakerequest(userId);
