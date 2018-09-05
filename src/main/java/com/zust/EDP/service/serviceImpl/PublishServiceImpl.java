@@ -100,7 +100,7 @@ public class PublishServiceImpl implements PublishService {
 		publish2.setPublisheruserimage(express.getPublishId().getUser_publisher_id().getImage());
 		publish2.setRequirement(express.getPublishId().getRequirement());
 		publish2.setSize(express.getSize());
-		// publish2.setState(express.getPublishId().getState());
+		 publish2.setState(express.getPublishId().getState());
 		System.out.println("xxxxxxx");
 		publish2.setTakeDate(tolls.formatTime(express.getPublishId().getTakeDate()));
 		publish2.setPublishDate(tolls.formatTime(express.getPublishId().getPublishDate()));

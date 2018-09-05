@@ -98,7 +98,7 @@ public class PublishDaoImpl implements PublishDao {
 	@Override
 	public List<Texpress> findmyputpublish(Integer userId) {
 		// TODO Auto-generated method stub
-		String sql = "select e from Texpress e left join e.publishId p left join p.user_publisher_id u where p.state=2 and u.userId="
+		String sql = "select e from Texpress e left join e.publishId p left join p.user_publisher_id u where u.userId="
 				+ userId; 
 		return getCurrentSession().createQuery(sql).list();
 	}

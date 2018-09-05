@@ -219,43 +219,6 @@ webpackJsonp([1], [
                     });
                 });
             }
-
-            /*
-         
-         var map = new AMap.Map('container', {
-                resizeEnable: true,
-                center: [116.397428, 39.90923],
-                zoom: 13,
-                isHotspot: true
-            });
-            var placeSearch = new AMap.PlaceSearch();  //构造地点查询类
-            var infoWindow=new AMap.AdvancedInfoWindow({});
-            map.on('hotspotclick', function(result) {
-                placeSearch.getDetails(result.id, function(status, result) {
-                    if (status === 'complete' && result.info === 'OK') {
-                        placeSearch_CallBack(result);
-                    }
-                });
-            });
-            //回调函数
-            function placeSearch_CallBack(data) { //infoWindow.open(map, result.lnglat);
-                var poiArr = data.poiList.pois;
-                var location = poiArr[0].location;
-                infoWindow.setContent(createContent(poiArr[0]));
-                infoWindow.open(map,location);
-            }
-            function createContent(poi) {  //信息窗体内容
-                var s = [];
-                s.push('<div class="info-title">'+poi.name+'</div><div class="info-content">'+"地址：" + poi.address);
-                s.push("电话：" + poi.tel);
-                s.push("类型：" + poi.type);
-                s.push('<div>');
-                return s.join("<br>");
-            }
-         
-         
-         */
-
         }
 /* harmony export (immutable) */ __webpack_exports__["a"] = Position;
 
@@ -300,15 +263,15 @@ webpackJsonp([1], [
 
             $(document).ready(function () {
                 var myInf = JSON.parse(sessionStorage.getItem("myInf")); //用户信息
-                if(myInf!=null){
-                ((image, name, inlt) => {
-                    $(".myavatar").attr('src', image);
-                    $(".myname").text(name);
-                    $("#mypage_menu b").text(inlt);
+                if (myInf != null) {
+                    ((image, name, inlt) => {
+                        $(".myavatar").attr('src', image);
+                        $(".myname").text(name);
+                        $("#mypage_menu b").text(inlt);
 
-                })(myInf.userMessage.image, myInf.userMessage.name, myInf.userMessage.integral);
-            } else {
-                    window.location.href="/user/login"
+                    })(myInf.userMessage.image, myInf.userMessage.name, myInf.userMessage.integral);
+                } else {
+                    window.location.href = "/user/login"
                 }
                 var position = new __WEBPACK_IMPORTED_MODULE_2__ui_position__["a" /* default */]({
                     height: 500,
@@ -473,7 +436,7 @@ webpackJsonp([1], [
                         /*optional stuff to do after success */
                         data.isUpdate == "true" ? addMsg("修改成功!") : addMsg("修改失败!");
                         myInf.userMessage.name = data.name;
-                        sessionStorage.setItem("myInf",JSON.stringify(myInf));
+                        sessionStorage.setItem("myInf", JSON.stringify(myInf));
                         $(".myname").text(data.name);
                     });
                 });
@@ -639,7 +602,8 @@ webpackJsonp([1], [
             }
 
             static myEntrust(data, box) {
-                var rc = `<div class="ui card entrust">
+                if (data.state == 2) {
+                    var rc = `<div class="ui card entrust">
         <div class="content">
           <div class="right floated meta">
             <i class="icon write"></i>${data.publishDate}
@@ -667,6 +631,37 @@ webpackJsonp([1], [
           <p hidden="hide" class="publish_id">${data.publishId}</p>
         </div>
       </div>`;
+                } else {
+                    var rc = `<div class="ui card entrust">
+        <div class="content">
+          <div class="right floated meta">
+            <i class="icon write"></i>${data.publishDate}
+          </div>
+          <span>单号：${data.fromNum}</span>
+        </div>
+        <div class="content">
+          <div class="header ">
+            <span style="margin-right:20px;" class="type">类型:${data.type}</span>
+            <span style="margin-right:20px;" class="size">大小:${data.size}</span>
+            <span>信誉限制:${data.requirement}</span>
+            <span class="right floated"><i class="trophy icon"></i>${data.integral}</span>
+          </div>
+          <div class="meta">
+            <span class="date">${data.address}</span>
+          </div>
+          <div class="description">
+            备注：${data.tip}
+          </div>
+        </div>
+        <div class="extra content">
+          <a  title="" class="express_type">${data.company}</a>
+          <span>截止时间:${data.takeDate}</span>
+          <a type="" class="funa">已接单</a>
+          <p hidden="hide" class="publish_id">${data.publishId}</p>
+        </div>
+      </div>`;
+
+                }
                 box.append(rc);
             }
             static myFetch(data, box) {
@@ -728,30 +723,6 @@ webpackJsonp([1], [
           </div>`;
                 box.append(rc);
             }
-          //   static waitComplete(data, box) {
-          //       var rc = `<div class="ui card entrust">
-          //     <div class="content">
-          //       <div class="right floated meta">
-          //         接单时间：2017/9/20 11:20:57
-          //       </div>
-          //       接单人: <img class="ui avatar image" src="../images/defaultavatar.jpg"><span>yomi</span>
-          //     </div>
-          //     <div class="content">
-          //       <div class="header ">
-          //         <span style="margin-right:20px;" class="type">单号:ph1133</span>
-          //         <span style="margin-right:20px;" class="size">类型:电子</span>
-          //         <span style="margin-right:20px;">信誉限制:10</span>
-          //         <span style="margin-right:20px;"class="right">奖励积分:5</span>
-          //       </div>
-          //     </div>
-          //     <div class="extra content">
-          //       <a href="" title="" class="express_type">顺丰</a>
-          //       <span>完成时间:2017/9/20 11:20:57</span>
-          //       <a type="" class="del funa">评价</a>
-          //     </div>
-          // </div>`;
-          //       box.append(rc);
-          //   }
         }
 /* harmony export (immutable) */ __webpack_exports__["a"] = myPageUpdate;
 

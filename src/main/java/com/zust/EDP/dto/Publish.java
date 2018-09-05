@@ -6,7 +6,7 @@ public class Publish {
 	private Integer publishId;
 	private String publishDate;
 	private double requirement;
-	// private Integer state;
+	private Integer state;
 	private String takeDate;// 截止日期
 	private Integer integral;// 积分
 	private String fromNum;
@@ -182,4 +182,11 @@ public class Publish {
 		this.publisheruserimage = publisheruserimage;
 	}
 
+	public Integer getState() {
+		return state;
+	}
+
+	public void setState(Integer state) {
+		this.state = state;
+	}
 }
