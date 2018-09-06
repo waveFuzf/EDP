@@ -204,7 +204,7 @@ public class UserServiceImpl implements UserService {
 		System.out.println("messageServiceOk");
 		List<Publish> list1 = publishService.selectAddress("", 10,userId);
 		System.out.println("publishService");
-		List<Request> list2 = requestService.selectAddress("", 10);
+		List<Request> list2 = requestService.selectAddress("", 10,userId);
 		System.out.println("publishService2");
 		List<Unread> list5 = recordService.Trecord_Uread(userId);
 		Home home = new Home();

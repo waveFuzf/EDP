@@ -261,14 +261,14 @@ webpackJsonp([0], [
 
 
 		/***/
-}),
+	}),
 /* 3 */
 /***/ (function (module, exports) {
 
 		module.exports = window.AMap;
 
 		/***/
-}),
+	}),
 /* 4 */,
 /* 5 */
 /***/ (function (module, __webpack_exports__, __webpack_require__) {
@@ -284,7 +284,7 @@ webpackJsonp([0], [
 		global.color_gray = "#E6D8BE"; //rgb(230,216,190)
 
 		/***/
-}),
+	}),
 /* 6 */,
 /* 7 */,
 /* 8 */,
@@ -374,7 +374,7 @@ webpackJsonp([0], [
 							$('#modal1').modal({
 								closable: false,
 								onDeny: function () {
-									$('#wait_loading')[0].style.display="none";
+									$('#wait_loading')[0].style.display = "none";
 								},
 								onApprove: function () {
 									//获取页面更新数据,并更新数据
@@ -719,17 +719,6 @@ webpackJsonp([0], [
 					});
 				});
 
-				//发送第二种委托
-				$(document).on('click', '.entrustx', function (event) {
-					event.preventDefault();
-					/* Act on the event */
-					$("#modal4 .entrustx").each(function (index, el) {
-						$(this).removeClass('isclick');
-					});
-					$(this).addClass('isclick');
-					publishOdd = $(this).find('b').text();
-					supportId = $(this).find('.publish_id').text();
-				});
 
 				//未读消息
 				$(document).on('click', '.unreadChatMsg', function (event) {
@@ -840,6 +829,17 @@ webpackJsonp([0], [
 										update.extrustxUpdate(data[i], $("#modal4 .content_4"));
 									}
 								}
+								$("#modal4 .entrustx").each(function () {
+									$(this).click(function () {
+										$("#modal4 .entrustx").each(function () {
+											$(this).removeClass('isclick');
+										});
+										$(this).addClass('isclick');
+										publishOdd = $(this).find('b').text();
+										supportId = $(this).find('.publish_id').text();
+										console.log("publishOdd:" + publishOdd + "||supportId:" + supportId);
+									})
+								});
 							})();
 							$('#modal4').modal({
 								closable: false,
@@ -925,32 +925,32 @@ webpackJsonp([0], [
 
 				$(".msg_content").on('click', '.msg .sure', function (event) {
 					$(this).parent().parent().remove();
-                    history.go(0);
+					history.go(0);
 				});
 
-                $(".msg_content").on('click', '.msg .yes', function (event) {
-                    event.preventDefault();
-                    $.post('../MM/changeState', {
-                        "messageId": $(this).parent().parent().find(".message_id").text(),
-						"State":2,
-                    }, function (data, textStatus, xhr) {
-                        $(this).parent().parent().remove();
-                    });
-                    $(this).parent().parent().remove();
+				$(".msg_content").on('click', '.msg .yes', function (event) {
+					event.preventDefault();
+					$.post('../MM/changeState', {
+						"messageId": $(this).parent().parent().find(".message_id").text(),
+						"State": 2,
+					}, function (data, textStatus, xhr) {
+						$(this).parent().parent().remove();
+					});
+					$(this).parent().parent().remove();
 
-                });
-                $(".msg_content").on('click', '.msg .nop', function (event) {
-                    event.preventDefault();
-                    $.post('../MM/changeState', {
-                        "messageId": $(this).parent().parent().find(".message_id").text(),
-                        "State":1,
-                    }, function (data, textStatus, xhr) {
+				});
+				$(".msg_content").on('click', '.msg .nop', function (event) {
+					event.preventDefault();
+					$.post('../MM/changeState', {
+						"messageId": $(this).parent().parent().find(".message_id").text(),
+						"State": 1,
+					}, function (data, textStatus, xhr) {
 
-                        $(this).parent().parent().remove();
-                    });
-                    $(this).parent().parent().remove();
+						$(this).parent().parent().remove();
+					});
+					$(this).parent().parent().remove();
 
-                });
+				});
 
 				//聊天更新
 				chatHeight = $("#chatrecorde").height();
@@ -986,10 +986,10 @@ webpackJsonp([0], [
 				}
 			});
 			/* WEBPACK VAR INJECTION */
-}.call(__webpack_exports__, __webpack_require__(0)))
+		}.call(__webpack_exports__, __webpack_require__(0)))
 
 		/***/
-}),
+	}),
 /* 12 */
 /***/ (function (module, __webpack_exports__, __webpack_require__) {
 
@@ -1080,7 +1080,7 @@ webpackJsonp([0], [
 
 
 		/***/
-}),
+	}),
 /* 13 */
 /***/ (function (module, __webpack_exports__, __webpack_require__) {
 
@@ -1471,6 +1471,6 @@ webpackJsonp([0], [
 
 
 		/***/
-})
+	})
 ], [11]);
 //# sourceMappingURL=main.js.map

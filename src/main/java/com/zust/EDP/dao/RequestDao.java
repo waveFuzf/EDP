@@ -9,7 +9,7 @@ import com.zust.EDP.entity.Trequest;
 public interface RequestDao {
 	public void saveRequest(Trequest request);
 
-	public List<Trequest> findRequest(int page, String address, int limit);
+	public List<Trequest> findRequest(int page, String address, int limit, Integer userId);
 
 	public Set<Trequest> findRequest_by_id(List<Integer> requestId);
 

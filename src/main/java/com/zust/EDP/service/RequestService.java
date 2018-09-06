@@ -10,11 +10,11 @@ import com.zust.EDP.entity.Trequest;
 public interface RequestService {
 	public String doissueReceipt(Request request, HttpSession session);
 
-	public List<Request> selectAddress(String select, int limit);
+	public List<Request> selectAddress(String select, int limit, Integer userId);
 
 	public Request Trequest_Request(Trequest request);
 
 	public Trequest Request_Trequest(Request request, HttpSession session);
 
-	public List<Request> putdown(int page, String address, int limit);
+	public List<Request> putdown(int page, String address, int limit,Integer userid);
 }

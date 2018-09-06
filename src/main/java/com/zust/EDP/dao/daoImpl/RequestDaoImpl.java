@@ -30,13 +30,13 @@ public class RequestDaoImpl implements RequestDao {
 	}
 
 	@SuppressWarnings("unchecked")
-	public List<Trequest> findRequest(int page, String address, int limit) {
+	public List<Trequest> findRequest(int page, String address, int limit, Integer userId) {
 		// TODO Auto-generated method stub
 		if(address.equals(" "))
 			address="";
 		System.out.println("requestaddress="+address);
 		String sql = "select r from Trequest r left join r.user_requester_id u where r.address like '%" + address
-				+ "%' and u.creditLevel<='" + limit + "'";
+				+ "%' and u.creditLevel<='" + limit + "' and u.id!='"+userId+"'";
 		Query query = getCurrentSession().createQuery(sql);
 		query.setFirstResult((page - 1) * 4);
 		query.setMaxResults(4);

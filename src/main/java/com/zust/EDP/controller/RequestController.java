@@ -4,9 +4,11 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import com.zust.EDP.entity.Tuser;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -37,6 +39,7 @@ public class RequestController {
 	@RequestMapping(value = "/temporary", method = RequestMethod.POST)
 	public @ResponseBody Map<String, String> temporary(Dpublish publish, HttpSession session) {
 		Map<String, String> map = new HashMap<String, String>();
+		publish.setIntegral(0);
 		String message = publishService.temporary(publish, session);
 		map.put("message", message);
 		return map;
@@ -53,14 +56,16 @@ public class RequestController {
 
 	// 搜索
 	@RequestMapping(value = "/selectAddress", method = RequestMethod.POST)
-	public @ResponseBody List<Request> selectAddress(HttpServletResponse response, String select, int limit) {
-		return requestService.selectAddress(select, limit);
+	public @ResponseBody List<Request> selectAddress(HttpServletRequest httpServletRequest,HttpServletResponse response, String select, int limit) {
+		Tuser u=(Tuser)httpServletRequest.getSession().getAttribute("userMessage");
+		return requestService.selectAddress(select, limit, u.getUserId());
 	}
 
 	// 向下拉刷新
 	@RequestMapping(value = "/putdown", method = RequestMethod.POST)
-	public @ResponseBody List<Request> putdown(HttpServletResponse response, int page, String select, int limit) {
-		List<Request> list = requestService.putdown(page, select, limit);
+	public @ResponseBody List<Request> putdown(HttpServletRequest httpServletRequest, HttpServletResponse response, int page, String select, int limit) {
+		Tuser u=(Tuser)httpServletRequest.getSession().getAttribute("userMessage");
+		List<Request> list = requestService.putdown(page, select, limit,u.getUserId());
 		return list;
 	}
 

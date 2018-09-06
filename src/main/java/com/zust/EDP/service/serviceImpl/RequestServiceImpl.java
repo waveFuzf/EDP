@@ -38,10 +38,10 @@ public class RequestServiceImpl implements RequestService {
 	}
 
 	@Override
-	public List<Request> selectAddress(String select, int limit) {
+	public List<Request> selectAddress(String select, int limit, Integer userId) {
 		// TODO Auto-generated method stub
 		List<Request> list2 = new ArrayList<Request>();
-		List<Trequest> list = requestDao.findRequest(1, select, limit);
+		List<Trequest> list = requestDao.findRequest(1, select, limit,userId);
 		for (int i = 0; i < list.size(); i++) {
 			Trequest request = list.get(i);
 			list2.add(i, Trequest_Request(request));
@@ -82,9 +82,9 @@ public class RequestServiceImpl implements RequestService {
 	}
 
 	@Override
-	public List<Request> putdown(int page, String address, int limit) {
+	public List<Request> putdown(int page, String address, int limit,Integer userId) {
 		// TODO Auto-generated method stub
-		List<Trequest> list = requestDao.findRequest(page, address, limit);
+		List<Trequest> list = requestDao.findRequest(page, address, limit, userId);
 		List<Request> list2 = new ArrayList<Request>();
 		for (int i = 0; i < list.size(); i++) {
 			Trequest request = list.get(i);
