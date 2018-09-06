@@ -476,15 +476,19 @@ webpackJsonp([1], [
                         onApprove: function () {
                             var eva = '';
                             eva = $("#modal4 textarea").val();
-                            if (eva != '' || evl != null) {
+                            if (eva != '') {
                                 $.post('../evalute/eva', {
                                     "evaluatedid": $(that).parent().find(".eva_id").text(),
                                     "starLevel": num,
                                     "evaluate": eva,
                                     "publishId": $(that).parent().find(".publish_id").text()
-                                }, function (data, textStatus, xhr) {
+                                }, function (data) {
                                     if (data.message == "true") {
                                         showTip("评价成功！");
+                                        $("#right_content .rc").empty();
+                                        $.post('./mytaken', function (data) {
+                                            //to Do
+                                        });
                                     }
                                 });
                             } else {
@@ -602,66 +606,20 @@ webpackJsonp([1], [
             }
 
             static myEntrust(data, box) {
+                var rc = '<div class="ui card entrust"><div class="content"><div class="right floated meta"><i class="icon write"></i>'+data.publishDate+
+                    '</div><span>单号：'+data.fromNum+'</span></div><div class="content"><div class="header "><span style="margin-right:20px;" class="type">类型:'+data.type+'</span>' +
+                    '<span style="margin-right:20px;" class="size">大小:'+data.size+'</span><span>信誉限制:'+data.requirement+'</span><span class="right floated"><i class="trophy icon">' +
+                    '</i>'+data.integral+'</span></div><div class="meta"><span class="date">'+data.address+'</span></div><div class="description">备注：'+data.tip+'</div>' +
+                    '</div><div class="extra content"><a  title="" class="express_type">'+data.company+'</a><span>截止时间:'+data.takeDate+'</span>';
                 if (data.state == 2) {
-                    var rc = `<div class="ui card entrust">
-        <div class="content">
-          <div class="right floated meta">
-            <i class="icon write"></i>${data.publishDate}
-          </div>
-          <span>单号：${data.fromNum}</span>
-        </div>
-        <div class="content">
-          <div class="header ">
-            <span style="margin-right:20px;" class="type">类型:${data.type}</span>
-            <span style="margin-right:20px;" class="size">大小:${data.size}</span>
-            <span>信誉限制:${data.requirement}</span>
-            <span class="right floated"><i class="trophy icon"></i>${data.integral}</span>
-          </div>
-          <div class="meta">
-            <span class="date">${data.address}</span>
-          </div>
-          <div class="description">
-            备注：${data.tip}
-          </div>
-        </div>
-        <div class="extra content">
-          <a  title="" class="express_type">${data.company}</a>
-          <span>截止时间:${data.takeDate}</span>
-          <a type="" class="del funa">删除</a>
-          <p hidden="hide" class="publish_id">${data.publishId}</p>
-        </div>
-      </div>`;
-                } else {
-                    var rc = `<div class="ui card entrust">
-        <div class="content">
-          <div class="right floated meta">
-            <i class="icon write"></i>${data.publishDate}
-          </div>
-          <span>单号：${data.fromNum}</span>
-        </div>
-        <div class="content">
-          <div class="header ">
-            <span style="margin-right:20px;" class="type">类型:${data.type}</span>
-            <span style="margin-right:20px;" class="size">大小:${data.size}</span>
-            <span>信誉限制:${data.requirement}</span>
-            <span class="right floated"><i class="trophy icon"></i>${data.integral}</span>
-          </div>
-          <div class="meta">
-            <span class="date">${data.address}</span>
-          </div>
-          <div class="description">
-            备注：${data.tip}
-          </div>
-        </div>
-        <div class="extra content">
-          <a  title="" class="express_type">${data.company}</a>
-          <span>截止时间:${data.takeDate}</span>
-          <a type="" class="funa">已接单</a>
-          <p hidden="hide" class="publish_id">${data.publishId}</p>
-        </div>
-      </div>`;
-
+                    rc += '<a type="" class="del funa">删除</a>'
+                } else if (data.state == 3) {
+                    rc += '<a type="" class="funa">已接单</a>'
                 }
+                else if (data.state == 4) {
+                    rc += '<a type="" class="funa">已评价</a>'
+                }
+                rc += '<p hidden="hide" class="publish_id">'+data.publishId+'</p></div></div>';
                 box.append(rc);
             }
             static myFetch(data, box) {

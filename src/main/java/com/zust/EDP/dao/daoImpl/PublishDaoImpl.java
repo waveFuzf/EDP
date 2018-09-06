@@ -99,7 +99,7 @@ public class PublishDaoImpl implements PublishDao {
 	public List<Texpress> findmyputpublish(Integer userId) {
 		// TODO Auto-generated method stub
 		String sql = "select e from Texpress e left join e.publishId p left join p.user_publisher_id u where u.userId="
-				+ userId; 
+				+ userId + " ORDER BY p.state";
 		return getCurrentSession().createQuery(sql).list();
 	}
 

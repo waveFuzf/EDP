@@ -161,7 +161,7 @@ public class MessageDaoImpl implements MessageDao {
 		// TODO Auto-generated method stub
 		String sql;
 		if(i==1) {
-		 sql = "select m from Texpress e left join e.publishId p,Tmessage m where m.msgType=2 and m.fromNum = p.fromNum and e.expressId="+expressId;
+		 sql = "select m from Texpress e left join e.publishId p,Tmessage m where m.msgType=1 and m.fromNum = p.fromNum and e.expressId="+expressId;
 		}
 		else {
 			sql = "select m from Textra ee left join ee.express e,Tmessage m where m.msgType=2 and m.fromNum = ee.fromNum and e.expressId="+expressId;
@@ -174,7 +174,7 @@ public class MessageDaoImpl implements MessageDao {
 	@Override
 	public List<Tmessage> countPh(int personId) {
 		// TODO Auto-generated method stub
-		String hql="from Tmessage m where m.msgType=2 and m.passivePer.userId="+personId;
+		String hql="from Tmessage m where m.state=2 and m.passivePer.userId="+personId;
 		List<Tmessage> list=getCurrentSession().createQuery(hql).list();
 		return list;
 	}

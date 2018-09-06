@@ -374,7 +374,7 @@ webpackJsonp([2], [
 					$("#modal3 .content").text(mes);
 					$("#modal3").modal('show');
 					$("#modal3 .button").click(function (event) {
-						$("#modal3").modal('hide');
+                        window.location.href="/user/home";
 					});
 				}
 
@@ -487,7 +487,6 @@ webpackJsonp([2], [
 											lngAndlat = {};
 											if (data.message === "true") {
 												showMessage("发布成功！");
-												window.location.href="/user/home"
 												$("#modal2 .integral").val("");
 												$("#form1 input").val('');
 												$("#form1 textarea").val('');
