@@ -888,11 +888,28 @@ webpackJsonp([0], [
 						that.parent('div').parent('div').remove();
 					});
 				});
+				// $(".msg_content").on('click', '.msg .yes', function (event) {
+				// 	event.preventDefault();
+				// 	$.post('../MM/changeState', {
+				// 		"messageId": $(this).parent().parent().find(".message_id").text(),
+				// 		"State": 2,
+				// 	}, function (data, textStatus, xhr) {
+				// 		$(this).parent().parent().remove();
+				// 	});
+				// 	$(this).parent().parent().remove();
+
+				// });
 
 				//代取 拒绝
 				$(".msg_content").on('click', ".msg4 .extra button:last", function (event) {
 					event.preventDefault();
 					var that = $(this);
+					$.post('../MM/changeState', {
+						"messageId": $(this).parent().find(".hide").text(),
+						"State": 1,
+					}, function (data, textStatus, xhr) {
+						$(this).parent().parent().remove();
+					});
 					mysocket.sendFetchMessTypeTwo($(this).parent('div').find('.hide').text(), $(this).parent('div').find('.support_id').text(), false, () => {
 						console.log("订单拒绝消息已发送！");
 						that.parent('div').parent('div').remove();
@@ -903,6 +920,12 @@ webpackJsonp([0], [
 				$(".msg_content").on('click', ".msg4 .extra button:first", function (event) {
 					event.preventDefault();
 					var that = $(this);
+					$.post('../MM/changeState', {
+						"messageId": $(this).parent().find(".hide").text(),
+						"State": 2,
+					}, function (data, textStatus, xhr) {
+						$(this).parent().parent().remove();
+					});
 					mysocket.sendFetchMessTypeTwo($(this).parent('div').find('.hide').text(), $(this).parent('div').find('.support_id').text(), true, () => {
 						console.log("订单确认消息已发送！");
 						that.parent('div').parent('div').remove();
