@@ -200,7 +200,7 @@ public class UserServiceImpl implements UserService {
 		// TODO Auto-generated method stub
 		List<Homeuser> list3 = homeuser();
 		System.out.println("findtip3OK");
-		List<Message> list4 = messageService.findmessage(userId);
+//		List<Message> list4 = messageService.findmessage(userId);
 		System.out.println("messageServiceOk");
 		List<Publish> list1 = publishService.selectAddress("", 10,userId);
 		System.out.println("publishService");
@@ -208,10 +208,9 @@ public class UserServiceImpl implements UserService {
 		System.out.println("publishService2");
 		List<Unread> list5 = recordService.Trecord_Uread(userId);
 		Home home = new Home();
-		home.setMessage(list4);
 		home.setPublish(list1);
 		home.setRequest(list2);
-		home.setMessage(list4);
+//		home.setMessage(list4);
 		home.setUser(list3);
 		home.setUnread(list5);
 		return home;

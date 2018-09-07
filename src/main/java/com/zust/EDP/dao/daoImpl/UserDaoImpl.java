@@ -45,8 +45,8 @@ public class UserDaoImpl implements UserDao {
 		// TODO Auto-generated method stub
 		int count;
 		if (type.equals("p")) {
-			String sql = "select count(m.messageId)from Tmessage m left join m.passivePer u where m.state='2' and u.userId='"
-					+ user.getUserId() + "' group by u.userId ";
+			String sql = "select count(m.messageId)from Tmessage m left join m.passivePer u where m.state='2' and m.fromNum LIKE 'PH%' " +
+					"and u.userId='" + user.getUserId() + "' and DATEDIFF(m.orderDate,NOW())>-7 group by u.userId ";
 			Query query = getCurrentSession().createQuery(sql);
 			if(query.uniqueResult()==null){
 			    count=0;
@@ -70,9 +70,9 @@ public class UserDaoImpl implements UserDao {
 
 	@SuppressWarnings("unchecked")
 	@Override
-	public List<Tuser> findtop3_p() {
+ 	public List<Tuser> findtop3_p() {
 		// TODO Auto-generated method stub
-		String sql = "select u from Tmessage m left join m.passivePer u where m.fromNum like 'PH%' and m.state='2' group by u.userId order by count(m.messageId) desc";
+		String sql = "select u from Tmessage m left join  m.passivePer u where m.fromNum like 'PH%' and m.state='2' group by u.userId order by count(m.messageId) desc";
 		Query query = getCurrentSession().createQuery(sql);
 		query.setMaxResults(3);
 		return query.list();
