@@ -730,12 +730,14 @@ webpackJsonp([0], [
 
 				//双击以聊天
 				$(document).on('dblclick', '.avatar', function (event) {
-
+					clearTimeout(time);
+					chatId = $(this).parent().find(".hide").text();
+					if(JSON.parse(sessionStorage.getItem("myInf")).userMessage.id!=chatId){
 					//消息清空历史
 					clearTimeout(time);
 					$("#chat_box .header .name").text($(this).parent().find('span').text());
 					$("#chatrecorde").empty();
-					chatId = $(this).parent().find(".hide").text();
+					
 					console.log("与id为" + chatId + "的用户聊天");
 					let unreadset = inArray(chatId, unreadMap.userId);
 					console.log("chatID:" + chatId);
@@ -757,6 +759,9 @@ webpackJsonp([0], [
 					$("#chat_box").removeClass('hidden');
 					$("#chat_box").show(300);
 					addChatBoxMove($("#chat_box"));
+				}else{
+					console.log("点击了自己的头像！");
+				}
 				});
 
 
@@ -765,9 +770,7 @@ webpackJsonp([0], [
 					var that = this;
 					time = setTimeout(function () {
 						window.location.href = "./otherspace.html?personId=" + $(that).parent().find(".hide").text();
-					}, 300);
-
-
+					}, 250);
 				});
 
 				function inArray(num, arr) {
@@ -798,6 +801,19 @@ webpackJsonp([0], [
 						chatUpdata("me", myInf.userMessage.image, mes.val());
 						mes.val('');
 					});
+				});
+
+				$("#chat_box .edit_box input").bind('keyup', function (event) {
+					event.preventDefault();
+					if (event.keyCode == '13') {
+						let mes = $("#chat_box .edit_box input");
+						//聊天 与服务器通信
+						mes.val() === '' ? null : mysocket.chat(chatId, mes.val(), () => {
+							chatUpdata("me", myInf.userMessage.image, mes.val());
+							mes.val('');
+						});
+					}
+
 				});
 
 				//接受委托
