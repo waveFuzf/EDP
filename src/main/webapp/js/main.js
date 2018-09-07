@@ -729,7 +729,7 @@ webpackJsonp([0], [
 				});
 
 				//双击以聊天
-				$(document).on('dblclick', '.avatar', function (event) {
+				$(document).on('dblclick', '.top_list .avatar', function (event) {
 					clearTimeout(time);
 					chatId = $(this).parent().find(".hide").text();
 					if(JSON.parse(sessionStorage.getItem("myInf")).userMessage.id!=chatId){
@@ -765,7 +765,7 @@ webpackJsonp([0], [
 				});
 
 
-				$(document).on('click', '.avatarc', function (event) {
+				$(document).on('click', '.top_list .avatarc', function (event) {
 					clearTimeout(time);
 					var that = this;
 					time = setTimeout(function () {
