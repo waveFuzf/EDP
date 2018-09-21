@@ -2,6 +2,7 @@ package com.zust.EDP.dao.daoImpl;
 
 import java.util.List;
 
+import com.zust.EDP.entity.Tidcard;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -93,6 +94,20 @@ public class UserDaoImpl implements UserDao {
 		String sql = "from Tuser as user where user.userId=" + userId;
 		Tuser u = (Tuser) getCurrentSession().createQuery(sql).list().get(0);
 		u.setCreditLevel(user.getCreditLevel());
+	}
+
+	@Override
+	public List<Tuser> findUserByNum(Integer cardnum) {
+		String sql = "from Tuser as user where user.tidcard=" + cardnum;
+		List<Tuser> list = getCurrentSession().createQuery(sql).list();
+		return list;
+	}
+
+	@Override
+	public void updateCardnum(Integer userId, Tidcard id) {
+		String sql = "from Tuser as user where user.userId=" + userId;
+		Tuser u = (Tuser) getCurrentSession().createQuery(sql).list().get(0);
+		u.setTidcard(id);
 	}
 
 	// 更新用户信息

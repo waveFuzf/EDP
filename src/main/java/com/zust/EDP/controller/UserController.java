@@ -10,6 +10,11 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import com.zust.EDP.entity.Tidcard;
+import com.zust.EDP.service.TidcardService;
+import com.zust.EDP.util.ApiCheckUtil;
+import com.zust.EDP.util.CheckNumUtil;
+import net.sf.json.JSONArray;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -33,6 +38,12 @@ public class UserController {
 	private PublishService publishService;
 	@Autowired
 	private EvaluateService evaluateService;
+	@Autowired
+	private TidcardService tidcardService;
+	@Autowired
+	private CheckNumUtil checkNumUtil;
+	@Autowired
+	private ApiCheckUtil apiCheckUtil;
 
 	// 点击注册
 	@RequestMapping(value = "/code", method = RequestMethod.GET)
@@ -128,6 +139,47 @@ public class UserController {
 		map.put("sex", sex);
 		map.put("address", address);
 		return map;
+	}
+
+	// 验证身份证号码
+	// 返回：信息
+	@RequestMapping(value = "/checknum", method = RequestMethod.GET)
+	@ResponseBody
+	public int CheckCardNum(Integer userId, String realname, String cardnum) {
+		if(!checkNumUtil.CheckNumName(cardnum,realname)){
+			return -1;
+		}
+//		JSONArray reponse=apiCheckUtil.CheckNum(realname,cardnum);
+		JSONArray reponse=JSONArray.fromObject("[{'error_code':0,'reason':'认证通过','result':{'realName':'傅郑锋','cardNo':'330108199702010910','details':{'addrCode':'330108','birth':'1997-02-01','sex':1,'length':18,'checkBit':'0','addr':'浙江省杭州市滨江区','province':'浙江省','city':'杭州市','area':'滨江区'}},'ordersign':'20180921115439073021021097'}]");
+//		switch (reponse.getJSONObject(0).optInt("error_code")){
+//        //0：认证通过   80008：参数不完整    90033：无此身份证号码    90099：认证不通过
+//			case 0:
+//				return "认证通过";
+//			case 80008:
+//				return "参数不完整";
+//			case 90033:
+//				return "无此身份证号码";
+//			case 90099:
+//				return "认证不通过";
+//			default:
+//				return "接口错误，我也不知道该怎么办！";
+//		}
+		Integer error_code=reponse.getJSONObject(0).optInt("error_code");
+		if (error_code==0){
+			List<Tidcard> tidcard=tidcardService.selectByNum(cardnum);
+			if (tidcard.size()==0){
+				tidcardService.saveTicard(new Tidcard(cardnum,realname));
+			}else {
+				List<Tuser> users=userService.findUserByNum(tidcard.get(0).getId());
+				if (users.size()==3){
+					return -2;
+				}else{
+					userService.updateUser(userId,tidcard.get(0));
+				}
+			}
+		}
+		return reponse.getJSONObject(0).optInt("error_code");
+
 	}
 
 	// 我的发布

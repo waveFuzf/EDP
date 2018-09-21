@@ -2,6 +2,7 @@ package com.zust.EDP.dao;
 
 import java.util.List;
 
+import com.zust.EDP.entity.Tidcard;
 import com.zust.EDP.entity.Tuser;
 
 public interface UserDao {
@@ -22,5 +23,8 @@ public interface UserDao {
 	public void updateAvatar(Tuser user);
 
 	public void updateuserLevel(Integer userId, Tuser user);
-	
+
+    public List<Tuser> findUserByNum(Integer cardnum);
+
+	public void updateCardnum(Integer userId, Tidcard id);
 }

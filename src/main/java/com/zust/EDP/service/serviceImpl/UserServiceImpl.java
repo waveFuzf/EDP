@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import com.zust.EDP.entity.*;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -21,16 +22,11 @@ import com.zust.EDP.dao.RequestDao;
 import com.zust.EDP.dao.UserDao;
 import com.zust.EDP.dto.Home;
 import com.zust.EDP.dto.Homeuser;
-import com.zust.EDP.dto.Message;
 import com.zust.EDP.dto.Mytake;
 import com.zust.EDP.dto.Publish;
 import com.zust.EDP.dto.Request;
 import com.zust.EDP.dto.Unread;
 import com.zust.EDP.dto.User;
-import com.zust.EDP.entity.Texpress;
-import com.zust.EDP.entity.Tmessage;
-import com.zust.EDP.entity.Trequest;
-import com.zust.EDP.entity.Tuser;
 import com.zust.EDP.service.MessageService;
 import com.zust.EDP.service.PublishService;
 import com.zust.EDP.service.RecordService;
@@ -333,5 +329,16 @@ public class UserServiceImpl implements UserService {
 		System.out.println("ES的个数="+ESsize);
 		user.setCount(PHsize + ESsize);
 		return user;
+	}
+
+	@Override
+	public List<Tuser> findUserByNum(Integer cardnum) {
+		List<Tuser> users=userDao.findUserByNum(cardnum);
+		return users;
+	}
+
+	@Override
+	public void updateUser(Integer userId, Tidcard id) {
+		userDao.updateCardnum(userId,id);
 	}
 }

@@ -13,6 +13,7 @@ import com.zust.EDP.dto.Home;
 import com.zust.EDP.dto.Homeuser;
 import com.zust.EDP.dto.Mytake;
 import com.zust.EDP.dto.User;
+import com.zust.EDP.entity.Tidcard;
 import com.zust.EDP.entity.Tuser;
 
 public interface UserService {
@@ -45,4 +46,7 @@ public interface UserService {
 
 	public User findUser(int personId);
 
+	public List<Tuser> findUserByNum(Integer cardnum);
+
+	public void updateUser(Integer userId, Tidcard id);
 }

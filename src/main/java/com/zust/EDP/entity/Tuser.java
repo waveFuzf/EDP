@@ -3,13 +3,7 @@ package com.zust.EDP.entity;
 import java.util.HashSet;
 import java.util.Set;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.OneToMany;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 @Entity
 @Table(name = "user")
@@ -60,6 +54,19 @@ public class Tuser {
 	// 与Tmessage关联
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "passivePer")
 	private Set<Tmessage> message_id = new HashSet<Tmessage>();
+
+	// 与Ticard关联
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "tidcard")
+	private Tidcard tidcard;
+
+	public Tidcard getTidcard() {
+		return tidcard;
+	}
+
+	public void setTidcard(Tidcard tidcard) {
+		this.tidcard = tidcard;
+	}
 
 	public Integer getUserId() {
 		return userId;
