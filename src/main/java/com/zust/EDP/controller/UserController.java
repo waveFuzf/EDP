@@ -145,7 +145,7 @@ public class UserController {
 	// 返回：信息
 	@ResponseBody
 	@RequestMapping(value = "/checknum", method = RequestMethod.GET,produces = "application/json;charset=utf-8")
-	public String CheckCardNum(Integer userId, String realname, String cardnum,HttpServletResponse httpServletResponse) {
+	public String CheckCardNum(Integer userId, String realname, String cardnum) {
 
 		if(!checkNumUtil.CheckNumName(cardnum,realname)){
 			return new String("格式不正确！");
@@ -166,17 +166,17 @@ public class UserController {
 						userService.updateUser(userId,tidcard.get(0));
 					}
 				}
-				return new String("认证通过");
+				return new String("认证通过，已绑定该账号！");
 			case 80008:
-				return new String("参数不完整");
+				return new String("参数不完整！");
 			case 90033:
-				return new String("无此身份证号码");
+				return new String("无此身份证号码！");
 			case 90099:
-				return new String("认证不通过");
+				return new String("认证不通过!");
 			default:
 				return new String("接口错误，我也不知道该怎么办！");
 		}
-		
+
 	}
 
 	// 我的发布
