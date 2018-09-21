@@ -90,6 +90,7 @@ public class UserServiceImpl implements UserService {
 			map.put("isLogin", "falseTwo");
 			return map;
 		} else if (u.get(0).getPassword().equals(user.getPassword())) {
+			userDao.updateState(u.get(0).getUserId(),1);
 			session.setAttribute("userMessage", u.get(0));
 			System.out.println("*****************"+u.get(0));
 			map.put("isLogin", "true");
@@ -343,5 +344,10 @@ public class UserServiceImpl implements UserService {
 	@Override
 	public void updateUser(Integer userId, Tidcard id) {
 		userDao.updateCardnum(userId,id);
+	}
+
+	@Override
+	public void updateState(Integer userId, int i) {
+		userDao.updateState(userId,i);
 	}
 }

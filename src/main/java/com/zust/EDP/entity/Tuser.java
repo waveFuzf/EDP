@@ -24,7 +24,7 @@ public class Tuser {
 	@Column(name = "credit_level")
 	private Double creditLevel=2.0;
 	@Column
-	private Integer state;
+	private Integer state=0;
 	@Column
 	private Integer sex=2;
 	@Column

@@ -49,4 +49,6 @@ public interface UserService {
 	public List<Tuser> findUserByNum(Integer cardnum);
 
 	public void updateUser(Integer userId, Tidcard id);
+
+    public void updateState(Integer userId, int i);
 }

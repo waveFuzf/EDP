@@ -110,6 +110,13 @@ public class UserDaoImpl implements UserDao {
 		u.setTidcard(id);
 	}
 
+	@Override
+	public void updateState(int i, int i1) {
+		String sql = "from Tuser as user where user.userId=" + i;
+		Tuser u = (Tuser) getCurrentSession().createQuery(sql).list().get(0);
+		u.setState(i1);
+	}
+
 	// 更新用户信息
 	@Override
 	public void update(Tuser user) {

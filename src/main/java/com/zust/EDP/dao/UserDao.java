@@ -27,4 +27,6 @@ public interface UserDao {
     public List<Tuser> findUserByNum(Integer cardnum);
 
 	public void updateCardnum(Integer userId, Tidcard id);
+
+	public void updateState(int i, int i1);
 }
