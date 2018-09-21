@@ -143,43 +143,40 @@ public class UserController {
 
 	// 验证身份证号码
 	// 返回：信息
-	@RequestMapping(value = "/checknum", method = RequestMethod.GET)
 	@ResponseBody
-	public int CheckCardNum(Integer userId, String realname, String cardnum) {
+	@RequestMapping(value = "/checknum", method = RequestMethod.GET,produces = "application/json;charset=utf-8")
+	public String CheckCardNum(Integer userId, String realname, String cardnum,HttpServletResponse httpServletResponse) {
+
 		if(!checkNumUtil.CheckNumName(cardnum,realname)){
-			return -1;
+			return new String("格式不正确！");
 		}
 //		JSONArray reponse=apiCheckUtil.CheckNum(realname,cardnum);
 		JSONArray reponse=JSONArray.fromObject("[{'error_code':0,'reason':'认证通过','result':{'realName':'傅郑锋','cardNo':'330108199702010910','details':{'addrCode':'330108','birth':'1997-02-01','sex':1,'length':18,'checkBit':'0','addr':'浙江省杭州市滨江区','province':'浙江省','city':'杭州市','area':'滨江区'}},'ordersign':'20180921115439073021021097'}]");
-//		switch (reponse.getJSONObject(0).optInt("error_code")){
-//        //0：认证通过   80008：参数不完整    90033：无此身份证号码    90099：认证不通过
-//			case 0:
-//				return "认证通过";
-//			case 80008:
-//				return "参数不完整";
-//			case 90033:
-//				return "无此身份证号码";
-//			case 90099:
-//				return "认证不通过";
-//			default:
-//				return "接口错误，我也不知道该怎么办！";
-//		}
-		Integer error_code=reponse.getJSONObject(0).optInt("error_code");
-		if (error_code==0){
-			List<Tidcard> tidcard=tidcardService.selectByNum(cardnum);
-			if (tidcard.size()==0){
-				tidcardService.saveTicard(new Tidcard(cardnum,realname));
-			}else {
-				List<Tuser> users=userService.findUserByNum(tidcard.get(0).getId());
-				if (users.size()==3){
-					return -2;
-				}else{
-					userService.updateUser(userId,tidcard.get(0));
+		switch (reponse.getJSONObject(0).optInt("error_code")){
+        //0：认证通过   80008：参数不完整    90033：无此身份证号码    90099：认证不通过
+			case 0:
+				List<Tidcard> tidcard=tidcardService.selectByNum(cardnum);
+				if (tidcard.size()==0){
+					tidcardService.saveTicard(new Tidcard(cardnum,realname));
+				}else {
+					List<Tuser> users=userService.findUserByNum(tidcard.get(0).getId());
+					if (users.size()==3){
+						return new String ("该身份证绑定账号过多！");
+					}else{
+						userService.updateUser(userId,tidcard.get(0));
+					}
 				}
-			}
+				return new String("认证通过");
+			case 80008:
+				return new String("参数不完整");
+			case 90033:
+				return new String("无此身份证号码");
+			case 90099:
+				return new String("认证不通过");
+			default:
+				return new String("接口错误，我也不知道该怎么办！");
 		}
-		return reponse.getJSONObject(0).optInt("error_code");
-
+		
 	}
 
 	// 我的发布
