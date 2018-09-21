@@ -70,6 +70,9 @@ public class UserServiceImpl implements UserService {
 		String icon = (String) session.getAttribute("imageIcon");
 		if (icon.equals(imageIcon)) {
 			if (u.isEmpty()) {
+				Tidcard tidcard=new Tidcard();
+				tidcard.setId(-1);
+				user.setTidcard(tidcard);
 				userDao.saveUser(user);
 				return "true";
 			} else {
