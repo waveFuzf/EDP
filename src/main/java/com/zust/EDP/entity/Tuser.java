@@ -9,7 +9,7 @@ import javax.persistence.*;
 @Table(name = "user")
 public class Tuser {
 	@Id
-	@GeneratedValue
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Integer userId;
 	@Column
 	private String name;

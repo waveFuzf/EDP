@@ -11,7 +11,7 @@ import java.util.Set;
 @Table(name = "idcard")
 public class Tidcard {
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
     @Column
     private String idcardnum;
