@@ -7,7 +7,7 @@ import javax.persistence.*;
 @Table(name = "publish")
 public class Tpublish {
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer publishId;
 	@Column(name = "publish_date")
 	private Date publishDate;

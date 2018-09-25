@@ -6,7 +6,7 @@ import javax.persistence.*;
 @Table(name = "extra")
 public class Textra {
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer extraId;
 	@Column
 	private String fromNum;

@@ -8,7 +8,7 @@ import javax.persistence.*;
 @Table(name = "message")
 public class Tmessage {
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer messageId;
 	@Column
 	private Integer msgType;

@@ -8,7 +8,7 @@ import javax.persistence.*;
 @Table(name = "request")
 public class Trequest {
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer requestId;
 	@Column(name = "free_date")
 	private String freeDate;

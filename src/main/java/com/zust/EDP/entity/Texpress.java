@@ -6,7 +6,7 @@ import javax.persistence.*;
 @Table(name = "express")
 public class Texpress {
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer expressId;
 	@Column
 	private String type;
