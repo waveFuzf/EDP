@@ -308,10 +308,13 @@ webpackJsonp([1], [
                 $("#left_menu ul li").each(function(index, el) {
                     $(this).click(function(event) {
                         /* Act on the event */
+                        if (!myInf.isCertification) {
+                            addMsg('您尚未进行实名认证 ，请先进行使命认证！')
+                            return
+                        }
                         flag = $("#left_menu ul li").index(this);
                         $("#left_menu ul li").removeClass("leftmenuclick");
                         $(this).addClass('leftmenuclick');
-                        console.log(index);
                         switch (index) {
                             case 0:
                                 //渲染个人信息
@@ -502,6 +505,10 @@ webpackJsonp([1], [
                             }, function(data, textStatus, xhr) {
                                 console.log(data, textStatus)
                                 if (data === '认证通过，已绑定该账号！') {
+                                    //TODO 写入本地已经实名认证
+                                    var myInf = JSON.parse(sessionStorage.getItem("myInf"))
+                                    myInf.isCertification = true
+                                    sessionStorage.setItem("myInf", JSON.stringify(myInf));
                                     isCertification = true
                                 } else {
                                     isCertification = false
@@ -539,7 +546,14 @@ webpackJsonp([1], [
                 $("button.writeent").click(function(event) {
                     /* Act on the event */
                     event.preventDefault();
-                    location.href = "../task1/writing";
+                    var userInf = JSON.parse(sessionStorage.getItem("myInf"))
+
+                    if (userInf.isCertification) {
+                        location.href = "../task1/writing";
+                    } else {
+                        addMsg('您尚未进行实名认证 ，请先进行使命认证！')
+                    }
+
                 });
 
                 var num = 1;

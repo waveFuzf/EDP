@@ -7,6 +7,7 @@ import java.util.Set;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.ComponentScan;
 import org.springframework.stereotype.Repository;
 
 import com.zust.EDP.dao.EvaluateDao;
