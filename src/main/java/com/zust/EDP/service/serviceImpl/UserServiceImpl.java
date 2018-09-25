@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import com.zust.EDP.entity.*;
+import com.zust.EDP.util.RedisUtil;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -60,6 +61,8 @@ public class UserServiceImpl implements UserService {
 	private RecordService recordService;
 	@Autowired
 	private Tools tool;
+	@Autowired
+	private RedisUtil redisUtil;
 
 	@Override
 	public String doRegister(Tuser user, HttpSession session, String imageIcon) {
@@ -92,7 +95,7 @@ public class UserServiceImpl implements UserService {
 		} else if (u.get(0).getPassword().equals(user.getPassword())) {
 			userDao.updateState(u.get(0).getUserId(),1);
 			session.setAttribute("userMessage", u.get(0));
-			System.out.println("*****************"+u.get(0));
+			redisUtil.updateRedis(u.get(0).getUserId(),session.getId());
 			map.put("isLogin", "true");
 			Map<String, String> mapp = new HashMap<String, String>();
 			mapp.put("tel", u.get(0).getTel());
@@ -349,5 +352,6 @@ public class UserServiceImpl implements UserService {
 	@Override
 	public void updateState(Integer userId, int i) {
 		userDao.updateState(userId,i);
+		redisUtil.deleteRedis(userId);
 	}
 }

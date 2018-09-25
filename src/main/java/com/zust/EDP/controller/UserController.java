@@ -1,6 +1,7 @@
 package com.zust.EDP.controller;
 
 import java.io.IOException;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -14,8 +15,10 @@ import com.zust.EDP.entity.Tidcard;
 import com.zust.EDP.service.TidcardService;
 import com.zust.EDP.util.ApiCheckUtil;
 import com.zust.EDP.util.CheckNumUtil;
+import com.zust.EDP.util.RedisUtil;
 import net.sf.json.JSONArray;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -45,6 +48,9 @@ public class UserController {
 	@Autowired
 	private ApiCheckUtil apiCheckUtil;
 
+	@Autowired
+	private RedisUtil redisUtil;
+
 	// 点击注册
 	@RequestMapping(value = "/code", method = RequestMethod.GET)
 	public void register(HttpServletRequest request, HttpServletResponse response)
@@ -53,7 +59,6 @@ public class UserController {
 	}
 
 	// 提交注册信息
-
 	@RequestMapping(value = "/register", method = RequestMethod.POST)
 	public @ResponseBody Map<String, String> doRegister(Tuser user, HttpSession session, String code) {
 		Map<String, String> map = new HashMap<String, String>();
@@ -70,8 +75,9 @@ public class UserController {
 
 	@RequestMapping("/home")
 	public String webSocket(HttpServletRequest httpServletRequest) {
+
 		Tuser tuser = (Tuser) httpServletRequest.getSession().getAttribute("userMessage");
-		if (tuser != null) {
+		if (redisUtil.checkRedis(tuser.getUserId(),httpServletRequest.getSession().getId())&&tuser != null) {
 			return "main";
 		} else {
 			return "login";
@@ -103,9 +109,14 @@ public class UserController {
 	@RequestMapping(value = "/uploadAvatar", method = RequestMethod.POST)
 	public @ResponseBody Map<String, String> uploadAvatar(HttpSession session, String datax) {
 		Tuser my = (Tuser) session.getAttribute("userMessage");
-		String path = "C:\\Users\\YFZX-FZF-1777\\Desktop\\project-desgin-master\\EDP\\src\\main\\webapp\\avatar";
-		String msg = "";
 		Map<String, String> map = new HashMap<String, String>();
+		if (!redisUtil.checkRedis(my.getUserId(),session.getId())){
+			map.put("isUpload", "error");
+			return map;
+		}
+		String path = "C:\\Users\\YFZX-FZF-1777\\Desktop\\Learn\\EDP\\src\\main\\webapp\\avatar";
+		String msg = "";
+
 		ImgUp imgUp = new ImgUp();
 		try {
 			msg = imgUp.UpImg(String.valueOf(my.getUserId()), datax, path);
@@ -129,24 +140,32 @@ public class UserController {
 	public @ResponseBody Map<String, Object> updateUserMessage(String name, Integer sex, String address,
 			HttpSession session) {
 		Map<String, Object> map = new HashMap<String, Object>();
+
 		Tuser my = (Tuser) session.getAttribute("userMessage");
-		my.setAddress(address);
-		my.setName(name);
-		if(sex!=null){
-		my.setSex(sex);}
-		map = userService.updateUserMessage(my, session);
-		map.put("name", name);
-		map.put("sex", sex);
-		map.put("address", address);
-		return map;
+		if (redisUtil.checkRedis(my.getUserId(),session.getId())){
+			my.setAddress(address);
+			my.setName(name);
+			if(sex!=null){
+				my.setSex(sex);}
+			map = userService.updateUserMessage(my, session);
+			map.put("name", name);
+			map.put("sex", sex);
+			map.put("address", address);
+			return map;
+		}else {
+			return map;
+		}
+
 	}
 
 	// 验证身份证号码
 	// 返回：信息
 	@ResponseBody
 	@RequestMapping(value = "/checknum", method = RequestMethod.GET,produces = "application/json;charset=utf-8")
-	public String CheckCardNum(Integer userId, String realname, String cardnum) {
-
+	public String CheckCardNum(Integer userId, String realname, String cardnum,HttpServletRequest httpServletRequest) {
+		if (!redisUtil.checkRedis(userId,httpServletRequest.getSession().getId())){
+			return new String("无效操作，请重新登录！");
+		}
 		if(!checkNumUtil.CheckNumName(cardnum,realname)){
 			return new String("格式不正确！");
 		}
