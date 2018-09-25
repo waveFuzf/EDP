@@ -154,3 +154,13 @@
 	width: 900px;
 	color:rgb(122, 133, 153);
 }
+
+/*ADD BY YOMI 2018.09.25*/
+#right_content .rc table .con_before {
+    width: 150px;
+    padding: 10px 0;
+}
+
+#right_content .rc table .con_after {
+    padding: 10px 0;
+}

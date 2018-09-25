@@ -1,12 +1,17 @@
 webpackJsonp([1], [
-/* 0 */,
-/* 1 */,
-/* 2 */
-/***/ (function (module, __webpack_exports__, __webpack_require__) {
+    /* 0 */
+    ,
+    /* 1 */
+    ,
+    /* 2 */
+    /***/
+    (function(module, __webpack_exports__, __webpack_require__) {
 
         "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_AMap__ = __webpack_require__(3);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_AMap___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_AMap__);
+        /* harmony import */
+        var __WEBPACK_IMPORTED_MODULE_0_AMap__ = __webpack_require__(3);
+        /* harmony import */
+        var __WEBPACK_IMPORTED_MODULE_0_AMap___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_AMap__);
         /**
          **地图功能**
          **包括**
@@ -62,7 +67,7 @@ webpackJsonp([1], [
 
             addPicker(center, success, falied) {
                 var that = this;
-                AMapUI.loadUI(['misc/PositionPicker'], function (PositionPicker) {
+                AMapUI.loadUI(['misc/PositionPicker'], function(PositionPicker) {
                     var map = that.map;
 
                     var positionPicker = new PositionPicker({
@@ -70,10 +75,10 @@ webpackJsonp([1], [
                         map: map
                     });
 
-                    positionPicker.on('success', function (positionResult) {
+                    positionPicker.on('success', function(positionResult) {
                         success(positionResult);
                     });
-                    positionPicker.on('fail', function (positionResult) {
+                    positionPicker.on('fail', function(positionResult) {
                         falied(positionResult);
                     });
 
@@ -182,7 +187,7 @@ webpackJsonp([1], [
             clickToGetPosition(callback) {
                 let placeSearch = null;
                 if (!this.placeSearch) {
-                    __WEBPACK_IMPORTED_MODULE_0_AMap___default.a.service('AMap.PlaceSearch', function () {
+                    __WEBPACK_IMPORTED_MODULE_0_AMap___default.a.service('AMap.PlaceSearch', function() {
                         //回调函数
                         placeSearch = new __WEBPACK_IMPORTED_MODULE_0_AMap___default.a.PlaceSearch();
                     });
@@ -190,10 +195,10 @@ webpackJsonp([1], [
                     placeSearch = this.placeSearch;
                 }
 
-                this.map.on('hotspotclick', function (resultx) {
+                this.map.on('hotspotclick', function(resultx) {
                     var name = resultx.name;
                     console.log(name);
-                    placeSearch.getDetails(resultx.id, function (status, result) {
+                    placeSearch.getDetails(resultx.id, function(status, result) {
                         console.log(JSON.stringify(result));
                         if (status === 'complete' && result.info === 'OK') {
                             callback && callback(result.poiList.pois[0], result, name);
@@ -204,7 +209,7 @@ webpackJsonp([1], [
 
             route(start, end, callback) {
                 var that = this;
-                __WEBPACK_IMPORTED_MODULE_0_AMap___default.a.service('AMap.Walking', function () {
+                __WEBPACK_IMPORTED_MODULE_0_AMap___default.a.service('AMap.Walking', function() {
                     //回调函数
                     var walking = new __WEBPACK_IMPORTED_MODULE_0_AMap___default.a.Walking({
                         map: that.map,
@@ -212,7 +217,7 @@ webpackJsonp([1], [
                     });
                     //根据起终点坐标规划步行路线
                     console.log("路线规划");
-                    walking.search(start, end, function (status, result) {
+                    walking.search(start, end, function(status, result) {
                         //TODO 解析返回结果，自己生成操作界面和地图展示界面
                         console.log(JSON.stringify(result));
                         callback && callback();
@@ -220,48 +225,69 @@ webpackJsonp([1], [
                 });
             }
         }
-/* harmony export (immutable) */ __webpack_exports__["a"] = Position;
+        /* harmony export (immutable) */
+        __webpack_exports__["a"] = Position;
 
 
         /***/
     }),
-/* 3 */
-/***/ (function (module, exports) {
+    /* 3 */
+    /***/
+    (function(module, exports) {
 
         module.exports = window.AMap;
 
         /***/
     }),
-/* 4 */,
-/* 5 */,
-/* 6 */,
-/* 7 */,
-/* 8 */,
-/* 9 */,
-/* 10 */,
-/* 11 */,
-/* 12 */,
-/* 13 */,
-/* 14 */
-/***/ (function (module, __webpack_exports__, __webpack_require__) {
+    /* 4 */
+    ,
+    /* 5 */
+    ,
+    /* 6 */
+    ,
+    /* 7 */
+    ,
+    /* 8 */
+    ,
+    /* 9 */
+    ,
+    /* 10 */
+    ,
+    /* 11 */
+    ,
+    /* 12 */
+    ,
+    /* 13 */
+    ,
+    /* 14 */
+    /***/
+    (function(module, __webpack_exports__, __webpack_require__) {
 
         "use strict";
-        Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* WEBPACK VAR INJECTION */(function ($) {/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_jQuery__ = __webpack_require__(1);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_jQuery___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_jQuery__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__ui_mypage_update__ = __webpack_require__(15);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ui_position__ = __webpack_require__(2);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_cropper__ = __webpack_require__(16);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_cropper___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_cropper__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_semantic__ = __webpack_require__(4);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_semantic___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4_semantic__);
+        Object.defineProperty(__webpack_exports__, "__esModule", {
+            value: true
+        });
+        /* WEBPACK VAR INJECTION */
+        (function($) { /* harmony import */
+            var __WEBPACK_IMPORTED_MODULE_0_jQuery__ = __webpack_require__(1);
+            /* harmony import */
+            var __WEBPACK_IMPORTED_MODULE_0_jQuery___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_jQuery__);
+            /* harmony import */
+            var __WEBPACK_IMPORTED_MODULE_1__ui_mypage_update__ = __webpack_require__(15);
+            /* harmony import */
+            var __WEBPACK_IMPORTED_MODULE_2__ui_position__ = __webpack_require__(2);
+            /* harmony import */
+            var __WEBPACK_IMPORTED_MODULE_3_cropper__ = __webpack_require__(16);
+            /* harmony import */
+            var __WEBPACK_IMPORTED_MODULE_3_cropper___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_cropper__);
+            /* harmony import */
+            var __WEBPACK_IMPORTED_MODULE_4_semantic__ = __webpack_require__(4);
+            /* harmony import */
+            var __WEBPACK_IMPORTED_MODULE_4_semantic___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4_semantic__);
 
 
 
-
-
-
-            $(document).ready(function () {
+            $(document).ready(function() {
                 var myInf = JSON.parse(sessionStorage.getItem("myInf")); //用户信息
                 if (myInf != null) {
                     ((image, name, inlt) => {
@@ -271,16 +297,16 @@ webpackJsonp([1], [
 
                     })(myInf.userMessage.image, myInf.userMessage.name, myInf.userMessage.integral);
                 } else {
-                    window.location.href = "/user/login"
+                    // window.location.href = "/user/login"
                 }
-                var position = new __WEBPACK_IMPORTED_MODULE_2__ui_position__["a" /* default */]({
+                var position = new __WEBPACK_IMPORTED_MODULE_2__ui_position__["a" /* default */ ]({
                     height: 500,
                     width: 500,
                     vessel: "map"
                 });
                 var flag;
-                $("#left_menu ul li").each(function (index, el) {
-                    $(this).click(function (event) {
+                $("#left_menu ul li").each(function(index, el) {
+                    $(this).click(function(event) {
                         /* Act on the event */
                         flag = $("#left_menu ul li").index(this);
                         $("#left_menu ul li").removeClass("leftmenuclick");
@@ -291,8 +317,8 @@ webpackJsonp([1], [
                                 //渲染个人信息
                                 console.log('test');
                                 $("#right_content .rc").empty();
-                                __WEBPACK_IMPORTED_MODULE_1__ui_mypage_update__["a" /* default */].myinf({}, $("#right_content .rc"));
-                                $.post('./mypage', {}, function (data, textStatus, xhr) {
+                                __WEBPACK_IMPORTED_MODULE_1__ui_mypage_update__["a" /* default */ ].myinf({}, $("#right_content .rc"));
+                                $.post('./mypage', {}, function(data, textStatus, xhr) {
                                     if (data.sex == "2") {
                                         $(".rc table .default").text("保密");
                                     } else {
@@ -301,25 +327,32 @@ webpackJsonp([1], [
                                     $(".rc table .myavatar").attr("src", data.image);
                                     $(".rc table input:first").val(data.name);
                                     $(".rc table input:last").val(data.address);
+                                    if (data.realname) {
+                                        $('#realName_').val(data.realname)
+                                        $('#realName_').attr("disabled", true);
+                                    }
+                                    if (data.idcardnum) {
+                                        $('#realName_').val(data.idcardnum)
+                                        $('#realName_').attr("disabled", true);
+                                    }
                                     $(".ui.dropdown").dropdown();
-                                }
-                                );
+                                });
                                 break;
                             case 1:
                                 //渲染我的发布
                                 $("#right_content .rc").empty();
-                                $.post('./myput', {}, function (data, textStatus, xhr) {
-                                    $.each(data.publish, function (index, el) {
-                                        __WEBPACK_IMPORTED_MODULE_1__ui_mypage_update__["a" /* default */].myEntrust(el, $("#right_content .rc"));
+                                $.post('./myput', {}, function(data, textStatus, xhr) {
+                                    $.each(data.publish, function(index, el) {
+                                        __WEBPACK_IMPORTED_MODULE_1__ui_mypage_update__["a" /* default */ ].myEntrust(el, $("#right_content .rc"));
                                     });
                                 });
                                 break;
                             case 2:
                                 //渲染我的接单
                                 $("#right_content .rc").empty();
-                                $.post('./mytake', {}, function (data, textStatus, xhr) {
-                                    $.each(data.publish, function (index, el) {
-                                        __WEBPACK_IMPORTED_MODULE_1__ui_mypage_update__["a" /* default */].myFetch(el, $("#right_content .rc"));
+                                $.post('./mytake', {}, function(data, textStatus, xhr) {
+                                    $.each(data.publish, function(index, el) {
+                                        __WEBPACK_IMPORTED_MODULE_1__ui_mypage_update__["a" /* default */ ].myFetch(el, $("#right_content .rc"));
                                     });
                                 });
                                 break;
@@ -327,10 +360,10 @@ webpackJsonp([1], [
                                 //渲染待评价
                                 $("#right_content .rc").empty();
 
-                                $.post('./mytaken', {}, function (data, textStatus, xhr) {
-                                    $.each(data.publish, function (index, el) {
+                                $.post('./mytaken', {}, function(data, textStatus, xhr) {
+                                    $.each(data.publish, function(index, el) {
                                         console.log(el);
-                                        __WEBPACK_IMPORTED_MODULE_1__ui_mypage_update__["a" /* default */].waitEvaluate(el, $("#right_content .rc"));
+                                        __WEBPACK_IMPORTED_MODULE_1__ui_mypage_update__["a" /* default */ ].waitEvaluate(el, $("#right_content .rc"));
                                     });
                                 });
                                 break;
@@ -341,6 +374,7 @@ webpackJsonp([1], [
                     });
                 });
                 $("#left_menu ul li:first").click();
+
                 function upupup(callback) {
                     //头像上传
                     var URL = window.URL || window.webkitURL;
@@ -353,12 +387,12 @@ webpackJsonp([1], [
                         preview: '.small_img', //裁剪显示
                         responsive: true
                     });
-                    $("#inputimg").change(function (event) {
+                    $("#inputimg").change(function(event) {
                         if (this.files.length == 1 && this.files) {
                             file = this.files[0];
                             if (/^image\/\w+$/.test(file.type)) {
                                 blobURL = URL.createObjectURL(file);
-                                $upimg.one('built.cropper', function () {
+                                $upimg.one('built.cropper', function() {
                                     URL.revokeObjectURL(blobURL);
                                 }).cropper('reset').cropper('replace', blobURL);
                                 $("#inputimg").val('');
@@ -368,7 +402,7 @@ webpackJsonp([1], [
                         }
                     });
 
-                    $("#up-btn-sure").click(function (event) {
+                    $("#up-btn-sure").click(function(event) {
                         /* Act on the event */
                         var imgsrc = $("#up-img-show").attr("src");
                         if (imgsrc) {
@@ -386,7 +420,7 @@ webpackJsonp([1], [
                     function upimg(datax) {
                         $.post('./uploadAvatar', {
                             "datax": datax
-                        }, function (data, textStatus, xhr) {
+                        }, function(data, textStatus, xhr) {
                             console.log(data);
                             var msg = data.isUpload;
                             if (msg == "true") {
@@ -402,10 +436,10 @@ webpackJsonp([1], [
                             }
                         });
                     }
-                    $('#mypage_modal2 .up-btn-left').on('click', function () {
+                    $('#mypage_modal2 .up-btn-left').on('click', function() {
                         $("#up-img-show").cropper('rotate', 90);
                     });
-                    $('#mypage_modal2 .up-btn-right').on('click', function () {
+                    $('#mypage_modal2 .up-btn-right').on('click', function() {
                         $("#up-img-show").cropper('rotate', -90);
                     });
                     callback && callback();
@@ -420,28 +454,89 @@ webpackJsonp([1], [
                 // });
 
                 //chageIMG
-                $(".rc").on('click', '#changeIMG', function (event) {
+                $(".rc").on('click', '#changeIMG', function(event) {
                     event.preventDefault();
                     upupup(() => {
                         $("#mypage_modal2").modal("show");
                     });
                 });
-                $(".rc").on('click', 'table .sure', function (event) {
-                    event.preventDefault();
-                    $.post('./updateUserMessage', {
-                        "name": $(".rc table input:first").val(),
-                        "sex": $(".rc table input").eq(1).val(),
-                        "address": $(".rc table input:last").val()
-                    }, function (data, textStatus, xhr) {
-                        /*optional stuff to do after success */
-                        data.isUpdate == "true" ? addMsg("修改成功!") : addMsg("修改失败!");
-                        myInf.userMessage.name = data.name;
-                        sessionStorage.setItem("myInf", JSON.stringify(myInf));
-                        $(".myname").text(data.name);
-                    });
-                });
 
-                $("button.writeent").click(function (event) {
+                (function() {
+                    //表单提交
+                    let isPass = [true, true]
+                    $(".rc").on('blur', '#realName_', function(event) {
+                        var regName = /^[\u4e00-\u9fa5]{2,4}$/;
+                        if (!regName.test(event.target.value)) {
+                            console.log(event.target.value)
+                            $(event.target).css('border', '1px red solid');
+                            isPass[0] = false
+                            return false;
+                        } else {
+                            isPass[0] = true
+                            $(event.target).css('border', '1px solid rgba(34,36,38,.15)');
+                        }
+                    })
+                    $(".rc").on('blur', '#idCard_', function(event) {
+                        var reg = /(^\d{15}$)|(^\d{18}$)|(^\d{17}(\d|X|x)$)/;
+                        if (!reg.test(event.target.value)) {
+                            $(event.target).css('border', '1px red solid');
+                            isPass[1] = false
+                            return false;
+                        } else {
+                            isPass[1] = true
+                            $(event.target).css('border', '1px solid rgba(34,36,38,.15)');
+                        }
+                    })
+
+                    $(".rc").on('click', 'table .sure', function(event) {
+                        event.preventDefault();
+                        let isCertification = true;
+                        if (!isPass[0] || !isPass[1]) {
+                            addMsg('请填写正确的身份信息！')
+                            return
+                        } else {
+                            console.log('验证身份信息')
+                            $.post('./user/checknum', {
+                                realname: $('#realName_').val(),
+                                idcardnum: $('#idCard_').val()
+                            }, function(data, textStatus, xhr) {
+                                console.log(data, textStatus)
+                                if (data === '认证通过，已绑定该账号！') {
+                                    isCertification = true
+                                } else {
+                                    isCertification = false
+                                    addMsg(data)
+                                }
+                            });
+                        }
+                        let name = $(".rc table input:first").val(),
+                            sex = $(".rc table input").eq(3).val(),
+                            address = $(".rc table input:last").val()
+                        if (!name && !sex && !address) {
+                            addMsg('请填写相关信息后提交！')
+                            return
+                        }
+                        //提交数据
+                        if (isPass[0] && isPass[1]) {
+                            $.post('./updateUserMessage', {
+                                "name": name,
+                                "sex": sex,
+                                "address": address
+                            }, function(data, textStatus, xhr) {
+                                /*optional stuff to do after success */
+                                data.isUpdate == "true" ? addMsg("修改成功!") : addMsg("修改失败!");
+                                myInf.userMessage.name = data.name;
+                                sessionStorage.setItem("myInf", JSON.stringify(myInf));
+                                $(".myname").text(data.name);
+                            });
+                        }
+
+                    });
+
+
+                })()
+
+                $("button.writeent").click(function(event) {
                     /* Act on the event */
                     event.preventDefault();
                     location.href = "../task1/writing";
@@ -457,7 +552,7 @@ webpackJsonp([1], [
                 });
 
                 //评价
-                $(".rc").on('click', '.funa.eva', function (event) {
+                $(".rc").on('click', '.funa.eva', function(event) {
                     event.preventDefault();
                     console.log("评价");
                     var that = this;
@@ -472,8 +567,8 @@ webpackJsonp([1], [
                     })();
                     $("#modal4").modal({
                         closable: false,
-                        onDeny: function () { },
-                        onApprove: function () {
+                        onDeny: function() {},
+                        onApprove: function() {
                             var eva = '';
                             eva = $("#modal4 textarea").val();
                             if (eva != '') {
@@ -482,11 +577,11 @@ webpackJsonp([1], [
                                     "starLevel": num,
                                     "evaluate": eva,
                                     "publishId": $(that).parent().find(".publish_id").text()
-                                }, function (data) {
+                                }, function(data) {
                                     if (data.message == "true") {
                                         showTip("评价成功！");
                                         $("#right_content .rc").empty();
-                                        $.post('./mytaken', function (data) {
+                                        $.post('./mytaken', function(data) {
                                             //to Do
                                         });
                                     }
@@ -499,12 +594,12 @@ webpackJsonp([1], [
                 });
 
                 //删除
-                $(".rc").on('click', '.funa.del', function (event) {
+                $(".rc").on('click', '.funa.del', function(event) {
                     event.preventDefault();
                     var that = this;
                     $.post('./deletemyput', {
                         "publishId": $(that).parent().find(".publish_id").text()
-                    }, function (data, textStatus, xhr) {
+                    }, function(data, textStatus, xhr) {
                         if (data.message == "true") {
                             $(that).parent().parent().remove();
                             showTip("删除成功");
@@ -512,7 +607,7 @@ webpackJsonp([1], [
                     });
                 });
                 //導航
-                $(".rc").on('click', '.funa.showway', function (event) {
+                $(".rc").on('click', '.funa.showway', function(event) {
                     event.preventDefault();
                     // sessionStorage.getItem("longitude");//經度
                     // sessionStorage.getItem("latitude");
@@ -534,6 +629,7 @@ webpackJsonp([1], [
                         $this.fadeOut("330");
                     }, 330);
                 }
+
                 function addMsg(msg) {
                     $("#modal3 .content").text(msg);
                     $("#modal3").modal('show');
@@ -544,16 +640,19 @@ webpackJsonp([1], [
 
         /***/
     }),
-/* 15 */
-/***/ (function (module, __webpack_exports__, __webpack_require__) {
+    /* 15 */
+    /***/
+    (function(module, __webpack_exports__, __webpack_require__) {
 
         "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_jQuery__ = __webpack_require__(1);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_jQuery___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_jQuery__);
+        /* harmony import */
+        var __WEBPACK_IMPORTED_MODULE_0_jQuery__ = __webpack_require__(1);
+        /* harmony import */
+        var __WEBPACK_IMPORTED_MODULE_0_jQuery___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_jQuery__);
 
 
         class myPageUpdate {
-            constructor() { }
+            constructor() {}
 
             static myinf(data, box) {
                 var rc = `	<table>
@@ -570,6 +669,22 @@ webpackJsonp([1], [
 							</div>
 						</td>
 					</tr>
+                    <tr>
+                        <td class="con_before">真实姓名：</td>
+                        <td class="con_after">
+                            <div class="ui input">
+                                <input type="text" name="realname" id="realName_" value="" placeholder="">
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="con_before">身份证号：</td>
+                        <td class="con_after">
+                            <div class="ui input">
+                                <input type="text" name="" value="" id="idCard_" placeholder="">
+                            </div>
+                        </td>
+                    </tr>
 					<tr>
 						<td class="con_before">性别：</td>
 						<td class="con_after">
@@ -615,8 +730,7 @@ webpackJsonp([1], [
                     rc += '<a type="" class="del funa">删除</a>'
                 } else if (data.state == 3) {
                     rc += '<a type="" class="funa">已接单</a>'
-                }
-                else if (data.state == 4) {
+                } else if (data.state == 4) {
                     rc += '<a type="" class="funa">已评价</a>'
                 }
                 rc += '<p hidden="hide" class="publish_id">' + data.publishId + '</p></div></div>';
@@ -682,13 +796,15 @@ webpackJsonp([1], [
                 box.append(rc);
             }
         }
-/* harmony export (immutable) */ __webpack_exports__["a"] = myPageUpdate;
+        /* harmony export (immutable) */
+        __webpack_exports__["a"] = myPageUpdate;
 
 
         /***/
     }),
-/* 16 */
-/***/ (function (module, exports, __webpack_require__) {
+    /* 16 */
+    /***/
+    (function(module, exports, __webpack_require__) {
 
         /*!
          * Cropper v3.1.3
@@ -700,11 +816,11 @@ webpackJsonp([1], [
          * Date: 2017-10-21T10:04:29.734Z
          */
 
-        (function (global, factory) {
+        (function(global, factory) {
             true ? factory(__webpack_require__(0)) :
                 typeof define === 'function' && define.amd ? define(['jquery'], factory) :
-                    (factory(global.jQuery));
-        }(this, (function ($) {
+                (factory(global.jQuery));
+        }(this, (function($) {
             'use strict';
 
             $ = $ && $.hasOwnProperty('default') ? $['default'] : $;
@@ -864,7 +980,16 @@ webpackJsonp([1], [
 
             var TEMPLATE = '<div class="cropper-container">' + '<div class="cropper-wrap-box">' + '<div class="cropper-canvas"></div>' + '</div>' + '<div class="cropper-drag-box"></div>' + '<div class="cropper-crop-box">' + '<span class="cropper-view-box"></span>' + '<span class="cropper-dashed dashed-h"></span>' + '<span class="cropper-dashed dashed-v"></span>' + '<span class="cropper-center"></span>' + '<span class="cropper-face"></span>' + '<span class="cropper-line line-e" data-action="e"></span>' + '<span class="cropper-line line-n" data-action="n"></span>' + '<span class="cropper-line line-w" data-action="w"></span>' + '<span class="cropper-line line-s" data-action="s"></span>' + '<span class="cropper-point point-e" data-action="e"></span>' + '<span class="cropper-point point-n" data-action="n"></span>' + '<span class="cropper-point point-w" data-action="w"></span>' + '<span class="cropper-point point-s" data-action="s"></span>' + '<span class="cropper-point point-ne" data-action="ne"></span>' + '<span class="cropper-point point-nw" data-action="nw"></span>' + '<span class="cropper-point point-sw" data-action="sw"></span>' + '<span class="cropper-point point-se" data-action="se"></span>' + '</div>' + '</div>';
 
-            function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } else { return Array.from(arr); } }
+            function _toConsumableArray(arr) {
+                if (Array.isArray(arr)) {
+                    for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) {
+                        arr2[i] = arr[i];
+                    }
+                    return arr2;
+                } else {
+                    return Array.from(arr);
+                }
+            }
 
             /**
              * Check if the given value is a string.
@@ -910,7 +1035,7 @@ webpackJsonp([1], [
                     args[_key - 2] = arguments[_key];
                 }
 
-                return function () {
+                return function() {
                     for (var _len2 = arguments.length, args2 = Array(_len2), _key2 = 0; _key2 < _len2; _key2++) {
                         args2[_key2] = arguments[_key2];
                     }
@@ -927,7 +1052,7 @@ webpackJsonp([1], [
             var objectKeys = Object.keys || function objectKeys(obj) {
                 var keys = [];
 
-                $.each(obj, function (key) {
+                $.each(obj, function(key) {
                     keys.push(key);
                 });
 
@@ -1031,7 +1156,7 @@ webpackJsonp([1], [
 
                 var newImage = document.createElement('img');
 
-                newImage.onload = function () {
+                newImage.onload = function() {
                     callback(newImage.width, newImage.height);
                 };
 
@@ -1047,10 +1172,10 @@ webpackJsonp([1], [
                 var pointers2 = $.extend({}, pointers);
                 var ratios = [];
 
-                $.each(pointers, function (pointerId, pointer) {
+                $.each(pointers, function(pointerId, pointer) {
                     delete pointers2[pointerId];
 
-                    $.each(pointers2, function (pointerId2, pointer2) {
+                    $.each(pointers2, function(pointerId2, pointer2) {
                         var x1 = Math.abs(pointer.startX - pointer2.startX);
                         var y1 = Math.abs(pointer.startY - pointer2.startY);
                         var x2 = Math.abs(pointer.endX - pointer2.endX);
@@ -1063,7 +1188,7 @@ webpackJsonp([1], [
                     });
                 });
 
-                ratios.sort(function (a, b) {
+                ratios.sort(function(a, b) {
                     return Math.abs(a) < Math.abs(b);
                 });
 
@@ -1105,7 +1230,7 @@ webpackJsonp([1], [
                 var pageY = 0;
                 var count = 0;
 
-                $.each(pointers, function (pointerId, _ref3) {
+                $.each(pointers, function(pointerId, _ref3) {
                     var startX = _ref3.startX,
                         startY = _ref3.startY;
 
@@ -1250,7 +1375,7 @@ webpackJsonp([1], [
                 context.scale(scaleX, scaleY);
                 context.imageSmoothingEnabled = !!imageSmoothingEnabled;
                 context.imageSmoothingQuality = imageSmoothingQuality;
-                context.drawImage.apply(context, [image].concat(_toConsumableArray($.map(params, function (param) {
+                context.drawImage.apply(context, [image].concat(_toConsumableArray($.map(params, function(param) {
                     return Math.floor(normalizeDecimalNumber(param));
                 }))));
                 context.restore();
@@ -1293,7 +1418,7 @@ webpackJsonp([1], [
                 var arrayBuffer = new ArrayBuffer(binary.length);
                 var uint8 = new Uint8Array(arrayBuffer);
 
-                $.each(uint8, function (i) {
+                $.each(uint8, function(i) {
                     uint8[i] = binary.charCodeAt(i);
                 });
 
@@ -1311,7 +1436,7 @@ webpackJsonp([1], [
                 var data = '';
 
                 // TypedArray.prototype.forEach is not supported in some browsers.
-                $.each(uint8, function (i, value) {
+                $.each(uint8, function(i, value) {
                     data += fromCharCode(value);
                 });
 
@@ -1354,7 +1479,7 @@ webpackJsonp([1], [
 
                         littleEndian = endianness === 0x4949;
 
-                        if (littleEndian || endianness === 0x4D4D /* bigEndian */) {
+                        if (littleEndian || endianness === 0x4D4D /* bigEndian */ ) {
                             if (dataView.getUint16(tiffOffset + 2, littleEndian) === 0x002A) {
                                 var firstIFDOffset = dataView.getUint32(tiffOffset + 4, littleEndian);
 
@@ -1374,7 +1499,7 @@ webpackJsonp([1], [
                     for (i = 0; i < _length; i += 1) {
                         _offset = ifdStart + i * 12 + 2;
 
-                        if (dataView.getUint16(_offset, littleEndian) === 0x0112 /* Orientation */) {
+                        if (dataView.getUint16(_offset, littleEndian) === 0x0112 /* Orientation */ ) {
                             // 8 is the offset of the current tag's value
                             _offset += 8;
 
@@ -1407,34 +1532,34 @@ webpackJsonp([1], [
                         scaleX = -1;
                         break;
 
-                    // Rotate left 180°
+                        // Rotate left 180°
                     case 3:
                         rotate = -180;
                         break;
 
-                    // Flip vertical
+                        // Flip vertical
                     case 4:
                         scaleY = -1;
                         break;
 
-                    // Flip vertical and rotate right 90°
+                        // Flip vertical and rotate right 90°
                     case 5:
                         rotate = 90;
                         scaleY = -1;
                         break;
 
-                    // Rotate right 90°
+                        // Rotate right 90°
                     case 6:
                         rotate = 90;
                         break;
 
-                    // Flip horizontal and rotate right 90°
+                        // Flip horizontal and rotate right 90°
                     case 7:
                         rotate = 90;
                         scaleX = -1;
                         break;
 
-                    // Rotate left 90°
+                        // Rotate left 90°
                     case 8:
                         rotate = -90;
                         break;
@@ -1625,10 +1750,10 @@ webpackJsonp([1], [
 
                     if (transformed) {
                         var _getRotatedSizes = getRotatedSizes({
-                            width: image.naturalWidth * Math.abs(image.scaleX || 1),
-                            height: image.naturalHeight * Math.abs(image.scaleY || 1),
-                            degree: image.rotate || 0
-                        }),
+                                width: image.naturalWidth * Math.abs(image.scaleX || 1),
+                                height: image.naturalHeight * Math.abs(image.scaleY || 1),
+                                degree: image.rotate || 0
+                            }),
                             naturalWidth = _getRotatedSizes.width,
                             naturalHeight = _getRotatedSizes.height;
 
@@ -1874,7 +1999,7 @@ webpackJsonp([1], [
                     this.$preview = $(this.options.preview);
                     this.$clone2 = $clone2;
                     this.$viewBox.html($clone2);
-                    this.$preview.each(function (i, element) {
+                    this.$preview.each(function(i, element) {
                         var $element = $(element);
                         var img = document.createElement('img');
 
@@ -1903,7 +2028,7 @@ webpackJsonp([1], [
                     });
                 },
                 resetPreview: function resetPreview() {
-                    this.$preview.each(function (i, element) {
+                    this.$preview.each(function(i, element) {
                         var $element = $(element);
                         var data = $element.data(DATA_PREVIEW);
 
@@ -1938,7 +2063,7 @@ webpackJsonp([1], [
                         }, image))
                     });
 
-                    this.$preview.each(function (i, element) {
+                    this.$preview.each(function(i, element) {
                         var $element = $(element);
                         var data = $element.data(DATA_PREVIEW);
                         var originalWidth = data.width;
@@ -2088,10 +2213,10 @@ webpackJsonp([1], [
                         this.render();
 
                         if (options.restore) {
-                            this.setCanvasData($.each(canvasData, function (i, n) {
+                            this.setCanvasData($.each(canvasData, function(i, n) {
                                 canvasData[i] = n * ratio;
                             }));
-                            this.setCropBoxData($.each(cropBoxData, function (i, n) {
+                            this.setCropBoxData($.each(cropBoxData, function(i, n) {
                                 cropBoxData[i] = n * ratio;
                             }));
                         }
@@ -2123,7 +2248,7 @@ webpackJsonp([1], [
 
                     this.wheeling = true;
 
-                    setTimeout(function () {
+                    setTimeout(function() {
                         _this.wheeling = false;
                     }, 50);
 
@@ -2152,7 +2277,7 @@ webpackJsonp([1], [
 
                     if (originalEvent && originalEvent.changedTouches) {
                         // Handle touch event
-                        $.each(originalEvent.changedTouches, function (i, touch) {
+                        $.each(originalEvent.changedTouches, function(i, touch) {
                             pointers[touch.identifier] = getPointer(touch);
                         });
                     } else {
@@ -2171,9 +2296,9 @@ webpackJsonp([1], [
                     }
 
                     if (this.trigger(EVENT_CROP_START, {
-                        originalEvent: originalEvent,
-                        action: action
-                    }).isDefaultPrevented()) {
+                            originalEvent: originalEvent,
+                            action: action
+                        }).isDefaultPrevented()) {
                         return;
                     }
 
@@ -2202,14 +2327,14 @@ webpackJsonp([1], [
                     e.preventDefault();
 
                     if (this.trigger(EVENT_CROP_MOVE, {
-                        originalEvent: originalEvent,
-                        action: action
-                    }).isDefaultPrevented()) {
+                            originalEvent: originalEvent,
+                            action: action
+                        }).isDefaultPrevented()) {
                         return;
                     }
 
                     if (originalEvent && originalEvent.changedTouches) {
-                        $.each(originalEvent.changedTouches, function (i, touch) {
+                        $.each(originalEvent.changedTouches, function(i, touch) {
                             $.extend(pointers[touch.identifier], getPointer(touch, true));
                         });
                     } else {
@@ -2229,7 +2354,7 @@ webpackJsonp([1], [
 
 
                     if (originalEvent && originalEvent.changedTouches) {
-                        $.each(originalEvent.changedTouches, function (i, touch) {
+                        $.each(originalEvent.changedTouches, function(i, touch) {
                             delete pointers[touch.identifier];
                         });
                     } else {
@@ -2340,7 +2465,7 @@ webpackJsonp([1], [
                             top += range.y;
                             break;
 
-                        // Resize crop box
+                            // Resize crop box
                         case ACTION_EAST:
                             if (range.x >= 0 && (right >= maxWidth || aspectRatio && (top <= minTop || bottom >= maxHeight))) {
                                 renderable = false;
@@ -2627,19 +2752,19 @@ webpackJsonp([1], [
 
                             break;
 
-                        // Move canvas
+                            // Move canvas
                         case ACTION_MOVE:
                             this.move(range.x, range.y);
                             renderable = false;
                             break;
 
-                        // Zoom canvas
+                            // Zoom canvas
                         case ACTION_ZOOM:
                             this.zoom(getMaxZoomRatio(pointers), e.originalEvent);
                             renderable = false;
                             break;
 
-                        // Create crop box
+                            // Create crop box
                         case ACTION_CROP:
                             if (!range.x || !range.y) {
                                 renderable = false;
@@ -2688,14 +2813,23 @@ webpackJsonp([1], [
                     }
 
                     // Override
-                    $.each(pointers, function (i, p) {
+                    $.each(pointers, function(i, p) {
                         p.startX = p.endX;
                         p.startY = p.endY;
                     });
                 }
             };
 
-            function _toConsumableArray$1(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } else { return Array.from(arr); } }
+            function _toConsumableArray$1(arr) {
+                if (Array.isArray(arr)) {
+                    for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) {
+                        arr2[i] = arr[i];
+                    }
+                    return arr2;
+                } else {
+                    return Array.from(arr);
+                }
+            }
 
             var methods = {
                 // Show the crop box manually
@@ -2930,10 +3064,10 @@ webpackJsonp([1], [
                         }
 
                         if (this.trigger(EVENT_ZOOM, {
-                            originalEvent: originalEvent,
-                            oldRatio: width / naturalWidth,
-                            ratio: newWidth / naturalWidth
-                        }).isDefaultPrevented()) {
+                                originalEvent: originalEvent,
+                                oldRatio: width / naturalWidth,
+                                ratio: newWidth / naturalWidth
+                            }).isDefaultPrevented()) {
                             return;
                         }
 
@@ -3063,7 +3197,7 @@ webpackJsonp([1], [
 
                         var ratio = image.width / image.naturalWidth;
 
-                        $.each(data, function (i, n) {
+                        $.each(data, function(i, n) {
                             n /= ratio;
                             data[i] = rounded ? Math.round(n) : n;
                         });
@@ -3181,7 +3315,7 @@ webpackJsonp([1], [
                     var data = {};
 
                     if (this.ready) {
-                        $.each(['left', 'top', 'width', 'height', 'naturalWidth', 'naturalHeight'], function (i, n) {
+                        $.each(['left', 'top', 'width', 'height', 'naturalWidth', 'naturalHeight'], function(i, n) {
                             data[n] = canvas[n];
                         });
                     }
@@ -3329,10 +3463,10 @@ webpackJsonp([1], [
                     });
 
                     var _getContainSizes = getContainSizes({
-                        aspectRatio: aspectRatio,
-                        width: options.width || initialWidth,
-                        height: options.height || initialHeight
-                    }),
+                            aspectRatio: aspectRatio,
+                            width: options.width || initialWidth,
+                            height: options.height || initialHeight
+                        }),
                         width = _getContainSizes.width,
                         height = _getContainSizes.height;
 
@@ -3417,7 +3551,7 @@ webpackJsonp([1], [
                         params.push(dstX * scale, dstY * scale, dstWidth * scale, dstHeight * scale);
                     }
 
-                    context.drawImage.apply(context, [source].concat(_toConsumableArray$1($.map(params, function (param) {
+                    context.drawImage.apply(context, [source].concat(_toConsumableArray$1($.map(params, function(param) {
                         return Math.floor(normalizeDecimalNumber(param));
                     }))));
                     return canvas;
@@ -3472,11 +3606,30 @@ webpackJsonp([1], [
                 }
             };
 
-            var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+            var _createClass = function() {
+                function defineProperties(target, props) {
+                    for (var i = 0; i < props.length; i++) {
+                        var descriptor = props[i];
+                        descriptor.enumerable = descriptor.enumerable || false;
+                        descriptor.configurable = true;
+                        if ("value" in descriptor) descriptor.writable = true;
+                        Object.defineProperty(target, descriptor.key, descriptor);
+                    }
+                }
+                return function(Constructor, protoProps, staticProps) {
+                    if (protoProps) defineProperties(Constructor.prototype, protoProps);
+                    if (staticProps) defineProperties(Constructor, staticProps);
+                    return Constructor;
+                };
+            }();
 
-            function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+            function _classCallCheck(instance, Constructor) {
+                if (!(instance instanceof Constructor)) {
+                    throw new TypeError("Cannot call a class as a function");
+                }
+            }
 
-            var Cropper = function () {
+            var Cropper = function() {
                 /**
                  * Create a new Cropper.
                  * @param {Element} element - The target element for cropping.
@@ -3583,11 +3736,11 @@ webpackJsonp([1], [
 
                         var xhr = new XMLHttpRequest();
 
-                        xhr.onerror = function () {
+                        xhr.onerror = function() {
                             _this.clone();
                         };
 
-                        xhr.onload = function () {
+                        xhr.onload = function() {
                             _this.read(xhr.response);
                         };
 
@@ -3694,7 +3847,7 @@ webpackJsonp([1], [
                             $image = $clone;
                         }
 
-                        getImageNaturalSizes($image[0], function (naturalWidth, naturalHeight) {
+                        getImageNaturalSizes($image[0], function(naturalWidth, naturalHeight) {
                             $.extend(_this2.image, {
                                 naturalWidth: naturalWidth,
                                 naturalHeight: naturalHeight,
@@ -3796,7 +3949,7 @@ webpackJsonp([1], [
                         this.setData(options.data);
 
                         // Trigger the ready event asynchronously to keep `data('cropper')` is defined
-                        this.completing = setTimeout(function () {
+                        this.completing = setTimeout(function() {
                             if ($.isFunction(options.ready)) {
                                 $element.one(EVENT_READY, options.ready);
                             }
@@ -3873,7 +4026,7 @@ webpackJsonp([1], [
 
                     var result = void 0;
 
-                    this.each(function (i, element) {
+                    this.each(function(i, element) {
                         var $element = $(element);
                         var data = $element.data(NAMESPACE);
 
