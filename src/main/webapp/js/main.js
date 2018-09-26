@@ -995,8 +995,11 @@ webpackJsonp([0], [
 				});
 
 				$(".msg_content").on('click', '.msg .sure', function(event) {
-					$(this).parent().parent().remove();
-					history.go(0);
+                    $.post('../MM/changeMsgType', {
+                        "messageId": $(this).parent().parent().find(".message_id").text(),
+                    },function(){
+                        history.go(0);
+                    });
 				});
 
 				$(".msg_content").on('click', '.msg .yes', function(event) {

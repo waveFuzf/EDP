@@ -68,7 +68,7 @@ public class WebSocketServiceImpl implements WebSocketService {
 	public String sendToPassivePerByTrue(int id,int supportId) {
 		// TODO Auto-generated method stub
 		Tmessage tmessage = webSocketDao.findMessage(id);
-		webSocketDao.changeMsgType(2, id);
+		webSocketDao.changeMsgType(1, id);
 		if (tmessage.getFromNum().matches("^PH.*")) {
 			Tpublish tpublish = webSocketDao.findByPfromNum(tmessage.getFromNum());
 			Map<String, Object> map = new HashMap<String, Object>();
@@ -109,7 +109,7 @@ public class WebSocketServiceImpl implements WebSocketService {
 	public String sendToPassivePerByFalse(int id,int supportId) {
 		// TODO Auto-generated method stub
 		Tmessage tmessage = webSocketDao.findMessage(id);
-		webSocketDao.changeMsgType(3, id);
+		webSocketDao.changeMsgType(1, id);
 		if (tmessage.getFromNum().matches("^PH.*")) {
 			Tpublish tpublish = webSocketDao.findByPfromNum(tmessage.getFromNum());
 			Map<String, Object> map = new HashMap<String, Object>();

@@ -4,6 +4,7 @@ import javax.servlet.http.HttpSession;
 import javax.websocket.*;
 import javax.websocket.server.ServerEndpoint;
 
+import com.zust.EDP.dao.WebSocketDao;
 import com.zust.EDP.dto.Message;
 import com.zust.EDP.service.MessageService;
 import org.json.JSONException;
@@ -47,6 +48,8 @@ public class WebSocket {
 
 	@Autowired
 	private WebSocketService webSocketService;
+	@Autowired
+	private WebSocketDao webSocketDao;
 
 	/*
 	 * type：1，第一种发布的确定消息； type：2，第一种发布的反馈消息； type：3，第一种发布的反馈消息时的快递信息；
@@ -66,7 +69,7 @@ public class WebSocket {
 						jsonObject.getString(("publishId")))) {
 					Tmessage tmessage = new Tmessage();
 					tmessage.setFromNum((String) jsonObject.get("publishId"));
-					tmessage.setMsgType(1);
+					tmessage.setMsgType(0);
 					tmessage.setPassivePer(users.get(session.getId()));
 					tmessage.setOrderDate(tool.getNowTime());
 					tmessage.setState(0);
@@ -85,13 +88,15 @@ public class WebSocket {
 				if (jsonObject.get("choose").toString().equals("true")) {
 					string = webSocketService.sendToPassivePerByTrue(jsonObject.getInt("messageId"),jsonObject.getInt("supportId"));
 //					messageService.changeState(jsonObject.getInt("messageId"),2);
-					sendToUser(string, session);
 					System.out.println("接单人确认接单");
+					sendToUser(string, session);
+					webSocketDao.changeMsgType(0, jsonObject.getInt("messageId"));
 				} else {
 					string = webSocketService.sendToPassivePerByFalse(jsonObject.getInt("messageId"),jsonObject.getInt("supportId"));
 //					messageService.changeState(jsonObject.getInt("messageId"),1);
-					sendToUser(string, session);
 					System.out.println("接单人拒绝接单");
+					sendToUser(string, session);
+					webSocketDao.changeMsgType(0, jsonObject.getInt("messageId"));
 				}
 			} else if (jsonObject.get("type").toString().equals("3")) {
 				System.out.println("type==3");
