@@ -721,13 +721,13 @@ webpackJsonp([0], [
 								$(".fetch_content").fadeIn("fast");
 							});
 						} else if (index === 3) {
-							if (!myInf.isCertification) {
+							if (myInf.isCertification) {
 								addMsg('您尚未进行实名认证 ，是否进行实名认证')
 								return
 							}
 							location.href = "../task1/writing";
 						} else if (index === 2) {
-							if (!myInf.isCertification) {
+							if (myInf.isCertification) {
 								addMsg('您尚未进行实名认证 ，是否进行实名认证')
 								return
 							}
@@ -1048,7 +1048,7 @@ webpackJsonp([0], [
 
 				$("#mian_write").click(function(event) {
 					/* Act on the event */
-					if (!myInf.isCertification) {
+					if (myInf.isCertification) {
 						addMsg('您尚未进行实名认证 ，是否进行实名认证')
 						return
 					}

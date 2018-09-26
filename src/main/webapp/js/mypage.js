@@ -308,7 +308,7 @@ webpackJsonp([1], [
                 $("#left_menu ul li").each(function(index, el) {
                     $(this).click(function(event) {
                         /* Act on the event */
-                        // if (!myInf.isCertification) {
+                        // if (myInf.isCertification) {
                         //     addMsg('您尚未进行实名认证 ，请先进行使命认证！')
                         //     return
                         // }
