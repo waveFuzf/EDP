@@ -10,6 +10,7 @@ import javax.servlet.http.HttpSession;
 
 import com.zust.EDP.entity.*;
 import com.zust.EDP.util.RedisUtil;
+import net.sf.json.JSONArray;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -97,13 +98,17 @@ public class UserServiceImpl implements UserService {
 			session.setAttribute("userMessage", u.get(0));
 			redisUtil.updateRedis(u.get(0).getUserId(),session.getId());
 			map.put("isLogin", "true");
-			Map<String, String> mapp = new HashMap<String, String>();
+			Map<String, Object> mapp = new HashMap<String, Object>();
 			mapp.put("tel", u.get(0).getTel());
 			mapp.put("name", u.get(0).getName());
 			mapp.put("id", String.valueOf(u.get(0).getUserId()));
 			System.out.println("当前登录id为" + String.valueOf(u.get(0).getUserId()));
 			mapp.put("image", u.get(0).getImage());
 			mapp.put("integral", String.valueOf(u.get(0).getIntegral()));
+			mapp.put("realname",u.get(0).getTidcard().getRealname());
+			mapp.put("idcardnum",u.get(0).getTidcard().getIdcardnum().
+					replaceAll("(18|19|20)\\d{2}((0[1-9])|(10|11|12))(([0-2][1-9])|10|20|30|31)","********"));
+			mapp.put("isCertification",u.get(0).getTidcard().getId()>0?true:false);
 			map.put("userMessage", mapp);
 			return map;
 		} else {

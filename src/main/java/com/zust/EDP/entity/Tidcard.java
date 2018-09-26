@@ -1,5 +1,6 @@
 package com.zust.EDP.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import sun.security.krb5.internal.Ticket;
 
 import javax.persistence.*;
@@ -19,6 +20,7 @@ public class Tidcard {
     private String realname;
 
     // 与Tuser关联
+    @JsonIgnore
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "tidcard")
     private Set<Tuser> userId = new HashSet<Tuser>();
 

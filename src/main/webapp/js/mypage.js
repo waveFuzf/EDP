@@ -308,10 +308,10 @@ webpackJsonp([1], [
                 $("#left_menu ul li").each(function(index, el) {
                     $(this).click(function(event) {
                         /* Act on the event */
-                        if (!myInf.isCertification) {
-                            addMsg('您尚未进行实名认证 ，请先进行使命认证！')
-                            return
-                        }
+                        // if (!myInf.isCertification) {
+                        //     addMsg('您尚未进行实名认证 ，请先进行使命认证！')
+                        //     return
+                        // }
                         flag = $("#left_menu ul li").index(this);
                         $("#left_menu ul li").removeClass("leftmenuclick");
                         $(this).addClass('leftmenuclick');
@@ -335,8 +335,8 @@ webpackJsonp([1], [
                                         $('#realName_').attr("disabled", true);
                                     }
                                     if (data.idcardnum) {
-                                        $('#realName_').val(data.idcardnum)
-                                        $('#realName_').attr("disabled", true);
+                                        $('#idCard_').val(data.idcardnum)
+                                        $('#idCard_').attr("disabled", true);
                                     }
                                     $(".ui.dropdown").dropdown();
                                 });
@@ -499,7 +499,7 @@ webpackJsonp([1], [
                             return
                         } else {
                             console.log('验证身份信息')
-                            $.post('./user/checknum', {
+                            $.post('./checknum', {
                                 realname: $('#realName_').val(),
                                 idcardnum: $('#idCard_').val()
                             }, function(data, textStatus, xhr) {

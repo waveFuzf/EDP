@@ -161,12 +161,13 @@ public class UserController {
 	// 验证身份证号码
 	// 返回：信息
 	@ResponseBody
-	@RequestMapping(value = "/checknum", method = RequestMethod.GET,produces = "application/json;charset=utf-8")
-	public String CheckCardNum(Integer userId, String realname, String cardnum,HttpServletRequest httpServletRequest) {
-		if (!redisUtil.checkRedis(userId,httpServletRequest.getSession().getId())){
+	@RequestMapping(value = "/checknum", method = RequestMethod.POST,produces = "application/json;charset=utf-8")
+	public String CheckCardNum(String realname, String idcardnum,HttpServletRequest httpServletRequest) {
+		Tuser tuser = (Tuser) httpServletRequest.getSession().getAttribute("userMessage");
+		if (!redisUtil.checkRedis(tuser.getUserId(),httpServletRequest.getSession().getId())){
 			return new String("无效操作，请重新登录！");
 		}
-		if(!checkNumUtil.CheckNumName(cardnum,realname)){
+		if(!checkNumUtil.CheckNumName(idcardnum,realname)){
 			return new String("格式不正确！");
 		}
 //		JSONArray reponse=apiCheckUtil.CheckNum(realname,cardnum);
@@ -174,15 +175,15 @@ public class UserController {
 		switch (reponse.getJSONObject(0).optInt("error_code")){
         //0：认证通过   80008：参数不完整    90033：无此身份证号码    90099：认证不通过
 			case 0:
-				List<Tidcard> tidcard=tidcardService.selectByNum(cardnum);
+				List<Tidcard> tidcard=tidcardService.selectByNum(idcardnum);
 				if (tidcard.size()==0){
-					tidcardService.saveTicard(new Tidcard(cardnum,realname));
+					tidcardService.saveTicard(new Tidcard(idcardnum,realname));
 				}else {
 					List<Tuser> users=userService.findUserByNum(tidcard.get(0).getId());
 					if (users.size()==3){
 						return new String ("该身份证绑定账号过多！");
 					}else{
-						userService.updateUser(userId,tidcard.get(0));
+						userService.updateUser(tuser.getUserId(),tidcard.get(0));
 					}
 				}
 				return new String("认证通过，已绑定该账号！");
@@ -232,6 +233,8 @@ public class UserController {
 			map.put("name", tuser.getName());
 			map.put("sex", tuser.getSex());
 			map.put("address", tuser.getAddress());
+			map.put("realname",tuser.getTidcard().getRealname());
+			map.put("idcardnum",tuser.getTidcard().getIdcardnum().replaceAll("(18|19|20)\\d{2}((0[1-9])|(10|11|12))(([0-2][1-9])|10|20|30|31)","********"));
 			map.put("msg","Success!");
 			return map;
 	}
