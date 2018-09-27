@@ -23,4 +23,6 @@ public interface WebSocketService {
 	public String splitTypeSix(int id);
 
 	public String backToExpressMessage(int id);
+
+	public Integer findPublish_by_num(String fromNum);
 }

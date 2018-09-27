@@ -24,4 +24,6 @@ public interface PublishDao {
 	public List<Texpress> findmytakenpublish(Integer userId);
 
 	public void updatestate(Integer PublishId, int state);
+
+    public List<Tpublish> findPublish_by_num(String publishNum);
 }

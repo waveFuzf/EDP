@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import com.zust.EDP.dto.*;
 import com.zust.EDP.entity.*;
 import com.zust.EDP.util.RedisUtil;
 import net.sf.json.JSONArray;
@@ -22,13 +23,6 @@ import com.zust.EDP.dao.PublishDao;
 import com.zust.EDP.dao.RecordDao;
 import com.zust.EDP.dao.RequestDao;
 import com.zust.EDP.dao.UserDao;
-import com.zust.EDP.dto.Home;
-import com.zust.EDP.dto.Homeuser;
-import com.zust.EDP.dto.Mytake;
-import com.zust.EDP.dto.Publish;
-import com.zust.EDP.dto.Request;
-import com.zust.EDP.dto.Unread;
-import com.zust.EDP.dto.User;
 import com.zust.EDP.service.MessageService;
 import com.zust.EDP.service.PublishService;
 import com.zust.EDP.service.RecordService;
@@ -208,7 +202,7 @@ public class UserServiceImpl implements UserService {
 		// TODO Auto-generated method stub
 		List<Homeuser> list3 = homeuser();
 		System.out.println("findtip3OK");
-//		List<Message> list4 = messageService.findmessage(userId);
+		List<Tmessage> list4 = messageService.findmessage(userId);
 		System.out.println("messageServiceOk");
 		List<Publish> list1 = publishService.selectAddress("", 10,userId);
 		System.out.println("publishService");

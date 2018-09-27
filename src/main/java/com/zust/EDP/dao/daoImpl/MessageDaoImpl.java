@@ -196,5 +196,11 @@ public class MessageDaoImpl implements MessageDao {
 		message.setState(state);
 	}
 
-
+	@Override
+	public List<Tmessage> findmessage(Integer userId) {
+		String sql = "select m from Tmessage m left join m.passivePer u where m.msgType=0 and m.userId="+userId+" or u.userId ="+userId;
+		Query query = getCurrentSession().createQuery(sql);
+		List<Tmessage> list = query.list();
+		return list;
+	}
 }

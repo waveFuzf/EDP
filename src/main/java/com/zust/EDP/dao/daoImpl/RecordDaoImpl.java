@@ -38,10 +38,8 @@ public class RecordDaoImpl implements RecordDao {
 	@Override
 	public List<Trecord> find_by_userId(Integer userId) {
 		// TODO Auto-generated method stub
-		System.out.println("bbbbbbbbb");
 		String sql = "select r from Trecord r left join r.user_sended_id u where r.recordState=0 and u.userId = '"
 				+ userId + "'group by r.user_sender_id";
-		System.out.println("Trecord的size" + getCurrentSession().createQuery(sql).list().size());
 		return getCurrentSession().createQuery(sql).list();
 	}
 

@@ -38,4 +38,6 @@ public interface MessageDao {
 	public List<Tmessage> findByFromNum(String fromNum);
 
     public void changeState(Integer messageId, int state);
+
+    public List<Tmessage> findmessage(Integer userId);
 }
