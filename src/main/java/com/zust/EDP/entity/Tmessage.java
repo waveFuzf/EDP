@@ -18,10 +18,20 @@ public class Tmessage {
 	private Date orderDate;
 	@Column
 	private Integer state;
+	@Column
+	private Integer userId;
 	// 与Tuser关联
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "passivePer")
 	private Tuser passivePer;
+
+	public Integer getUserId() {
+		return userId;
+	}
+
+	public void setUserId(Integer userId) {
+		this.userId = userId;
+	}
 
 	public Integer getMessageId() {
 		return messageId;

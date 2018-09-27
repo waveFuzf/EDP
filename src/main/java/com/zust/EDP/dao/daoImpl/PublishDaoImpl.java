@@ -123,5 +123,11 @@ public class PublishDaoImpl implements PublishDao {
 		
 	}
 
+	@Override
+	public List<Tpublish> findPublish_by_num(String publishNum) {
+		String sql = "from Tpublish p left join p.user_publisher_id u where p.fromNum='"+publishNum+"'";
+		return getCurrentSession().createQuery(sql).list();
+	}
+
 
 }

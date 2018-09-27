@@ -230,5 +230,10 @@ public class PublishServiceImpl implements PublishService {
 		return "true";
 	}
 
+	@Override
+	public List<Tpublish> findPublish_by_num(String publishNum) {
+		return publishDao.findPublish_by_num(publishNum);
+	}
+
 
 }

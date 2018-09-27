@@ -4,6 +4,7 @@ import javax.servlet.http.HttpSession;
 import javax.websocket.*;
 import javax.websocket.server.ServerEndpoint;
 
+import com.zust.EDP.dao.PublishDao;
 import com.zust.EDP.dao.WebSocketDao;
 import com.zust.EDP.dto.Message;
 import com.zust.EDP.service.MessageService;
@@ -31,6 +32,8 @@ public class WebSocket {
 
 	@Autowired
 	private MessageService messageService;
+	@Autowired
+	private PublishDao publishService;
 
 	@OnOpen
 	public void onOpen(Session session, EndpointConfig config) {
@@ -73,6 +76,8 @@ public class WebSocket {
 					tmessage.setPassivePer(users.get(session.getId()));
 					tmessage.setOrderDate(tool.getNowTime());
 					tmessage.setState(0);
+					Integer userId=publishService.findPublish_by_num("PH20180829171845001").get(0).getUser_publisher_id().getUserId();
+					tmessage.setUserId(userId);
 					string = webSocketService.sendToPublisher(tmessage);
 					sendToUser(string, session);
 					System.out.println("当前用户信誉高于限制要求");
