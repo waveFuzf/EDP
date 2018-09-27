@@ -330,4 +330,11 @@ public class WebSocketServiceImpl implements WebSocketService {
 		return tools.splitJson(map);
 	}
 
+	@Override
+	public Integer findPublish_by_num(String fromNum) {
+		Tpublish tpublish=webSocketDao.findByPfromNum(fromNum);
+		Integer integer=tpublish.getUser_publisher_id().getUserId();
+		return integer;
+
+	}
 }

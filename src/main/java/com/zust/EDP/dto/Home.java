@@ -1,11 +1,13 @@
 package com.zust.EDP.dto;
 
+import com.zust.EDP.entity.Tmessage;
+
 import java.util.ArrayList;
 import java.util.List;
 
 public class Home {
 	private List<Homeuser> user = new ArrayList<Homeuser>();
-	private List<Message> message = new ArrayList<Message>();
+	private List<Tmessage> message = new ArrayList<Tmessage>();
 	private List<Publish> publish = new ArrayList<Publish>();
 	private List<Request> request = new ArrayList<Request>();
 	private List<Unread> Unread = new ArrayList<Unread>();
@@ -18,11 +20,11 @@ public class Home {
 		this.user = user;
 	}
 
-	public List<Message> getMessage() {
+	public List<Tmessage> getMessage() {
 		return message;
 	}
 
-	public void setMessage(List<Message> message) {
+	public void setMessage(List<Tmessage> message) {
 		this.message = message;
 	}
 

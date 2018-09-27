@@ -8,6 +8,7 @@ import com.zust.EDP.dao.PublishDao;
 import com.zust.EDP.dao.WebSocketDao;
 import com.zust.EDP.dto.Message;
 import com.zust.EDP.service.MessageService;
+import com.zust.EDP.service.PublishService;
 import org.json.JSONException;
 import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,11 +31,6 @@ public class WebSocket {
 	@Autowired
 	private Tools tool;
 
-	@Autowired
-	private MessageService messageService;
-	@Autowired
-	private PublishDao publishService;
-
 	@OnOpen
 	public void onOpen(Session session, EndpointConfig config) {
 		HttpSession httpSession = (HttpSession) config.getUserProperties().get(HttpSession.class.getName());
@@ -53,7 +49,8 @@ public class WebSocket {
 	private WebSocketService webSocketService;
 	@Autowired
 	private WebSocketDao webSocketDao;
-
+	@Autowired
+	private PublishService publishService;
 	/*
 	 * type：1，第一种发布的确定消息； type：2，第一种发布的反馈消息； type：3，第一种发布的反馈消息时的快递信息；
 	 * type：4，第二种发布的确定消息; type：5，返回消息记录和对方是否在线； 无type为转发消息
@@ -76,7 +73,7 @@ public class WebSocket {
 					tmessage.setPassivePer(users.get(session.getId()));
 					tmessage.setOrderDate(tool.getNowTime());
 					tmessage.setState(0);
-					Integer userId=publishService.findPublish_by_num("PH20180829171845001").get(0).getUser_publisher_id().getUserId();
+					Integer userId=webSocketService.findPublish_by_num(tmessage.getFromNum());
 					tmessage.setUserId(userId);
 					string = webSocketService.sendToPublisher(tmessage);
 					sendToUser(string, session);

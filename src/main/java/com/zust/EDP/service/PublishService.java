@@ -31,5 +31,5 @@ public interface PublishService {
 
 	public String deletepublish(Integer publishId);
 
-    public List<Tpublish> findPublish_by_num(String publishNum);
+    public Integer findPublish_by_num(String publishNum);
 }

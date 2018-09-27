@@ -7,6 +7,9 @@ import java.util.List;
 
 import javax.servlet.http.HttpSession;
 
+import com.google.gson.JsonArray;
+import net.sf.json.JSONArray;
+import org.omg.PortableServer.LIFESPAN_POLICY_ID;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -195,10 +198,10 @@ public class PublishServiceImpl implements PublishService {
 	@Override
 	public List<Publish> findpublishunsave(HttpSession session) {
 		// TODO Auto-generated method stub
-		Tuser u = (Tuser) session.getAttribute("userMessage");
-		System.out.println("找到暂存usetId" + u.getUserId());
+//		Tuser u = (Tuser) session.getAttribute("userMessage");
+//		System.out.println("找到暂存usetId" + u.getUserId());
 		List<Publish> list2 = new ArrayList<Publish>();
-		List<Texpress> list = publishDao.find_by_id(u.getUserId());
+		List<Texpress> list = publishDao.find_by_id(1);
 		System.out.println("找到暂存" + list.size());
 		for (int i = 0; i < list.size(); i++) {
 			Publish publish = new Publish();
@@ -231,8 +234,10 @@ public class PublishServiceImpl implements PublishService {
 	}
 
 	@Override
-	public List<Tpublish> findPublish_by_num(String publishNum) {
-		return publishDao.findPublish_by_num(publishNum);
+	public Integer findPublish_by_num(String publishNum) {
+		List<Tpublish> list=publishDao.findPublish_by_num(publishNum);
+		Integer integer=list.get(0).getUser_publisher_id().getUserId();
+		return integer;
 	}
 
 

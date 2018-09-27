@@ -22,7 +22,6 @@ public class RecordServiceImpl implements RecordService {
 	@Override
 	public List<Unread> Trecord_Uread(Integer UserId) {
 		// TODO Auto-generated method stub
-		System.out.println("aaaaaa");
 		List<Unread> rList = new ArrayList<Unread>();
 		List<Trecord> list1 = recordDao.find_by_userId(UserId);
 		for (int i = 0; i < list1.size(); i++) {

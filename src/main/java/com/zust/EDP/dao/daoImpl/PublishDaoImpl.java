@@ -78,18 +78,9 @@ public class PublishDaoImpl implements PublishDao {
 
 	@SuppressWarnings("unchecked")
 	@Override
-	public List<Texpress> find_by_id(Integer userId) {
-		// TODO Auto-generated method stub
-		String sql = "select e from Texpress e left join e.publishId p left join p.user_publisher_id u where p.state=1 and u.userId="
-				+ userId;
-		return getCurrentSession().createQuery(sql).list();
-	}
-
-	@SuppressWarnings("unchecked")
-	@Override
 	public List<Texpress> findmytakepublih(Integer userId) {
 		// TODO Auto-generated method stub
-		String sql = "select e from Texpress e left join e.publishId p,Tmessage m left join m.passivePer u where m.msgType=1 and p.fromNum = m.fromNum and u.userId="
+		String sql = "select e from Texpress e left join e.publishId p,Tmessage m left join m.passivePer u where p.state=3 and  p.fromNum = m.fromNum and u.userId="
 				+ userId;
 		return getCurrentSession().createQuery(sql).list();
 	}
@@ -123,9 +114,18 @@ public class PublishDaoImpl implements PublishDao {
 		
 	}
 
+	@SuppressWarnings("unchecked")
 	@Override
 	public List<Tpublish> findPublish_by_num(String publishNum) {
-		String sql = "from Tpublish p left join p.user_publisher_id u where p.fromNum='"+publishNum+"'";
+		String sql = "select p from Tpublish p left join p.user_publisher_id u where p.fromNum='"+publishNum+"'";
+		return getCurrentSession().createQuery(sql).list();
+	}
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<Texpress> find_by_id(Integer userId) {
+		// TODO Auto-generated method stub
+		String sql = "select e from Texpress e left join e.publishId p left join p.user_publisher_id u where p.state=1 and u.userId="
+				+ userId;
 		return getCurrentSession().createQuery(sql).list();
 	}
 
